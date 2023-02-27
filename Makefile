@@ -10,7 +10,7 @@ OBJS = $(SRCS:.c=.o)
 NAME = cub3d
 
 #------------------------ MLX_DEPENDENCIES --------------------------
-DEPENDENCIES_LINUX = -MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
+DEPENDENCIES_LINUX = MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
 MLX42 = ./MLX42
 INC_MLX := $(MLX42)/include
 
@@ -30,10 +30,10 @@ libmlx:
 ifeq ($(shell uname -s), $(LINUX))
 
 %.o: %.c $(INCLUDES) libmlx
-	$(CC) $(CFLAGS) -I$(INC) -I$(INC_MLX) $(DEPENDENCIES_LINUX	) -c $(filter %.c, $<) -o $@
+	$(CC) $(CFLAGS) -I$(INC) -I$(INC_MLX) -c $(filter %.c, $<) -o $@
 
 $(NAME): $(OBJS) $(INCLUDES)
-	$(CC) $(FLAGS) -o $@ $(OBJS)
+	$(CC) $(FLAGS) -o $@ $(OBJS) $(DEPENDENCIES_LINUX)
 
 else
 	@echo "OS not ok"
