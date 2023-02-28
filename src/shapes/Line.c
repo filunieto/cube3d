@@ -15,7 +15,6 @@ void drawLine (mlx_image_t *img, t_point *p1, t_point *p2)
 	float gradient;
 	int xend;
 	float yend;
-	float xgap;
 	int xpxl1;
 	int ypxl1;
 	int xpxl2;
@@ -55,7 +54,6 @@ void drawLine (mlx_image_t *img, t_point *p1, t_point *p2)
 	//handle first endpoint
 	xend = round(p1->x);
 	yend = (float)p1->y + (gradient * (xend - p1->x));
-   	xgap = rfPart(p1->x + 0.5);
 	xpxl1 = xend;
 	ypxl1 = integerPart(yend);
 
@@ -75,7 +73,6 @@ void drawLine (mlx_image_t *img, t_point *p1, t_point *p2)
 	//handle second endpoint
 	xend = round(p2->x);
     yend = p2->y + (gradient * (xend - p2->x));
-    xgap = fractionalPart(p2->x + 0.5);
     xpxl2 = xend; //this will be used in the main loop
     ypxl2 = integerPart(yend);
 

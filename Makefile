@@ -11,7 +11,7 @@ OBJS = $(SRCS:.c=.o)
 NAME = cub3d
 GRAPHIC_LIBRARY = MLX42/build/libmlx42.a
 #------------------------ MLX_DEPENDENCIES --------------------------
-DEPENDENCIES_LINUX = $(GRAPHIC_LIBRRAY) -ldl -lglfw -pthread -lm
+DEPENDENCIES_LINUX = $(GRAPHIC_LIBRARY) -ldl -lglfw -pthread -lm
 DEPENDENCIES_MAC = MLX42/build/libmlx42.a -framework Cocoa -framework OpenGL -framework IOKit
 MLX42 = ./MLX42
 INC_MLX := $(MLX42)/include
