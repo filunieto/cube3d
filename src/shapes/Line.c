@@ -1,110 +1,135 @@
-
 #include "../../inc/shapes/Shapes.h"
 
 //Functions defined in utilsLine.c
-extern int integerPart(float n);
-extern float fractionalPart(float n);
-extern float rfPart(float n);
-extern void swap(int *n1, int *n2);
+extern int		i_part(float n);
+extern float	fractional_part(float n);
+extern float	rf_part(float n);
+extern void		swap(int *n1, int *n2);
 
-void drawLine (mlx_image_t *img, t_point *p1, t_point *p2)
+static int		handle_first_endpoint(mlx_image_t *img, t_end_point *fep);
+static int		handle_second_endpoint(mlx_image_t *img, t_end_point *sep);
+static void		main_loop(mlx_image_t *img, t_end_point *fep, t_end_point *sep);
+static void		init_variables_line(t_point *p1, t_point *p2, t_end_point *fep);
+
+void	draw_line(mlx_image_t *img, t_point *p1, t_point *p2, int color)
 {
-	int steep;
-	int dx;
-	int dy;
-	float gradient;
-	int xend;
-	float yend;
-	int xpxl1;
-	int ypxl1;
-	int xpxl2;
-	int ypxl2;
+	t_end_point	*fep;
+	t_end_point	*sep;
 
-	float intery;
-
-	if(!p1 || !p2)
+	sep = (t_end_point *)malloc(sizeof(t_end_point));
+	fep = (t_end_point *)malloc(sizeof(t_end_point));
+	init_variables_line(p1, p2, fep);
+	fep->p = p1;
+	sep->p = p2;
+	fep->color = color;
+	sep->color = fep->color;
+	if (!p1 || !p2)
 	{
 		printf("Error in points passed\n");
 		return ;
 	}
+	sep->steep = fep->steep;
+	sep->gradient = fep->gradient;
+	fep->xpxl = handle_first_endpoint(img, fep);
+	sep->xpxl = handle_second_endpoint(img, sep);
+	main_loop(img, fep, sep);
+	free(fep);
+	free(sep);
+}
 
-	steep = 0;
+static void	init_variables_line(t_point *p1, t_point *p2, t_end_point *fep)
+{
+	int	dx;
+	int	dy;
+
+	fep->steep = 0;
 	if (fabs((double)p2->y - p1->y) > fabs((double)p2->x - p1->x))
-		steep = 1;
-	//Swap step
-	if(steep == 1)
+		fep->steep = 1;
+	if (fep->steep == 1)
 	{
 		swap(&p1->x, &p1->y);
 		swap(&p2->x, &p2->y);
 	}
-	if(p1->x > p2->x)
+	if (p1->x > p2->x)
 	{
 		swap(&p1->x, &p2->x);
 		swap(&p1->y, &p2->y);
-	}
-	
+	}	
 	dx = p2->x - p1->x;
 	dy = p2->y - p1->y;
-
-	if(dx == 0)
-		gradient = 1.0;
+	if (dx == 0)
+		fep->gradient = 1.0;
 	else
-		gradient = (float)dy / dx;
+		fep->gradient = (float)dy / dx;
+}
 
-	//handle first endpoint
-	xend = round(p1->x);
-	yend = (float)p1->y + (gradient * (xend - p1->x));
-	xpxl1 = xend;
-	ypxl1 = integerPart(yend);
+static int	handle_first_endpoint(mlx_image_t *img, t_end_point *fep)
+{
+	int		xend;
+	float	yend;
+	int		ypxl1;
 
-	if(steep == 1)
+	xend = round(fep->p->x);
+	yend = (float)fep->p->y + (fep->gradient * (xend - fep->p->x));
+	ypxl1 = i_part(yend);
+	if (fep->steep == 1)
 	{
-		mlx_put_pixel(img, ypxl1, xpxl1, 0x00FF00FF);
-		mlx_put_pixel(img, ypxl1 + 1, xpxl1, 0x00FF00FF);
-	}
-	else
-	{	
-		mlx_put_pixel(img, xpxl1, ypxl1, 0x00FF00FF);
-		mlx_put_pixel(img, xpxl1, ypxl1 + 1, 0x00FF00FF);
-	}
-
-	intery = yend + gradient;
-
-	//handle second endpoint
-	xend = round(p2->x);
-    yend = p2->y + (gradient * (xend - p2->x));
-    xpxl2 = xend; //this will be used in the main loop
-    ypxl2 = integerPart(yend);
-
-	if(steep == 1)
-	{
-		
-		mlx_put_pixel(img, ypxl2, xpxl2, 0x00FF00FF);
-		mlx_put_pixel(img, ypxl2 + 1, xpxl2, 0x00FF00FF);
+		mlx_put_pixel(img, ypxl1, xend, fep->color);
+		mlx_put_pixel(img, ypxl1 + 1, xend, fep->color);
 	}
 	else
 	{	
-		mlx_put_pixel(img, xpxl2, ypxl2, 0x00FF00FF);
-		mlx_put_pixel(img, xpxl2, ypxl2, 0x00FF00FF);
+		mlx_put_pixel(img, xend, ypxl1, fep->color);
+		mlx_put_pixel(img, xend, ypxl1 + 1, fep->color);
 	}
+	fep->intery = fep->gradient + yend;
+	return (xend);
+}
 
-	//Main loop
-	if(steep == 1)
+static int	handle_second_endpoint(mlx_image_t *img, t_end_point *sep)
+{
+	int		xend;
+	float	yend;
+	int		ypxl2;
+
+	xend = round(sep->p->x);
+	yend = sep->p->y + (sep->gradient * (xend - sep->p->x));
+	ypxl2 = i_part(yend);
+	if (sep->steep == 1)
 	{
-		for(int x = xpxl1 + 1; x <= xpxl2 - 1; x++)
+		mlx_put_pixel(img, ypxl2, xend, sep->color);
+		mlx_put_pixel(img, ypxl2 + 1, xend, sep->color);
+	}
+	else
+	{	
+		mlx_put_pixel(img, xend, ypxl2, sep->color);
+		mlx_put_pixel(img, xend, ypxl2, sep->color);
+	}
+	return (xend);
+}
+
+static void	main_loop(mlx_image_t *img, t_end_point *fep, t_end_point *sep)
+{	
+	if (fep->steep == 1)
+	{
+		fep->xpxl = fep->xpxl + 1;
+		while (fep->xpxl <= sep->xpxl - 1)
 		{	
-			mlx_put_pixel(img, integerPart(intery), x , 0x00FF00FF);
-			mlx_put_pixel(img, integerPart(intery) + 1, x , 0x00FF00FF);
-			intery = intery + gradient;
+			mlx_put_pixel(img, i_part(fep->intery), fep->xpxl, fep->color);
+			mlx_put_pixel(img, i_part(fep->intery) + 1, fep->xpxl, fep->color);
+			fep->intery = fep->intery + fep->gradient;
+			fep->xpxl++;
 		}
 	}
 	else
 	{	
-		for(int x = xpxl1 + 1; x <= xpxl2 - 1; x++)
+		fep->xpxl = fep->xpxl + 1;
+		while (fep->xpxl <= sep->xpxl - 1)
 		{	
-			mlx_put_pixel(img, x, integerPart(intery), 0x00FF00FF);
-			mlx_put_pixel(img, x, integerPart(intery) + 1, 0x00FF00FF);
-			intery = intery + gradient;
+			mlx_put_pixel(img, fep->xpxl, i_part(fep->intery), fep->color);
+			mlx_put_pixel(img, fep->xpxl, i_part(fep->intery) + 1, fep->color);
+			fep->intery = fep->intery + fep->gradient;
+			fep->xpxl++;
 		}
 	}
 }
