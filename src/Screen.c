@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Screen.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/01 18:55:43 by anramire          #+#    #+#             */
+/*   Updated: 2023/03/01 18:55:45 by anramire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/Screen.h"
 
 int	init_window(void)
@@ -17,7 +29,7 @@ int	init_window(void)
 	p1.x = 1000;
 	p1.y = 900;
 	p2.x = 450;
-	p2.y = 900;
+	p2.y = 200;
 	draw_line(img, &p1, &p2, 0x0000FFFF);
 	mlx_image_to_window(mlx, img, 0, 0);
 	mlx_loop(mlx);

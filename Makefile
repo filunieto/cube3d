@@ -9,7 +9,9 @@ SRCS = $(SRC)/main.c $(SRC)/Screen.c $(SRC)/shapes/Line.c \
 	   $(SRC)/shapes/utilsLine.c 
 OBJS = $(SRCS:.c=.o)
 NAME = cub3d
+VALGRIND = val
 GRAPHIC_LIBRARY = MLX42/build/libmlx42.a
+
 #------------------------ MLX_DEPENDENCIES --------------------------
 DEPENDENCIES_LINUX = $(GRAPHIC_LIBRARY) -ldl -lglfw -pthread -lm
 DEPENDENCIES_MAC = MLX42/build/libmlx42.a -framework Cocoa -framework OpenGL -framework IOKit
@@ -32,17 +34,18 @@ $(GRAPHIC_LIBRARY):
 ifeq ($(shell uname -s), $(LINUX))
 
 %.o: %.c $(INCLUDES) $(GRAPHIC_LIBRARY)
-	$(CC) $(CFLAGS) -I$(INC) -I$(INC_MLX) -c $(filter %.c, $<) -o $@
+	$(CC) $(CFLAGS) -g -I$(INC) -I$(INC_MLX) -c $(filter %.c, $<) -o $@
 
 $(NAME): $(OBJS) $(INCLUDES)
-	$(CC) $(FLAGS) -o $@ $(OBJS) $(DEPENDENCIES_LINUX)
+	$(CC) $(FLAGS) -g -o $@ $(OBJS) $(DEPENDENCIES_LINUX)
 
 else ifeq ($(shell uname -s), $(MAC))
+
 $(NAME): $(OBJS) $(INCLUDES)
-	$(CC) $(CFLAGS) -o $(@) $(OBJS) $(DEPENDENCIES_MAC) -lglfw -L"/Users/${USER}/.brew/opt/glfw/lib/"
+	$(CC) $(CFLAGS) ./memory-leaks/memory_leaks.a -g -o $(@) $(OBJS) $(DEPENDENCIES_MAC) -lglfw -L"/Users/${USER}/.brew/opt/glfw/lib/"
 
 %.o: %.c $(INCLUDES) $(GRAPHIC_LIBRARY)
-	$(CC) $(CFLAGS) -I$(INC) -I$(INC_MLX) -c $(filter %.c, $<) -o $@
+	$(CC) $(CFLAGS) -g -I$(INC) -I$(INC_MLX) -I./memory-leaks/include -c $(filter %.c, $<) -o $@
 
 endif
 
@@ -54,4 +57,7 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 
-.PHONY: all re clean fclean libmlx
+$(VALGRIND): $(NAME)
+	valgrind --leak-check=full ./$(NAME)
+	rm -rf $(NAME).dSYM
+.PHONY: all re clean fclean val
