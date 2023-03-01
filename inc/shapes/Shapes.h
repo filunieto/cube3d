@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:43:01 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/01 18:54:48 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/01 19:25:39 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,11 @@ typedef struct s_end_point
 
 }t_end_point;
 
+//Method to introduce a point inside the structure
+void insert_point(t_point *p, int x, int y);
+//Method to draw lines
 void	draw_line(mlx_image_t *img, t_point *p1, t_point *p2, int color);
+//Method to draw a square
+void	draw_square(mlx_image_t *img, t_4vertex *square, int color);
+
 #endif

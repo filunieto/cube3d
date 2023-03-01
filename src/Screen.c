@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:55:43 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/01 18:55:45 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/01 19:49:15 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ int	init_window(void)
 {	
 	mlx_t		*mlx;
 	mlx_image_t	*img;
-	t_point		p1;
-	t_point		p2;
+	t_4vertex *sq;
+
+	sq = (t_4vertex *)malloc(sizeof(t_4vertex));
 
 	mlx = mlx_init(INITIAL_WIDTH, INITIAL_HEIGHT, "Cub3D", true);
 	if (!mlx)
@@ -26,13 +27,14 @@ int	init_window(void)
 		return (-1);
 	}
 	img = mlx_new_image(mlx, INITIAL_WIDTH, INITIAL_HEIGHT);
-	p1.x = 1000;
-	p1.y = 900;
-	p2.x = 450;
-	p2.y = 200;
-	draw_line(img, &p1, &p2, 0x0000FFFF);
+	insert_point(&(sq->p0), 400, 300);
+	insert_point(&(sq->p1), 700, 300);
+	insert_point(&(sq->p2), 700, 700);
+	insert_point(&(sq->p3), 400, 700);
+	draw_square(img, sq, 0x00FF00FF);
 	mlx_image_to_window(mlx, img, 0, 0);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
+	free(sq);
 	return (0);
 }

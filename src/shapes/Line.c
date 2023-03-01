@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:43:08 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/01 18:43:13 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/01 20:18:40 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ void	draw_line(mlx_image_t *img, t_point *p1, t_point *p2, int color)
 {
 	t_end_point	*fep;
 	t_end_point	*sep;
-
 	sep = (t_end_point *)malloc(sizeof(t_end_point));
 	fep = (t_end_point *)malloc(sizeof(t_end_point));
-	init_variables_line(p1, p2, fep);
-	fep->p = p1;
-	sep->p = p2;
+	fep->p = (t_point *)malloc(sizeof(t_point));
+	sep->p = (t_point *)malloc(sizeof(t_point));
+	insert_point(fep->p, p1->x, p1->y);
+	insert_point(sep->p, p2->x, p2->y);
+	init_variables_line(fep->p, sep->p, fep);
 	fep->color = color;
 	sep->color = fep->color;
 	if (!p1 || !p2)
@@ -45,6 +46,8 @@ void	draw_line(mlx_image_t *img, t_point *p1, t_point *p2, int color)
 	fep->xpxl = handle_first_endpoint(img, fep);
 	sep->xpxl = handle_second_endpoint(img, sep);
 	main_loop(img, fep, sep);
+	free(fep->p);
+	free(sep->p);
 	free(fep);
 	free(sep);
 }
