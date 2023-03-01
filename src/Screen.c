@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:55:43 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/01 19:49:15 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/01 20:54:08 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	init_window(void)
 	insert_point(&(sq->p1), 700, 300);
 	insert_point(&(sq->p2), 700, 700);
 	insert_point(&(sq->p3), 400, 700);
-	draw_square(img, sq, 0x00FF00FF);
+	draw_square_filled(img, sq, 0x00FFFFFF, 1);
 	mlx_image_to_window(mlx, img, 0, 0);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
