@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:44:14 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/01 18:52:34 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/01 21:43:04 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "shapes/Shapes.h"
+# include "player/Player.h"
 
 int	init_window(void);
 

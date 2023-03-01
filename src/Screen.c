@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:55:43 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/01 21:24:32 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/01 21:44:47 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,7 @@ int	init_window(void)
 		return (-1);
 	}
 	img = mlx_new_image(mlx, INITIAL_WIDTH, INITIAL_HEIGHT);
-	insert_point(&(sq->p0), 400, 300);
-	insert_point(&(sq->p1), 700, 300);
-	insert_point(&(sq->p2), 700, 700);
-	insert_point(&(sq->p3), 400, 700);
-	t_point p1;
-	p1.x = 200;
-	p1.y = 300;
-	draw_square_pos(img, &p1, 10, 0xE0E0E0FF);
+	pos_player(img, 1920, 1080);
 	mlx_image_to_window(mlx, img, 0, 0);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
