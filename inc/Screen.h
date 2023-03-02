@@ -14,7 +14,7 @@
 # define SCREEN_H
 # define INITIAL_WIDTH 1920
 # define INITIAL_HEIGHT 1080
-# include "../memory-leaks/include/memory_leaks.h"
+//# include "../memory-leaks/include/memory_leaks.h"
 # include <stdio.h>
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "shapes/Shapes.h"

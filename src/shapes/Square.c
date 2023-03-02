@@ -27,7 +27,7 @@ void draw_square_filled(mlx_image_t *img, t_4vertex *sq, int color, int filled)
 	t_point top;
 	t_point bottom;
 	
-	if(check_square < 0)
+	if(check_square(sq) < 0)
 		return ;
 	if(filled == 0)
 	{
@@ -51,10 +51,10 @@ void	draw_square_pos(mlx_image_t *img, t_point *pos, int tam, int color)
 {
 	tam = tam / 2;
 	t_4vertex square;
-	insert_point(&(square.p0), pos->x  - tam, pos->y + tam);
-	insert_point(&(square.p1), pos->x + tam, pos->y + tam);
-	insert_point(&(square.p2), pos->x  + tam, pos->y - tam);
-	insert_point(&(square.p3), pos->x  - tam, pos->y - tam);
+	insert_point(&(square.p0), pos->x  - tam, pos->y - tam);
+	insert_point(&(square.p1), pos->x + tam, pos->y - tam);
+	insert_point(&(square.p2), pos->x  + tam, pos->y + tam);
+	insert_point(&(square.p3), pos->x  - tam, pos->y +  tam);
 	draw_square_filled(img, &square, color, 1);
 }
 static int check_square(t_4vertex *square)
@@ -62,12 +62,12 @@ static int check_square(t_4vertex *square)
 	if(square->p0.y != square->p1.y || square->p1.x != square->p2.x
 			|| square->p2.y != square->p3.y || square->p3.x != square->p0.x)
 	{
-		printf("Points passed do not correspond to any square\n");
+		printf("Error 1: Points passed do not correspond to any square\n");
 		return -1;
 	}else if(square->p0.x >= square->p1.x || square->p1.y >= square->p2.y
 			|| square->p2.x <= square->p3.x || square->p3.y <= square->p0.y)
 	{	
-		printf("Points passed do not correspond to any square\n");
+		printf("Error 2: Points passed do not correspond to any square\n");
 		return -1;
 	}
 
