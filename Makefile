@@ -4,10 +4,12 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 INC = inc
 SRC = src
-INCLUDES = $(INC)/Screen.h $(INC)/shapes/Shapes.h $(INC)/player/Player.h
+INCLUDES = $(INC)/Screen.h $(INC)/shapes/Shapes.h $(INC)/player/Player.h \
+		   $(INC)/game/Game.h
 SRCS = $(SRC)/main.c $(SRC)/Screen.c $(SRC)/shapes/Line.c \
 	   $(SRC)/shapes/utilsLine.c $(SRC)/shapes/utilsPoint.c \
-	   $(SRC)/shapes/Square.c $(SRC)/player/Player.c
+	   $(SRC)/shapes/Square.c $(SRC)/player/Player.c \
+	   $(SRC)/player/Direction.c $(SRC)/game/Game.c
 OBJS = $(SRCS:.c=.o)
 NAME = cub3d
 VALGRIND = val

@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:55:43 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/01 21:44:47 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:51:36 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ int	init_window(void)
 {	
 	mlx_t		*mlx;
 	mlx_image_t	*img;
-	t_4vertex *sq;
 
-	sq = (t_4vertex *)malloc(sizeof(t_4vertex));
 
 	mlx = mlx_init(INITIAL_WIDTH, INITIAL_HEIGHT, "Cub3D", true);
 	if (!mlx)
@@ -27,11 +25,11 @@ int	init_window(void)
 		return (-1);
 	}
 	img = mlx_new_image(mlx, INITIAL_WIDTH, INITIAL_HEIGHT);
-	t_player player;
-	init_player(mlx, img, &player);
+	t_game game;
+	init_game(mlx, img, &game);
 	mlx_image_to_window(mlx, img, 0, 0);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
-	free(sq);
+	free_game(&game);
 	return (0);
 }

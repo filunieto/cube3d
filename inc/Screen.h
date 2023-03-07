@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:44:14 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/01 21:43:04 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:51:17 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 # define SCREEN_H
 # define INITIAL_WIDTH 1920
 # define INITIAL_HEIGHT 1080
-//# include "../memory-leaks/include/memory_leaks.h"
+# include "../memory-leaks/include/memory_leaks.h"
 # include <stdio.h>
 # include "../MLX42/include/MLX42/MLX42.h"
 # include "shapes/Shapes.h"
 # include "player/Player.h"
+# include "game/Game.h"
 
 int	init_window(void);
 
