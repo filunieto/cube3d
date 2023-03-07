@@ -9,7 +9,9 @@ INCLUDES = $(INC)/Screen.h $(INC)/shapes/Shapes.h $(INC)/player/Player.h \
 SRCS = $(SRC)/main.c $(SRC)/Screen.c $(SRC)/shapes/Line.c \
 	   $(SRC)/shapes/utilsLine.c $(SRC)/shapes/utilsPoint.c \
 	   $(SRC)/shapes/Square.c $(SRC)/player/Player.c \
-	   $(SRC)/player/Direction.c $(SRC)/game/Game.c
+	   $(SRC)/player/Direction.c $(SRC)/game/Game.c \
+	   $(SRC)/game/ResizeHook.c $(SRC)/game/KeyHook.c \
+	   $(SRC)/player/ClearingImage.c
 OBJS = $(SRCS:.c=.o)
 NAME = cub3d
 VALGRIND = val

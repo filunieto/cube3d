@@ -3,10 +3,11 @@
 #define GAME_H
 
 # include "../player/Player.h"
+# include "../../MLX42/include/MLX42/MLX42_Input.h"
 
 typedef struct s_game{
 	
-	mlx_t *mlx;	
+	mlx_t *mlx;
 	t_player *player;
 
 }t_game;

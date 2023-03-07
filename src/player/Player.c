@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:52:35 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/07 19:32:53 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/07 20:54:45 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	init_player(mlx_t *mlx, mlx_image_t *img, t_player *player)
 	player->mlx = mlx;
 	player->img = img;
 	player->tam = 10;
+	player->screen_x = WIDTH;
+	player->screen_y = HEIGHT;
 	player->center_point = (t_point *) malloc (sizeof(t_point));
 	insert_point(player->center_point, WIDTH / 2, HEIGHT / 2);
 	init_direction(player);
@@ -40,8 +42,9 @@ void free_player(t_player *player)
 }
 
 void paint_player(t_player *player)
-{	
+{
+	clear_image(player);	
 	pos_player(player);
 	draw_line(player->img, player->center_point, player->absolute_direction, 
 			0x00FF00FF);
-	}
+}
