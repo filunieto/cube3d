@@ -1,10 +1,10 @@
 # CUB3D
 ## Index
 
-1. [Objective](objective)
-1. [Features](features)
-1. [Compiling](compiling)
-1. ![Example of game](example)
+1. [Objective](#objective)
+1. [Features](#features)
+1. [Compiling](#compiling)
+1. ![Example of game](#example)
 ## Objective
 
 The objective of this project is to create a graphic engine (**ray casting**)
