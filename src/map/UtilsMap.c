@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Screen.h                                           :+:      :+:    :+:   */
+/*   UtilsMap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 18:44:14 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/07 21:45:33 by anramire         ###   ########.fr       */
+/*   Created: 2023/03/07 21:56:52 by anramire          #+#    #+#             */
+/*   Updated: 2023/03/07 21:57:53 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCREEN_H
-# define SCREEN_H
-# define INITIAL_WIDTH 1920
-# define INITIAL_HEIGHT 1080
-# include "../memory-leaks/include/memory_leaks.h"
-# include <stdio.h>
-# include "../MLX42/include/MLX42/MLX42.h"
-# include "shapes/Shapes.h"
-# include "player/Player.h"
-# include "game/Game.h"
-# include "map/Map.h"
 
-int	init_window(void);
+# include "../../inc/map/Map.h"
 
-#endif
+void show_map(t_map *map)
+{
+	unsigned int i = 0;
+
+	while(i < map->rows)
+	{
+		printf("%s\n", map->map[i]);//we use this printf!!!!!!!!!!!!,
+									//instead ft_p should be used
+
+		i++;
+	}	
+}
+
+void free_map(t_map *map)
+{
+	
+	unsigned int i = 0;
+
+	while(i < map->rows)
+	{
+		free(map->map[i]);
+		i++;
+	}
+	free(map);
+}
