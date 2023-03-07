@@ -28,7 +28,7 @@ int	init_window(void)
 	}
 	img = mlx_new_image(mlx, INITIAL_WIDTH, INITIAL_HEIGHT);
 	t_player player;
-	init_player(img, &player);
+	init_player(mlx, img, &player);
 	mlx_image_to_window(mlx, img, 0, 0);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);

@@ -18,6 +18,7 @@
 # include "../shapes/Shapes.h"
 
 typedef struct s_player{
+	mlx_t *mlx;
 	mlx_image_t *img;
 	unsigned int tam;
 	int screen_x;
@@ -27,7 +28,7 @@ typedef struct s_player{
 }t_player;
 
 //Functions to init player a define a position
-void 	init_player(mlx_image_t *img, t_player *player);
+void 	init_player(mlx_t *mlx, mlx_image_t *img, t_player *player);
 void	pos_player(t_player *player);
 
 #endif
