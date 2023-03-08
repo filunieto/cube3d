@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 23:04:47 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/08 23:39:14 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void init_map(t_map *map, t_player *player)
 			"11110111111111011100000010001    ",
 			"11110111111111011101010010001    ",
 			"11000000110101011100000010001    ",
-			"10000000000000001100000010001    ",
+			"10000000000000001100000011001    ",
 			"10000000000000001101010010001    ",
 			"11000001110101011111011010N0101  ",
 			"11110111 1110101 101111010001    ",
@@ -76,8 +76,7 @@ void draw_map(t_map *map, t_player *player)
 	t_4vertex sq;	
 	
 	rest = (map->semi_len - x) % map->width;
-	aux = 2 * map->semi_len;
-	
+	aux = 2 * map->semi_len;	
 	c = map->map[player->pos_y / map->height][(player->pos_x - (aux - map->semi_len)) / map->width];
 	if(c == '1')
 		color = 0xFF0000FF;
@@ -87,13 +86,9 @@ void draw_map(t_map *map, t_player *player)
 	insert_point(&(sq.p3), sq.p0.x, sq.p0.y + map->height);
 	draw_square_filled(player->img, &sq, color, 1);
 	aux = aux - rest;
-	printf("Player=> x: %d, y: %d\n", player->pos_x, player->pos_y);	
-	printf("Player=> x: %d, y: %d\n", (player->pos_x - map->semi_len) / map->width, player->pos_y / map->height);
-
-	printf("Char: %c", c);
+	
 	while(aux > 0)
 	{
-
 		c = map->map[player->pos_y / map->height][(player->pos_x - (aux - map->semi_len)) / map->width];
 		if(c == '1')
 			color = 0xFF0000FF;
@@ -105,7 +100,6 @@ void draw_map(t_map *map, t_player *player)
 			insert_point(&(sq.p1), sq.p0.x + map->width, sq.p0.y);
 			insert_point(&(sq.p2), sq.p0.x + map->width, sq.p0.y + map->height);
 			insert_point(&(sq.p3), sq.p0.x, sq.p0.y + map->height);
-
 			aux = aux - map->width;
 		}
 		else
