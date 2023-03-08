@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 21:39:15 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/08 23:04:47 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ void init_map(t_map *map, t_player *player)
 			"11000000110101011100000010001    ",
 			"10000000000000001100000010001    ",
 			"10000000000000001101010010001    ",
-			"11000001110101011111011110N0111  ",
+			"11000001110101011111011010N0101  ",
 			"11110111 1110101 101111010001    ",
 			"11111111 1111111 111111111111    "
 	};
+	map->semi_len = 200;
 	map->width = 60;
 	map->height = 60;
 	map->rows = rows;
@@ -68,11 +69,55 @@ void draw_map(t_map *map, t_player *player)
 {
 	unsigned int y = player->pos_y % map->height;
 	unsigned int x = player->pos_x % map->width;
+	unsigned rest;
+	unsigned int aux;
+	int color = 0x0000FFFF;
+	char c;
 	t_4vertex sq;	
-	insert_point(&(sq.p0), player->center_point->x - x, player->center_point->y - y);
-	insert_point(&(sq.p1), sq.p0.x + map->width, sq.p0.y);
-	insert_point(&(sq.p2), sq.p0.x + map->width, sq.p0.y + map->height);
+	
+	rest = (map->semi_len - x) % map->width;
+	aux = 2 * map->semi_len;
+	
+	c = map->map[player->pos_y / map->height][(player->pos_x - (aux - map->semi_len)) / map->width];
+	if(c == '1')
+		color = 0xFF0000FF;
+	insert_point(&(sq.p0), player->center_point->x - map->semi_len, player->center_point->y - y);
+	insert_point(&(sq.p1), sq.p0.x + rest, sq.p0.y);
+	insert_point(&(sq.p2), sq.p0.x + rest, sq.p0.y + map->height);
 	insert_point(&(sq.p3), sq.p0.x, sq.p0.y + map->height);
-	draw_square_filled(player->img, &sq, 0x0000FFFF, 1);
+	draw_square_filled(player->img, &sq, color, 1);
+	aux = aux - rest;
+	printf("Player=> x: %d, y: %d\n", player->pos_x, player->pos_y);	
+	printf("Player=> x: %d, y: %d\n", (player->pos_x - map->semi_len) / map->width, player->pos_y / map->height);
+
+	printf("Char: %c", c);
+	while(aux > 0)
+	{
+
+		c = map->map[player->pos_y / map->height][(player->pos_x - (aux - map->semi_len)) / map->width];
+		if(c == '1')
+			color = 0xFF0000FF;
+		else
+			color = 0x0000FFFF;
+		if((aux / map->width) != 0)	
+		{
+			insert_point(&(sq.p0), sq.p1.x, sq.p1.y);
+			insert_point(&(sq.p1), sq.p0.x + map->width, sq.p0.y);
+			insert_point(&(sq.p2), sq.p0.x + map->width, sq.p0.y + map->height);
+			insert_point(&(sq.p3), sq.p0.x, sq.p0.y + map->height);
+
+			aux = aux - map->width;
+		}
+		else
+		{
+			rest = aux % map->width;
+			aux = 0;
+			insert_point(&(sq.p0), sq.p1.x, sq.p1.y);
+			insert_point(&(sq.p1), sq.p0.x + rest, sq.p0.y);
+			insert_point(&(sq.p2), sq.p0.x + rest, sq.p0.y + map->height);
+			insert_point(&(sq.p3), sq.p0.x, sq.p0.y + map->height);
+		}	
+		draw_square_filled(player->img, &sq, color, 1);
+	}
 }
 

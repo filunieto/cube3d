@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:00 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 20:57:34 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:58:42 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 typedef struct s_map
 {
+	unsigned int semi_len;
 	unsigned int rows;
 	unsigned int columns;
 	unsigned int width;
