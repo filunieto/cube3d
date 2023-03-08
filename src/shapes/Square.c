@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:52:01 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/01 21:52:04 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:36:12 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,16 @@ void draw_square_filled(mlx_image_t *img, t_4vertex *sq, int color, int filled)
 	{
 		
 		insert_point(&top, sq->p0.x, sq->p0.y);
-		insert_point(&bottom, sq->p3.x, sq->p3.y);
-		while(top.x < sq->p1.x)
+		insert_point(&bottom, sq->p2.x, sq->p2.y);
+		while(top.y < bottom.y)
 		{
-			draw_line(img, &top, &bottom, color);
-			top.x++;
-			bottom.x++;
+			top.x = sq->p0.x;
+			while(top.x < bottom.x)
+			{
+				mlx_put_pixel(img, top.x, top.y, color);
+				top.x++;
+			}
+			top.y++;
 		}
 	}
 }
