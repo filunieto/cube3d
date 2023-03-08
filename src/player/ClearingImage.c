@@ -4,7 +4,10 @@
 
 void clear_image(t_player *player)
 {
-	unsigned int x;
+	mlx_delete_image(player->mlx, player->img);
+	player->img = mlx_new_image(player->mlx, player->screen_x, player->screen_y);
+	mlx_image_to_window(player->mlx, player->img, 0, 0);
+	/*unsigned int x;
 	unsigned int y;
 	
 	y = 0;
@@ -17,5 +20,5 @@ void clear_image(t_player *player)
 			x++;
 		}
 		y++;
-	}
+	}*/
 }

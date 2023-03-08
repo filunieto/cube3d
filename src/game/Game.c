@@ -9,10 +9,12 @@ void	init_game(mlx_t *mlx, mlx_image_t *img, t_game *game)
 	game->mlx = mlx;
 	game->player = (t_player *) malloc (sizeof(t_player));
 	game->map = (t_map *) malloc (sizeof(t_map));
-	init_map(game->map, game->player);
-	printf("Player-> x: %d, y: %d\n", game->player->pos_x, game->player->pos_y);
-	show_map(game->map);
 	init_player(mlx, img, game->player);
+	init_map(game->map, game->player);
+	show_map(game->map);
+	//clear_image(game->player);	
+	draw_map(game->map, game->player);
+	paint_player(game->player);
 	mlx_resize_hook(game->mlx, resize_func, game);
 	mlx_key_hook(game->mlx, &key_func, game);
 }

@@ -38,10 +38,8 @@ void rotate(t_player *player, int clockwise)
 		player->direction->y = round((x * sin(clockwise * angle)) 
 				+ (y * cos(angle)));
 		update_direction(player);
-		clear_image(player);
 		//mlx_delete_image(player->mlx, player->img);
 		//player->img = mlx_new_image(player->mlx, player->screen_x, player->screen_y);
 		//mlx_image_to_window(player->mlx, player->img, 0, 0);
-		paint_player(player);
 	}
 }
