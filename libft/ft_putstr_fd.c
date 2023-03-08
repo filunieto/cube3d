@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   UtilsMap.c                                         :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 21:56:52 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 19:03:38 by anramire         ###   ########.fr       */
+/*   Created: 2022/04/28 18:05:25 by anramire          #+#    #+#             */
+/*   Updated: 2022/04/28 18:49:16 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-# include "../../inc/map/Map.h"
-
-void show_map(t_map *map)
+void	ft_putstr_fd(char *s, int fd)
 {
-	unsigned int i = 0;
+	size_t	i;
 
-	while(i < map->rows)
+	i = 0;
+	while (s[i] != '\0')
 	{
-		printf("%s\n", map->map[i]);//we use this printf!!!!!!!!!!!!,
-									//instead ft_p should be used
-
-		i++;
-	}	
-}
-
-void free_map(t_map *map)
-{
-	
-	unsigned int i = 0;
-
-	while(i < map->rows)
-	{
-		free(map->map[i]);
+		write(fd, &s[i], 1);
 		i++;
 	}
-	free(map->map);
 }

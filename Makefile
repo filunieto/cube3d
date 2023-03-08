@@ -17,6 +17,7 @@ OBJS = $(SRCS:.c=.o)
 NAME = cub3d
 VALGRIND = val
 GRAPHIC_LIBRARY = MLX42/build/libmlx42.a
+LIBFT = ./libft/libft.a
 
 #------------------------ MLX_DEPENDENCIES --------------------------
 DEPENDENCIES_LINUX = $(GRAPHIC_LIBRARY) -ldl -lglfw -pthread -lm
@@ -28,10 +29,15 @@ INC_MLX := $(MLX42)/include
 LINUX = Linux
 MAC = Darwin
 
+#------------------------- Recipes -----------------------
+
 all: $(NAME)
 
 re: fclean
 	$(MAKE) all
+
+$(LIBFT):
+	make -C ./libft
 
 $(GRAPHIC_LIBRARY):
 	cmake $(MLX42) -B $(MLX42)/build
@@ -39,18 +45,18 @@ $(GRAPHIC_LIBRARY):
 
 ifeq ($(shell uname -s), $(LINUX))
 
-%.o: %.c $(INCLUDES) $(GRAPHIC_LIBRARY)
+%.o: %.c $(INCLUDES) $(GRAPHIC_LIBRARY) $(LIBFT)
 	$(CC) $(CFLAGS) -g -I$(INC) -I$(INC_MLX) -c $(filter %.c, $<) -o $@
 
 $(NAME): $(OBJS) $(INCLUDES)
-	$(CC) $(FLAGS) -g -o $@ $(OBJS) $(DEPENDENCIES_LINUX)
+	$(CC) $(FLAGS) ./memory-leaks/memory_leaks.a ./libft/libft.a -g -o $@ $(OBJS) $(DEPENDENCIES_LINUX)
 
 else ifeq ($(shell uname -s), $(MAC))
 
 $(NAME): $(OBJS) $(INCLUDES)
-	$(CC) $(CFLAGS) ./memory-leaks/memory_leaks.a -g -o $(@) $(OBJS) $(DEPENDENCIES_MAC) -lglfw -L"/Users/${USER}/.brew/opt/glfw/lib/"
+	$(CC) $(CFLAGS) ./memory-leaks/memory_leaks.a ./libft/libft.a -g -o $(@) $(OBJS) $(DEPENDENCIES_MAC) -lglfw -L"/Users/${USER}/.brew/opt/glfw/lib/"
 
-%.o: %.c $(INCLUDES) $(GRAPHIC_LIBRARY)
+%.o: %.c $(INCLUDES) $(GRAPHIC_LIBRARY) $(LIBFT)
 	$(CC) $(CFLAGS) -g -I$(INC) -I$(INC_MLX) -I./memory-leaks/include -c $(filter %.c, $<) -o $@
 
 endif
@@ -59,9 +65,11 @@ endif
 clean:
 	rm -rf $(MLX42)/build
 	rm -rf $(OBJS)
+	make -C ./libft clean
 
 fclean: clean
 	rm -rf $(NAME)
+	make -C ./libft fclean
 
 $(VALGRIND): $(NAME)
 	valgrind --leak-check=full ./$(NAME)

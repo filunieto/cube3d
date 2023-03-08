@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   UtilsMap.c                                         :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 21:56:52 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 19:03:38 by anramire         ###   ########.fr       */
+/*   Created: 2022/04/19 23:55:00 by anramire          #+#    #+#             */
+/*   Updated: 2022/04/28 22:56:23 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-# include "../../inc/map/Map.h"
-
-void show_map(t_map *map)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	unsigned int i = 0;
+	size_t		i;
+	char		*dst1;
+	const char	*src1;
 
-	while(i < map->rows)
+	dst1 = dst;
+	src1 = src;
+	if (dst1 == src1 || (n == 0))
+		return (dst1);
+	if (src == NULL && (dst == NULL))
+		return (0);
+	i = 0;
+	if (n <= 0)
+		return (dst1);
+	while (i < n)
 	{
-		printf("%s\n", map->map[i]);//we use this printf!!!!!!!!!!!!,
-									//instead ft_p should be used
-
-		i++;
-	}	
-}
-
-void free_map(t_map *map)
-{
-	
-	unsigned int i = 0;
-
-	while(i < map->rows)
-	{
-		free(map->map[i]);
+		dst1[i] = src1[i];
 		i++;
 	}
-	free(map->map);
+	return (dst1);
 }

@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:00 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 18:21:46 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/08 19:01:25 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define MAP_H
 
 # include "../../memory-leaks/include/memory_leaks.h"
+# include "../../libft/libft.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>

@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   UtilsMap.c                                         :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 21:56:52 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 19:03:38 by anramire         ###   ########.fr       */
+/*   Created: 2022/04/19 23:22:55 by anramire          #+#    #+#             */
+/*   Updated: 2022/04/19 23:47:02 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-# include "../../inc/map/Map.h"
-
-void show_map(t_map *map)
+void	ft_bzero(void *s, size_t n)
 {
-	unsigned int i = 0;
+	size_t	i;
 
-	while(i < map->rows)
+	if (n != 0)
 	{
-		printf("%s\n", map->map[i]);//we use this printf!!!!!!!!!!!!,
-									//instead ft_p should be used
-
-		i++;
-	}	
-}
-
-void free_map(t_map *map)
-{
-	
-	unsigned int i = 0;
-
-	while(i < map->rows)
-	{
-		free(map->map[i]);
-		i++;
+		i = 0;
+		while (i < n)
+		{
+			*(char *)(s + i) = 0;
+			i++;
+		}
 	}
-	free(map->map);
 }

@@ -1,40 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   UtilsMap.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 21:56:52 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 19:03:38 by anramire         ###   ########.fr       */
+/*   Created: 2022/04/25 21:09:41 by anramire          #+#    #+#             */
+/*   Updated: 2022/04/25 21:36:05 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-# include "../../inc/map/Map.h"
+static size_t	get_length(const char *str);
 
-void show_map(t_map *map)
+char	*ft_strdup(const char *s1)
 {
-	unsigned int i = 0;
+	size_t	i;
+	size_t	len;
+	char	*dup;
 
-	while(i < map->rows)
+	i = 0;
+	len = get_length(s1);
+	dup = (char *)malloc((len + 1) * sizeof(char));
+	if (dup == NULL)
+		return (NULL);
+	while (i < len)
 	{
-		printf("%s\n", map->map[i]);//we use this printf!!!!!!!!!!!!,
-									//instead ft_p should be used
-
-		i++;
-	}	
-}
-
-void free_map(t_map *map)
-{
-	
-	unsigned int i = 0;
-
-	while(i < map->rows)
-	{
-		free(map->map[i]);
+		dup[i] = s1[i];
 		i++;
 	}
-	free(map->map);
+	dup[i] = '\0';
+	return (dup);
+}
+
+static size_t	get_length(const char *str)
+{
+	size_t	len;
+
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
 }

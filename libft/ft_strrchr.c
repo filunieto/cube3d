@@ -1,40 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   UtilsMap.c                                         :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 21:56:52 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 19:03:38 by anramire         ###   ########.fr       */
+/*   Created: 2022/04/21 19:49:19 by anramire          #+#    #+#             */
+/*   Updated: 2022/04/29 00:49:07 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-# include "../../inc/map/Map.h"
+static size_t	get_length(const char *str);
 
-void show_map(t_map *map)
+char	*ft_strrchr(const char *s, int c)
 {
-	unsigned int i = 0;
+	char	*aux;
+	int		len;
 
-	while(i < map->rows)
+	len = (int)get_length(s);
+	aux = (char *)s;
+	aux = aux + len;
+	while (len >= 0)
 	{
-		printf("%s\n", map->map[i]);//we use this printf!!!!!!!!!!!!,
-									//instead ft_p should be used
-
-		i++;
-	}	
+		if ((*aux) == (char)c)
+			return (aux);
+		aux--;
+		len--;
+	}
+	return (NULL);
 }
 
-void free_map(t_map *map)
+static size_t	get_length(const char *str)
 {
-	
-	unsigned int i = 0;
+	size_t	len;
 
-	while(i < map->rows)
-	{
-		free(map->map[i]);
-		i++;
-	}
-	free(map->map);
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
 }

@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   UtilsMap.c                                         :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 21:56:52 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 19:03:38 by anramire         ###   ########.fr       */
+/*   Created: 2022/04/21 18:38:26 by anramire          #+#    #+#             */
+/*   Updated: 2022/04/21 19:03:28 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-# include "../../inc/map/Map.h"
-
-void show_map(t_map *map)
+int	ft_toupper(int c)
 {
-	unsigned int i = 0;
+	char	sum;
 
-	while(i < map->rows)
-	{
-		printf("%s\n", map->map[i]);//we use this printf!!!!!!!!!!!!,
-									//instead ft_p should be used
-
-		i++;
-	}	
-}
-
-void free_map(t_map *map)
-{
-	
-	unsigned int i = 0;
-
-	while(i < map->rows)
-	{
-		free(map->map[i]);
-		i++;
-	}
-	free(map->map);
+	sum = 'A' - 'a';
+	if ((c >= 'a') && (c <= 'z'))
+		return (c + sum);
+	return (c);
 }

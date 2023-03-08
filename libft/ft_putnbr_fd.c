@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   UtilsMap.c                                         :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 21:56:52 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 19:03:38 by anramire         ###   ########.fr       */
+/*   Created: 2022/04/28 18:13:22 by anramire          #+#    #+#             */
+/*   Updated: 2022/04/28 18:48:51 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-# include "../../inc/map/Map.h"
-
-void show_map(t_map *map)
+void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned int i = 0;
+	long	copia;
 
-	while(i < map->rows)
+	copia = n;
+	if (copia < 0)
 	{
-		printf("%s\n", map->map[i]);//we use this printf!!!!!!!!!!!!,
-									//instead ft_p should be used
-
-		i++;
-	}	
-}
-
-void free_map(t_map *map)
-{
-	
-	unsigned int i = 0;
-
-	while(i < map->rows)
-	{
-		free(map->map[i]);
-		i++;
+		ft_putchar_fd('-', fd);
+		copia = copia * (-1);
 	}
-	free(map->map);
+	if (copia > 9)
+	{
+		ft_putnbr_fd(copia / 10, fd);
+		ft_putchar_fd('0' + (copia % 10), fd);
+	}
+	else
+	{
+		ft_putchar_fd('0' + copia, fd);
+	}
 }

@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   UtilsMap.c                                         :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 21:56:52 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 19:03:38 by anramire         ###   ########.fr       */
+/*   Created: 2022/04/27 23:59:22 by anramire          #+#    #+#             */
+/*   Updated: 2022/04/28 21:34:55 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-# include "../../inc/map/Map.h"
+static	unsigned int	get_length(char *str);
 
-void show_map(t_map *map)
+void	ft_striteri(char *s, void (*f) (unsigned int, char *c))
 {
-	unsigned int i = 0;
+	unsigned int	len;
+	unsigned int	i;
 
-	while(i < map->rows)
+	len = get_length(s);
+	i = 0;
+	while (i < len)
 	{
-		printf("%s\n", map->map[i]);//we use this printf!!!!!!!!!!!!,
-									//instead ft_p should be used
-
-		i++;
-	}	
-}
-
-void free_map(t_map *map)
-{
-	
-	unsigned int i = 0;
-
-	while(i < map->rows)
-	{
-		free(map->map[i]);
+		f(i, &s[i]);
 		i++;
 	}
-	free(map->map);
+}
+
+static	unsigned int	get_length(char *str)
+{
+	unsigned int	len;
+
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
 }

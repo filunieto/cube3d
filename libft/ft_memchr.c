@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   UtilsMap.c                                         :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 21:56:52 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 19:03:38 by anramire         ###   ########.fr       */
+/*   Created: 2022/04/21 21:25:25 by anramire          #+#    #+#             */
+/*   Updated: 2022/04/21 22:22:54 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 
-# include "../../inc/map/Map.h"
-
-void show_map(t_map *map)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned int i = 0;
+	unsigned char	ocurrence;	
+	size_t			i;
 
-	while(i < map->rows)
+	i = 0;
+	ocurrence = (unsigned char)c;
+	while (i < n)
 	{
-		printf("%s\n", map->map[i]);//we use this printf!!!!!!!!!!!!,
-									//instead ft_p should be used
-
-		i++;
-	}	
-}
-
-void free_map(t_map *map)
-{
-	
-	unsigned int i = 0;
-
-	while(i < map->rows)
-	{
-		free(map->map[i]);
+		if ((*(unsigned char *)s) == ocurrence)
+			return ((unsigned char *)s);
+		s++;
 		i++;
 	}
-	free(map->map);
+	return (NULL);
 }
