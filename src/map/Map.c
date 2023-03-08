@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 21:11:12 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/08 21:39:15 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void init_map(t_map *map, t_player *player)
 			"11110111 1110101 101111010001    ",
 			"11111111 1111111 111111111111    "
 	};
-	map->img = mlx_new_image(player->mlx, player->screen_x, player->screen_y);
-	mlx_image_to_window(player->mlx, map->img, 0, 0);
 	map->width = 60;
 	map->height = 60;
 	map->rows = rows;
@@ -75,6 +73,6 @@ void draw_map(t_map *map, t_player *player)
 	insert_point(&(sq.p1), sq.p0.x + map->width, sq.p0.y);
 	insert_point(&(sq.p2), sq.p0.x + map->width, sq.p0.y + map->height);
 	insert_point(&(sq.p3), sq.p0.x, sq.p0.y + map->height);
-	draw_square_filled(map->img, &sq, 0x0000FFFF, 1);
+	draw_square_filled(player->img, &sq, 0x0000FFFF, 1);
 }
 
