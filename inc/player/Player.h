@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:51:40 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/07 20:52:52 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/08 19:34:58 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct s_player{
 	unsigned int tam;
 	unsigned int screen_x;
 	unsigned int screen_y;
+	unsigned int pos_x;
+	unsigned int pos_y;
 	t_point *center_point;
 	unsigned int length_direction;
 	t_point *direction;
