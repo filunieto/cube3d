@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Game.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/08 18:21:02 by anramire          #+#    #+#             */
+/*   Updated: 2023/03/08 18:21:04 by anramire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #if !defined (GAME_H)
 #define GAME_H
 
 # include "../player/Player.h"
 # include "../../MLX42/include/MLX42/MLX42_Input.h"
+# include "../../memory-leaks/include/memory_leaks.h"
 
 typedef struct s_game{
 	

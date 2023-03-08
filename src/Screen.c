@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:55:43 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/07 21:48:30 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:41:15 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	init_window(void)
 	mlx_image_to_window(mlx, img, 0, 0);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
+	free_map(&map);
 	free_game(&game);
 	return (0);
 }
