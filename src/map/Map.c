@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/09 21:29:18 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/09 23:35:52 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,6 @@ void	draw_column_up(t_map *map, t_player *player, t_point *p0, t_point *p1, unsi
 
 void	draw_column_down(t_map *map, t_player *player, t_point *p2, t_point *p3, unsigned int y, unsigned int offset_x)
 {
-	printf("draw_colum_down\n");
 	unsigned int aux2 = map->semi_len - (map->height - y);
 	t_4vertex sq1;
 	int color = 0x0000FFFF;

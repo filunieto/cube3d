@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:51:40 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/09 22:45:04 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/09 23:01:23 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,4 @@ void update_direction(t_player *player);
 //Function to clear window
 void clear_image(t_player *player);
 
-//Function to move player in the direction of direction vector
-void	player_advance(t_player *player, int direction);
 #endif
