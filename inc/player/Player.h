@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:51:40 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/09 19:09:46 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/09 21:39:38 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_player{
 	unsigned int length_direction;
 	t_point *direction;
 	t_point *absolute_direction;
+	int angle;
 	int color;
 
 }t_player;

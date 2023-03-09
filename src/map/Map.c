@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/09 21:10:54 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/09 21:29:18 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,16 +227,11 @@ void	draw_column_down(t_map *map, t_player *player, t_point *p2, t_point *p3, un
 		else
 			color = 0x0000FFFF;
 	}
-	printf("aux2: %d\n", aux2);
 	insert_point(&(sq1.p0), p3->x, p3->y);	
 	insert_point(&(sq1.p1), p2->x, p2->y);
 	insert_point(&(sq1.p2), sq1.p1.x, sq1.p1.y + map->height);
 	insert_point(&(sq1.p3), sq1.p0.x, sq1.p0.y + map->height);
 
-	printf("p0=> x: %d, y: %d\n", sq1.p0.x, sq1.p0.y);
-	printf("p1=> x: %d, y: %d\n", sq1.p1.x, sq1.p1.y);
-	printf("p2=> x: %d, y: %d\n", sq1.p2.x, sq1.p2.y);
-	printf("p3=> x: %d, y: %d\n", sq1.p3.x, sq1.p3.y);
 	draw_square_filled(player->img, &sq1, color, 1);
 	aux2 = aux2 - map->height;
 	while(aux2 > 0)
@@ -264,11 +259,6 @@ void	draw_column_down(t_map *map, t_player *player, t_point *p2, t_point *p3, un
 			insert_point(&(sq1.p1), sq1.p2.x, sq1.p2.y);
 			insert_point(&(sq1.p2), sq1.p1.x, sq1.p1.y + map->height);
 			insert_point(&(sq1.p3), sq1.p0.x, sq1.p0.y + map->height);
-			printf("--aux2: %d\n", aux2);	
-			printf("p0=> x: %d, y: %d\n", sq1.p0.x, sq1.p0.y);
-			printf("p1=> x: %d, y: %d\n", sq1.p1.x, sq1.p1.y);
-			printf("p2=> x: %d, y: %d\n", sq1.p2.x, sq1.p2.y);
-			printf("p3=> x: %d, y: %d\n", sq1.p3.x, sq1.p3.y);
 			aux2 = aux2 - map->height;
 		}
 		else
@@ -279,11 +269,6 @@ void	draw_column_down(t_map *map, t_player *player, t_point *p2, t_point *p3, un
 			insert_point(&(sq1.p1), sq1.p2.x, sq1.p2.y);
 			insert_point(&(sq1.p2), sq1.p1.x, sq1.p1.y + rest);
 			insert_point(&(sq1.p3), sq1.p0.x, sq1.p0.y + rest);
-			printf("rest: %d\n", rest);	
-			printf("p0=> x: %d, y: %d\n", sq1.p0.x, sq1.p0.y);
-			printf("p1=> x: %d, y: %d\n", sq1.p1.x, sq1.p1.y);
-			printf("p2=> x: %d, y: %d\n", sq1.p2.x, sq1.p2.y);
-			printf("p3=> x: %d, y: %d\n", sq1.p3.x, sq1.p3.y);
 			aux2 = 0;
 		}
 
