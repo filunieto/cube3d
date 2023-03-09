@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:52:35 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 21:20:05 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/09 22:30:04 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	init_player(mlx_t *mlx, mlx_image_t *img, t_player *player)
 	insert_point(player->center_point, WIDTH / 2, HEIGHT / 2);
 	init_direction(player);
 	player->color = 0xE0E0E0FF;
+	player->vel = 6;
 	//paint_player(player);
 }
 

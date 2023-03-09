@@ -29,9 +29,9 @@ void rotate(t_player *player, int clockwise)
 	int y;
 	double angle;
 	if(clockwise == 1)
-		player->angle += 3;
+		player->angle += 6;
 	else if(clockwise == -1)
-		player->angle -= 3;
+		player->angle -= 6;
 
 	if(player->angle < 0)
 		player->angle = 360 + player->angle;

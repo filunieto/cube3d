@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:51:40 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/09 21:39:38 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/09 22:45:04 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_player{
 	unsigned int pos_x;
 	unsigned int pos_y;
 	t_point *center_point;
+	unsigned int vel;
 	unsigned int length_direction;
 	t_point *direction;
 	t_point *absolute_direction;
@@ -56,4 +57,6 @@ void update_direction(t_player *player);
 //Function to clear window
 void clear_image(t_player *player);
 
+//Function to move player in the direction of direction vector
+void	player_advance(t_player *player, int direction);
 #endif
