@@ -14,14 +14,13 @@
 #ifndef MAP_H
 # define MAP_H
 
-# include "../../memory-leaks/include/memory_leaks.h"
+//# include "../../memory-leaks/include/memory_leaks.h"
 # include "../../libft/libft.h"
 # include "../player/Player.h"
 # include "../shapes/Shapes.h"
 
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
 
 typedef struct s_map
 {

@@ -14,7 +14,7 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
-# include "../memory-leaks/include/memory_leaks.h"
+//# include "../memory-leaks/include/memory_leaks.h"
 
 //Declared Structure
 

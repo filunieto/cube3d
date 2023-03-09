@@ -15,7 +15,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
-# include "../../memory-leaks/include/memory_leaks.h"
+//# include "../../memory-leaks/include/memory_leaks.h"
 # include "../../MLX42/include/MLX42/MLX42.h"
 //Structure to store a point in cartesians
 typedef struct s_point {

@@ -15,7 +15,7 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # include "../../MLX42/include/MLX42/MLX42.h"
-# include "../../memory-leaks/include/memory_leaks.h"
+//# include "../../memory-leaks/include/memory_leaks.h"
 # include "../shapes/Shapes.h"
 # include <math.h>
 

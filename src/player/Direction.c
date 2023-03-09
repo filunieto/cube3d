@@ -28,7 +28,7 @@ void rotate(t_player *player, int clockwise)
 	int y;
 	double angle;
 
-	angle = 0.12217304764;	
+	angle = 0.10471975511966;	
 	if(clockwise == -1 || clockwise == 1)
 	{
 		x = player->direction->x;

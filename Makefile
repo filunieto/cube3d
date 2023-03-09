@@ -5,7 +5,7 @@ CFLAGS = -Wall -Werror -Wextra
 INC = inc
 SRC = src
 INCLUDES = $(INC)/Screen.h $(INC)/shapes/Shapes.h $(INC)/player/Player.h \
-		   $(INC)/game/Game.h $(INC)/map/Map.h
+		   $(INC)/game/Game.h $(INC)/map/Map.h 
 SRCS = $(SRC)/main.c $(SRC)/Screen.c $(SRC)/shapes/Line.c \
 	   $(SRC)/shapes/utilsLine.c $(SRC)/shapes/utilsPoint.c \
 	   $(SRC)/shapes/Square.c $(SRC)/player/Player.c \
@@ -45,18 +45,18 @@ $(GRAPHIC_LIBRARY):
 
 ifeq ($(shell uname -s), $(LINUX))
 
-%.o: %.c $(INCLUDES) $(GRAPHIC_LIBRARY) $(LIBFT)
-	$(CC) $(CFLAGS) -g -I$(INC) -I$(INC_MLX) -c $(filter %.c, $<) -o $@
+%.o: %.c $(INCLUDES)  $(LIBFT)
+	$(CC) $(CFLAGS) -g -I$(INC) -I$(INC_MLX) -I./libft -c $(filter %.c, $<) -o $@
 
-$(NAME): $(OBJS) $(INCLUDES)
-	$(CC) $(FLAGS) ./memory-leaks/memory_leaks.a ./libft/libft.a -g -o $@ $(OBJS) $(DEPENDENCIES_LINUX)
+$(NAME): $(OBJS) $(INCLUDES) $(GRAPHIC_LIBRARY)
+	$(CC) $(FLAGS) -g -o $@ $(OBJS) ./libft/libft.a $(DEPENDENCIES_LINUX)
 
 else ifeq ($(shell uname -s), $(MAC))
 
-$(NAME): $(OBJS) $(INCLUDES)
+$(NAME): $(OBJS) $(INCLUDES) $(GRAPHIC_LIBRARY)
 	$(CC) $(CFLAGS) ./memory-leaks/memory_leaks.a ./libft/libft.a -g -o $(@) $(OBJS) $(DEPENDENCIES_MAC) -lglfw -L"/Users/${USER}/.brew/opt/glfw/lib/"
 
-%.o: %.c $(INCLUDES) $(GRAPHIC_LIBRARY) $(LIBFT)
+%.o: %.c $(INCLUDES) $(GRAPHIC_LIBRARY) 
 	$(CC) $(CFLAGS) -g -I$(INC) -I$(INC_MLX) -I./memory-leaks/include -c $(filter %.c, $<) -o $@
 
 endif

@@ -12,5 +12,5 @@ void	resize_func(int x, int y, void *param)
 	insert_point(game->player->center_point, x / 2, y / 2);
 	mlx_image_to_window(game->player->mlx, game->player->img, 0, 0);
 	update_direction(game->player);
-	paint_player(game->player);
+	paint(game);
 }

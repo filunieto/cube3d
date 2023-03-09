@@ -74,7 +74,8 @@ void draw_map(t_map *map, t_player *player)
 	int color = 0x0000FFFF;
 	char c;
 	t_4vertex sq;	
-	
+	t_4vertex sq1;
+
 	rest = (map->semi_len - x) % map->width;
 	aux = 2 * map->semi_len;	
 	c = map->map[player->pos_y / map->height][(player->pos_x - (aux - map->semi_len)) / map->width];
@@ -86,7 +87,49 @@ void draw_map(t_map *map, t_player *player)
 	insert_point(&(sq.p3), sq.p0.x, sq.p0.y + map->height);
 	draw_square_filled(player->img, &sq, color, 1);
 	aux = aux - rest;
-	
+	unsigned int aux2 = map->semi_len - y;
+	printf("aux2: %d\n", aux2);
+	insert_point(&(sq1.p3), sq.p0.x, sq.p0.y);	
+	insert_point(&(sq1.p2), sq.p1.x, sq.p1.y);
+	insert_point(&(sq1.p0), sq1.p3.x, sq1.p3.y - map->height);
+	insert_point(&(sq1.p1), sq1.p2.x, sq1.p0.y);
+	draw_square_filled(player->img, &sq1, color, 1);
+	aux2 = aux2 - map->height;
+	while(aux2 > 0)
+	{
+		if((aux2 / 60) != 0)
+		{
+			
+			insert_point(&(sq1.p3), sq1.p0.x, sq1.p0.y);	
+			insert_point(&(sq1.p2), sq1.p1.x, sq1.p1.y);
+			insert_point(&(sq1.p0), sq1.p3.x, sq1.p3.y - map->height);
+			insert_point(&(sq1.p1), sq1.p2.x, sq1.p2.y - map->height);
+			printf("--aux2: %d\n", aux2);	
+			printf("p0=> x: %d, y: %d\n", sq1.p0.x, sq1.p0.y);
+			printf("p1=> x: %d, y: %d\n", sq1.p1.x, sq1.p1.y);
+			printf("p2=> x: %d, y: %d\n", sq1.p2.x, sq1.p2.y);
+			printf("p3=> x: %d, y: %d\n", sq1.p3.x, sq1.p3.y);
+			aux2 = aux2 - map->height;
+		}
+		else
+		{
+			rest = aux2 % map->height;
+			
+			insert_point(&(sq1.p3), sq1.p0.x, sq1.p0.y);	
+			insert_point(&(sq1.p2), sq1.p1.x, sq1.p1.y);
+			insert_point(&(sq1.p0), sq1.p3.x, sq1.p3.y - rest);
+			insert_point(&(sq1.p1), sq1.p2.x, sq1.p2.y - rest);	
+			printf("rest: %d\n", rest);	
+			printf("p0=> x: %d, y: %d\n", sq1.p0.x, sq1.p0.y);
+			printf("p1=> x: %d, y: %d\n", sq1.p1.x, sq1.p1.y);
+			printf("p2=> x: %d, y: %d\n", sq1.p2.x, sq1.p2.y);
+			printf("p3=> x: %d, y: %d\n", sq1.p3.x, sq1.p3.y);
+			aux2 = 0;
+		}
+
+		draw_square_filled(player->img, &sq1, color, 1);
+	}
+
 	while(aux > 0)
 	{
 		c = map->map[player->pos_y / map->height][(player->pos_x - (aux - map->semi_len)) / map->width];
@@ -114,4 +157,3 @@ void draw_map(t_map *map, t_player *player)
 		draw_square_filled(player->img, &sq, color, 1);
 	}
 }
-

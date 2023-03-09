@@ -17,7 +17,7 @@
 # include "../player/Player.h"
 # include "../map/Map.h"
 # include "../../MLX42/include/MLX42/MLX42_Input.h"
-# include "../../memory-leaks/include/memory_leaks.h"
+//# include "../../memory-leaks/include/memory_leaks.h"
 
 typedef struct s_game{
 	
