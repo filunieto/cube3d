@@ -61,6 +61,8 @@ $(NAME): $(OBJS) $(INCLUDES) $(GRAPHIC_LIBRARY)
 
 endif
 
+run :
+	./$(NAME)
 
 clean:
 	rm -rf $(MLX42)/build
