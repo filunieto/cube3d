@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:51:40 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 21:05:58 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/09 19:09:46 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # include "../../MLX42/include/MLX42/MLX42.h"
-//# include "../../memory-leaks/include/memory_leaks.h"
+# include "../../memory-leaks/include/memory_leaks.h"
 # include "../shapes/Shapes.h"
 # include <math.h>
 

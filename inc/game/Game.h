@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:21:02 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 20:56:34 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/09 19:09:19 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "../player/Player.h"
 # include "../map/Map.h"
 # include "../../MLX42/include/MLX42/MLX42_Input.h"
-//# include "../../memory-leaks/include/memory_leaks.h"
+# include "../../memory-leaks/include/memory_leaks.h"
 
 typedef struct s_game{
 	

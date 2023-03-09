@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:43:01 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/07 18:06:20 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/09 19:10:00 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
-//# include "../../memory-leaks/include/memory_leaks.h"
+# include "../../memory-leaks/include/memory_leaks.h"
 # include "../../MLX42/include/MLX42/MLX42.h"
+
 //Structure to store a point in cartesians
 typedef struct s_point {
 	int	x;

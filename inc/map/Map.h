@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:00 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 21:58:42 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/09 19:09:35 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #ifndef MAP_H
 # define MAP_H
 
-//# include "../../memory-leaks/include/memory_leaks.h"
+# include "../../memory-leaks/include/memory_leaks.h"
 # include "../../libft/libft.h"
 # include "../player/Player.h"
 # include "../shapes/Shapes.h"

@@ -13,6 +13,17 @@ void key_func(mlx_key_data_t keydata, void *param)
 		game->player->pos_y += 3;
 		paint(game);
 	}
+
+	if(keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
+	{
+		game->player->pos_y -= 3;
+		paint(game);
+	}else if(keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
+	{
+		game->player->pos_y += 3;
+		paint(game);
+	}
+
 	if(keydata.key == MLX_KEY_A && keydata.action == MLX_REPEAT)
 	{
 		rotate(game->player, -1);

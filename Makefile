@@ -53,7 +53,7 @@ $(NAME): $(OBJS) $(INCLUDES) $(GRAPHIC_LIBRARY)
 
 else ifeq ($(shell uname -s), $(MAC))
 
-$(NAME): $(OBJS) $(INCLUDES) $(GRAPHIC_LIBRARY)
+$(NAME): $(OBJS) $(INCLUDES) $(GRAPHIC_LIBRARY) $(LIBFT)
 	$(CC) $(CFLAGS) ./memory-leaks/memory_leaks.a ./libft/libft.a -g -o $(@) $(OBJS) $(DEPENDENCIES_MAC) -lglfw -L"/Users/${USER}/.brew/opt/glfw/lib/"
 
 %.o: %.c $(INCLUDES) $(GRAPHIC_LIBRARY) 
