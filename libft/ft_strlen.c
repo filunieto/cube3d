@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 20:28:38 by anramire          #+#    #+#             */
-/*   Updated: 2022/04/19 21:20:53 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/10 10:53:52 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ size_t	ft_strlen(const char *s)
 	while (s[len] != '\0')
 	{
 		len++;
-	}	
+	}
 	return (len);
 }
