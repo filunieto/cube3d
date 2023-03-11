@@ -1,6 +1,7 @@
 {
 	"files.associations": {
-		"parse.h": "c"
+		"parse.h": "c",
+		"headers.h": "c"
 	},
 	"workbench.colorCustomizations": {
 		"activityBar.activeBackground": "#2f7c47",

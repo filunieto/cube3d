@@ -6,17 +6,17 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:25:08 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/10 15:46:13 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/11 16:26:55 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
 
+#include "../headers.h"
+
 /* Error messages */
-// Error number of inputs
-#define ERRNBINP_MES	"Wrong number of inputs \
-token`newline'\n"
+#define ERRNBINP_MES	"Wrong number of inputs\n"
 #define USAGE	"Please provide correct format \
 <./cube3d> <file>'\n"
 
