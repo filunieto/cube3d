@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:43:48 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/11 17:05:17 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/11 20:49:25 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,19 @@ void	check_leaks(void)
 int	main(int argc, char** argv)
 {
 	/* FElipe */
+	char **map;
+	// declarar una variable char **map , y si ok se le as
 	if (argc != 2)
 		return(print_error(ERRNBINP_MES, ERRNBINP));
+	//map = ft_parse(argv[1]); //check_parse : return NULL (e imprime mensaje  especifico) si alguna parte no cuadra. En otro caso retorna el array de arrays en el formato necesario
+	map = ft_parse(argv[1]);
+	if (map == NULL) 
+		return(print_error(ERR_MAP_INPT_MES, ERR_MAP_INPT));
 
-	ft_parse(argv[1]);
+
 	/* **************************** */
 	/* Andres */
 	// init_window();
-	//atexit(check_leaks);
+	atexit(check_leaks);
 	return (0);
 }

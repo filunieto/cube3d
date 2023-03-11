@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:25:08 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/11 16:26:55 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/11 19:09:24 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,20 @@
 #include "../headers.h"
 
 /* Error messages */
-#define ERRNBINP_MES	"Wrong number of inputs\n"
+#define ERRNBINP_MES	"Wrong number of inputs\n" //añadir mensaje de Usage si es necesario para tener una funcion generica
 #define USAGE	"Please provide correct format \
 <./cube3d> <file>'\n"
 
+#define ERR_MAP_INPT_MES	"The input map , has a problem \
+Escribir previemante el mensaje de error'\n"
 
 /* Error codes return values */
 
 enum	code_error
 {
 	ERRNBINP = 10,
-	DRAFT_MES,
+	ERR_MAP_INPT ,
+	DRAFT,
 	
 };
 
