@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:36:58 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/11 20:58:17 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/12 20:11:12 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ bool is_ext_cub(t_pars* parsing_str)
  * @return true 
  * @return false 
  */
-bool	read_file(t_pars* parsing_str)
-{
+// bool	read_file(t_pars* parsing_str)
+// {
 	
-}
+// }
 
 
 char **ft_parse(char *file_mup)
@@ -82,9 +82,18 @@ char **ft_parse(char *file_mup)
 	{
 		printf("extension no correctan, STOP\n"); //funcion generica de error , que imprima y retorne NULL(todo en una linea)
 		return (NULL);
-	} 
-	read_file(&parsing_str); //domingo seguimos leyendo el archivo con gnline
-	printf("extension correctan, palante\n");
+	}
+	//open file
+	parsing_str.file_inp = open(file_mup, O_RDONLY, CHMOD);
+	if (parsing_str.file_inp < 0)
+	{
+		printf("Problema apertura de archivo, STOP\n"); //funcion generica de error , que imprima y retorne NULL(todo en una linea)
+		return (NULL);
+	}
+	//read_file(&parsing_str); //domingo seguimos leyendo el archivo con gnline
+
+	printf("extension correctan y archivo abierto, palante\n");
+	close(parsing_str.file_inp);
 	return (parsed_map);
-	
+
 }

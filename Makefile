@@ -66,7 +66,7 @@ fclean :
 re : fclean all
 
 run : all
-	./$(NAME) map.cub
+	./$(NAME) src/scenarios/map1.cub
 
 test1: all
 	@echo "$(MAGEN_G)📝 test 1 con un archivo como input$(MAGEN_F) $(RESET)"

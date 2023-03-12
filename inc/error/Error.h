@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:25:08 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/11 19:09:24 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/12 19:24:27 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 <./cube3d> <file>'\n"
 
 #define ERR_MAP_INPT_MES	"The input map , has a problem \
-Escribir previemante el mensaje de error'\n"
+as above message indicates'\n"
 
 /* Error codes return values */
 
@@ -30,7 +30,7 @@ enum	code_error
 	ERRNBINP = 10,
 	ERR_MAP_INPT ,
 	DRAFT,
-	
+
 };
 
 
