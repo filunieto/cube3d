@@ -1,6 +1,6 @@
 CMakeFiles/mlx42.dir/lib/png/lodepng.c.o: \
-  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_git/MLX42/lib/png/lodepng.c \
-  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_git/MLX42/include/lodepng/lodepng.h \
+  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_gitlab/MLX42/lib/png/lodepng.c \
+  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_gitlab/MLX42/include/lodepng/lodepng.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/string.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/_types.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/sys/_types.h \

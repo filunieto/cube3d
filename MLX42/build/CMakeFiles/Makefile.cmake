@@ -7,11 +7,11 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "/System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos goinfre/cube3d proyecto/cube3d_git/MLX42/CMakeLists.txt"
+  "/System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos goinfre/cube3d proyecto/cube3d_gitlab/MLX42/CMakeLists.txt"
   "CMakeFiles/3.25.2/CMakeCCompiler.cmake"
   "CMakeFiles/3.25.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.25.2/CMakeSystem.cmake"
-  "/System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos goinfre/cube3d proyecto/cube3d_git/MLX42/cmake/Findglfw3.cmake"
+  "/System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos goinfre/cube3d proyecto/cube3d_gitlab/MLX42/cmake/Findglfw3.cmake"
   "/Users/fnieves-/.brew/Cellar/cmake/3.25.2/share/cmake/Modules/CMakeCCompiler.cmake.in"
   "/Users/fnieves-/.brew/Cellar/cmake/3.25.2/share/cmake/Modules/CMakeCCompilerABI.c"
   "/Users/fnieves-/.brew/Cellar/cmake/3.25.2/share/cmake/Modules/CMakeCInformation.cmake"

@@ -5,14 +5,24 @@ CFLAGS = -Wall -Werror -Wextra
 INC = inc
 SRC = src
 INCLUDES = $(INC)/Screen.h $(INC)/shapes/Shapes.h $(INC)/player/Player.h \
-		   $(INC)/game/Game.h $(INC)/map/Map.h 
+		   $(INC)/game/Game.h $(INC)/map/Map.h \
+			inc/Screen.h  			\
+			inc/parse/Parse.h 		\
+
+
 SRCS = $(SRC)/main.c $(SRC)/Screen.c $(SRC)/shapes/Line.c \
 	   $(SRC)/shapes/utilsLine.c $(SRC)/shapes/utilsPoint.c \
 	   $(SRC)/shapes/Square.c $(SRC)/player/Player.c \
 	   $(SRC)/player/Direction.c $(SRC)/game/Game.c \
 	   $(SRC)/game/ResizeHook.c $(SRC)/game/KeyHook.c \
 	   $(SRC)/player/ClearingImage.c $(SRC)/map/Map.c \
-	   $(SRC)/map/UtilsMap.c $(SRC)/game/Paint.c
+	   $(SRC)/map/UtilsMap.c $(SRC)/game/Paint.c \
+		src/parse/parse.c 				\
+		src/parse/parse_tools.c 		\
+		src/error/error.c				\
+		src/gnl/get_next_line.c			\
+		src/gnl/get_next_line_utils.c	\
+
 OBJS = $(SRCS:.c=.o)
 NAME = cub3d
 VALGRIND = val
@@ -53,16 +63,13 @@ $(NAME): $(OBJS) $(INCLUDES) $(GRAPHIC_LIBRARY)
 
 else ifeq ($(shell uname -s), $(MAC))
 
-$(NAME): $(OBJS) $(INCLUDES) $(GRAPHIC_LIBRARY)
+$(NAME): $(OBJS) $(INCLUDES) $(GRAPHIC_LIBRARY) $(LIBFT)
 	$(CC) $(CFLAGS) ./memory-leaks/memory_leaks.a ./libft/libft.a -g -o $(@) $(OBJS) $(DEPENDENCIES_MAC) -lglfw -L"/Users/${USER}/.brew/opt/glfw/lib/"
 
 %.o: %.c $(INCLUDES) $(GRAPHIC_LIBRARY) 
 	$(CC) $(CFLAGS) -g -I$(INC) -I$(INC_MLX) -I./memory-leaks/include -c $(filter %.c, $<) -o $@
 
 endif
-
-run :
-	./$(NAME)
 
 clean:
 	rm -rf $(MLX42)/build
@@ -77,3 +84,17 @@ $(VALGRIND): $(NAME)
 	valgrind --leak-check=full ./$(NAME)
 	rm -rf $(NAME).dSYM
 .PHONY: all re clean fclean val
+
+
+# Felipe rules
+
+run :
+	./$(NAME)
+
+test1: all
+	@echo "$(MAGEN_G)📝 test 1 con un archivo como input$(MAGEN_F) $(RESET)"
+	./$(NAME) ./src/scenarios/map1.cub
+
+test3: all
+	@echo "$(MAGEN_G)📝 test 2 antonio$(MAGEN_F) $(RESET)"
+	./$(NAME) antonio.cu

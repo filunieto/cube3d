@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+         #
+#    By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/28 21:41:57 by anramire          #+#    #+#              #
-#    Updated: 2022/04/29 00:20:25 by anramire         ###   ########.fr        #
+#    Updated: 2023/03/13 19:46:17 by fnieves-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,3 +46,7 @@ re: fclean all
 
 bonus: $(BONUSOBJS) $(OBJS) $(INCLUDE)
 	ar rcs $(NAME) $(BONUSOBJS) $(OBJS)
+
+
+run : all
+	./$(NAME) src/scenarios/map1.cub

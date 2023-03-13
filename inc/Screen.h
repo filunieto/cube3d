@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:44:14 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/09 17:35:30 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/13 19:57:32 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,19 @@
 # include "game/Game.h"
 # include "map/Map.h"
 
-/* FElipe */
-# include "parse/Parse.h"
+/******************** FElipe *******************/
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+# include <stdbool.h>
+# include <fcntl.h>
+
+
+#include "error/Error.h"
+#include "parse/Parse.h"
+#include "gnl/get_next_line.h"
+
 
 
 int	init_window(void);

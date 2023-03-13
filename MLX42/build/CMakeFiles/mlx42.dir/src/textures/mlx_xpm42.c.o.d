@@ -1,7 +1,7 @@
 CMakeFiles/mlx42.dir/src/textures/mlx_xpm42.c.o: \
-  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_git/MLX42/src/textures/mlx_xpm42.c \
-  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_git/MLX42/include/MLX42/MLX42_Int.h \
-  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_git/MLX42/include/MLX42/MLX42.h \
+  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_gitlab/MLX42/src/textures/mlx_xpm42.c \
+  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_gitlab/MLX42/include/MLX42/MLX42_Int.h \
+  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_gitlab/MLX42/include/MLX42/MLX42.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include/stdint.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/stdint.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/sys/_types/_int8_t.h \
@@ -30,8 +30,8 @@ CMakeFiles/mlx42.dir/src/textures/mlx_xpm42.c.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/_types/_intmax_t.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/_types/_uintmax_t.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include/stdbool.h \
-  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_git/MLX42/include/MLX42/MLX42_Input.h \
-  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_git/MLX42/include/lodepng/lodepng.h \
+  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_gitlab/MLX42/include/MLX42/MLX42_Input.h \
+  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_gitlab/MLX42/include/lodepng/lodepng.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/string.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/_types.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/Availability.h \
@@ -44,8 +44,8 @@ CMakeFiles/mlx42.dir/src/textures/mlx_xpm42.c.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/secure/_strings.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/secure/_common.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/usr/include/secure/_string.h \
-  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_git/MLX42/include/glad/glad.h \
-  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_git/MLX42/include/KHR/khrplatform.h \
+  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_gitlab/MLX42/include/glad/glad.h \
+  /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos\ goinfre/cube3d\ proyecto/cube3d_gitlab/MLX42/include/KHR/khrplatform.h \
   /Users/fnieves-/.brew/include/GLFW/glfw3.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include/stddef.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.0/include/__stddef_max_align_t.h \

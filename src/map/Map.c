@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 23:39:14 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/11 16:07:54 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void init_map(t_map *map, t_player *player)
 		}
 		i++;	
 	}
-
 }
 
 
