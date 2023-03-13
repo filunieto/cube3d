@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves- <fnieves-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 12:29:31 by fnieves-          #+#    #+#             */
-/*   Updated: 2022/07/13 18:05:13 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/13 12:35:29 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../../inc/headers.h"
 
 /* Parsing last element of the list to find the \n */
 
@@ -93,11 +93,13 @@ void	ft_delete_list(t_head_list *head)
 	head->header = NULL;
 }
 
-int	ft_strlen(const char *str)
+int	ft_strlen(const char *str) // libft añadir la libreria o hacer static
 {
 	int	len;
 
 	len = 0;
+	if (!str)
+		return (len);
 	while (*(str++))
 		len++;
 	return (len);

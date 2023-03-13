@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:43:48 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/11 20:49:25 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:08:00 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void	check_leaks(void)
  
  *Abrir archivos :
 	Comprobar que la extension sea .cub
+	Hay que verificar cada linea NO, SO, F, C y el mapa
+
+Para Andres. Dejar todo listo y funcionando en la estructira del programa
+	
  * @param argc 
  * @param argv 
  * @return int 

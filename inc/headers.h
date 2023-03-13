@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:07:41 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/12 19:43:14 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/13 12:06:57 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 #include "error/Error.h"
 #include "parse/Parse.h"
-#include "../gnl/get_next_line.h"
+#include "gnl/get_next_line.h"
 
 
 # define CHMOD		0644

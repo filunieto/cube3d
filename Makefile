@@ -17,14 +17,16 @@ NAME = cub3d
 INC = inc
 SRC = src
 
-SRCS = 	src/main.c 					\
-		src/parse/parse.c 			\
-		src/parse/parse_tools.c 	\
-		src/error/error.c			\
+SRCS = 	src/main.c 						\
+		src/parse/parse.c 				\
+		src/parse/parse_tools.c 		\
+		src/error/error.c				\
+		src/gnl/get_next_line.c			\
+		src/gnl/get_next_line_utils.c	\
 
 OBJ		= $(addprefix obj/,$(notdir $(SRCS:.c=.o)))
 
-INCLUDES = 	$(INC)/Screen.h  		\
+INCLUDES = 	inc/Screen.h  		\
 			inc/parse/Parse.h 		\
 			inc/headers.h			\
 
@@ -58,7 +60,7 @@ $(LIBS) :
 	-(cd libft && make clean)
 
 clean :
-	rm -rdf $(OBJS);
+	rm -rdf obj
 
 fclean : 
 	rm -rdf $(NAME)
@@ -77,3 +79,9 @@ test3: all
 	./$(NAME) antonio.cu
 
 
+SRCS = 	$(SRC)/main.c 						\
+		$(SRC)/parse/parse.c 				\
+		$(SRC)/parse/parse_tools.c 		\
+		$(SRC)/error/error.c				\
+		$(SRC)/gnl/get_next_line.c			\
+		$(SRC)/gnl/get_next_line_utils.c	\
