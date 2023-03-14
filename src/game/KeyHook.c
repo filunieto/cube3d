@@ -1,47 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   KeyHook.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/14 22:18:24 by anramire          #+#    #+#             */
+/*   Updated: 2023/03/14 22:30:55 by anramire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# include "../../inc/game/Game.h"
+#include "../../inc/game/Game.h"
 
-void key_func(mlx_key_data_t keydata, void *param)
+//Aux methods
+extern void	key_advance_and_back(t_game *game, mlx_key_data_t keydata);
+extern void	key_turn(t_game *game, mlx_key_data_t keydata);
+
+void	key_func(mlx_key_data_t keydata, void *param)
 {
-	t_game *game = (t_game *)param;
-	if(keydata.key == MLX_KEY_W && keydata.action == MLX_REPEAT)
-	{
-		player_advance(game->map, game->player, 1);
-		paint(game);
-	}else if(keydata.key == MLX_KEY_S && keydata.action == MLX_REPEAT)
-	{
-		player_advance(game->map, game->player, -1);
-		paint(game);
-	}
+	t_game	*game;
 
-	if(keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
-	{
-		player_advance(game->map, game->player, 1);
-		paint(game);
-	}else if(keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
-	{
-		player_advance(game->map, game->player, -1);
-		paint(game);
-	}
-
-	if(keydata.key == MLX_KEY_A && keydata.action == MLX_REPEAT)
-	{
-		rotate(game->player, -1);
-		paint(game);
-	}
-	else if(keydata.key == MLX_KEY_D && keydata.action == MLX_REPEAT)
-	{
-		rotate(game->player, 1);
-		paint(game);
-	}
-	if(keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
-	{
-		rotate(game->player, -1);
-		paint(game);
-	}
-	else if(keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
-	{
-		rotate(game->player, 1);
-		paint(game);
-	}
+	game = (t_game *) param;
+	key_advance_and_back(game, keydata);
+	key_turn(game, keydata);
 }
