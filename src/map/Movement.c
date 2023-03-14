@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 22:56:29 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/14 20:03:13 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/14 20:28:24 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,8 @@ static void check_diagonal_collision(t_map *map, t_player *player, int advance_x
 		{
 			aux_advance_y = ((player->pos_y - (player->tam / 2 )) % map->height);
 			printf("Ceil: %d\n",((player->pos_y - (player->tam / 2 )) % map->height) );
-			if(aux_advance_y <= (int)(player->tam / 2) && aux_advance_y <= (-1 * advance_y))
+			if(aux_advance_y <= (int)(player->tam / 2) && aux_advance_y <= (-1 * advance_y)
+					&& aux_advance_y != 0)
 			{
 				printf("Entrando\n");
 				aux_y -= aux_advance_y;
@@ -146,6 +147,8 @@ static void check_diagonal_collision(t_map *map, t_player *player, int advance_x
 				printf("New advance_y: %d\n", advance_y);
 				aux_y += advance_y;	
 			}
+			printf("Down alternative aux_advance_y: %d, and advance_y: %d, player_tam: %d\n", aux_advance_y, advance_y, (int)(player->tam / 2));
+
 		}
 
 		//----------
@@ -157,7 +160,8 @@ static void check_diagonal_collision(t_map *map, t_player *player, int advance_x
 		else
 		{
 			aux_advance_x = ((player->pos_x - (player->tam / 2)) % map->width);
-			if(aux_advance_x <= (int)(player->tam / 2) && aux_advance_x <= (-1 * advance_x))
+			if(aux_advance_x <= (int)(player->tam / 2) && aux_advance_x <= (-1 * advance_x)
+					&& aux_advance_x != 0)
 			{
 				printf("Entrando\n");
 				aux_x -= aux_advance_x;
@@ -208,7 +212,8 @@ static void check_diagonal_collision(t_map *map, t_player *player, int advance_x
 		{
 
 			aux_advance_x = map->width - ((player->pos_x + (player->tam / 2)) % map->width);
-			if(aux_advance_x <= (int)(player->tam / 2) && aux_advance_x <= advance_x)
+			if(aux_advance_x <= (int)(player->tam / 2) && aux_advance_x <= advance_x 
+					&& aux_advance_x != 0)
 			{
 				printf("Entrando\n");
 				aux_x += aux_advance_x;
@@ -233,7 +238,8 @@ static void check_diagonal_collision(t_map *map, t_player *player, int advance_x
 		else
 		{
 			aux_advance_y = map->height - ((player->pos_y + (player->tam / 2)) % map->height);
-			if(aux_advance_y <= (int)(player->tam / 2) && aux_advance_y <= advance_y)
+			if(aux_advance_y <= (int)(player->tam / 2) && aux_advance_y <= advance_y
+					&& aux_advance_y != 0)
 			{
 				printf("Entrando\n");
 				aux_y += aux_advance_y;
@@ -255,7 +261,8 @@ static void check_diagonal_collision(t_map *map, t_player *player, int advance_x
 		else
 		{
 			aux_advance_x = ((player->pos_x - (player->tam / 2)) % map->width);
-			if(aux_advance_x <= (int)(player->tam / 2) && aux_advance_x <= (-1 * advance_x))
+			if(aux_advance_x <= (int)(player->tam / 2) && aux_advance_x <= (-1 * advance_x)
+					&& aux_advance_x != 0)
 			{
 				printf("Entrando\n");
 				aux_x -= aux_advance_x;
@@ -285,7 +292,8 @@ static void check_diagonal_collision(t_map *map, t_player *player, int advance_x
 			printf("Right: %d\n",check_right_down_player(player, map, 0, advance_y));
 			printf("Left: %d\n",check_left_down_player(player, map, 0, advance_y));
 			aux_advance_y = map->height - ((player->pos_y + (player->tam / 2)) % map->height);
-			if(aux_advance_y <= (int)(player->tam / 2) && aux_advance_y <= advance_y)
+			if(aux_advance_y <= (int)(player->tam / 2) && aux_advance_y <= advance_y
+					&& aux_advance_y != 0)
 			{
 				printf("Entrando\n");
 				aux_y += aux_advance_y;
@@ -308,7 +316,8 @@ static void check_diagonal_collision(t_map *map, t_player *player, int advance_x
 		else
 		{
 			aux_advance_x = map->width - ((player->pos_x + (player->tam / 2)) % map->width);
-			if(aux_advance_x <= (int)(player->tam / 2) && aux_advance_x <= advance_x)
+			if(aux_advance_x <= (int)(player->tam / 2) && aux_advance_x <= advance_x
+					&& aux_advance_x != 0)
 			{
 				printf("Entrando\n");
 				aux_x += aux_advance_x;
@@ -319,6 +328,8 @@ static void check_diagonal_collision(t_map *map, t_player *player, int advance_x
 				printf("New advance_x: %d\n", advance_x);
 				aux_x += advance_x;	
 			}
+	printf("Down alternative aux_advance_x: %d, and advance_x: %d, player_tam: %d\n", aux_advance_x, advance_x, (int)(player->tam / 2));
+
 		}
 
 	}
@@ -363,7 +374,7 @@ int check_left_down_player(t_player *player, t_map *map, int advance_x, int adva
 	int aux_y;
 
 	aux_x = player->pos_x + advance_x - (player->tam / 2);
-	aux_y = player->pos_y + advance_y + (player->tam / 2);
+	aux_y = player->pos_y + advance_y + (player->tam / 2) - 1;
 
 	if(map->map[aux_y / map->height][aux_x / map->width] == '1')
 		return -1;
@@ -376,7 +387,7 @@ int check_right_down_player(t_player *player, t_map *map, int advance_x, int adv
 	int aux_y;
 
 	aux_x = player->pos_x + advance_x + (player->tam / 2) - 1;
-	aux_y = player->pos_y + advance_y + (player->tam / 2);
+	aux_y = player->pos_y + advance_y + (player->tam / 2) - 1;
 	
 	if(map->map[aux_y / map->height][aux_x / map->width] == '1')
 		return -1;
