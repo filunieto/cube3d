@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 22:56:29 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/14 21:27:31 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/14 21:43:09 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ static void check_diagonal_collision(t_map *map, t_player *player, int advance_x
 				aux_x -= aux_advance_x;
 			}
 			else if(check_left_down_player(player, map, advance_x, 0) == 0 && 
-					check_left_down_player(player, map, advance_x, 0) == 0)
+					check_left_up_player(player, map, advance_x, 0) == 0)
 			{
 				printf("New advance_x: %d\n", advance_x);
 				aux_x += advance_x;	

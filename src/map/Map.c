@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/09 23:35:52 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/14 21:40:20 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void init_map(t_map *map, t_player *player)
 			"        1011000001110000000000001",
 			"        1001000000000000000000001",
 			"111111111011000001110000000000001",
-			"100000000011000001110111111111111",
+			"100000000011000001110111110111111",
 			"11110111111111011100000010001    ",
 			"11110111111111011101010010001    ",
 			"11000000110101011100000011001    ",
@@ -85,6 +85,8 @@ void draw_map(t_map *map, t_player *player)
 	c = map->map[player->pos_y / map->height][offset_x];
 	if(c == '1')
 		color = 0xFF0000FF;
+	else if(c == ' ')
+		color = 0x000000FF;
 	insert_point(&(sq.p0), player->center_point->x - map->semi_len, player->center_point->y - y);
 	insert_point(&(sq.p1), sq.p0.x + rest, sq.p0.y);
 	insert_point(&(sq.p2), sq.p0.x + rest, sq.p0.y + map->height);
@@ -100,6 +102,8 @@ void draw_map(t_map *map, t_player *player)
 		c = map->map[player->pos_y / map->height][offset_x];
 		if(c == '1')
 			color = 0xFF0000FF;
+		else if(c == ' ')
+			color = 0x000000FF;
 		else
 			color = 0x0000FFFF;
 		if((aux / map->width) != 0)	
@@ -150,6 +154,8 @@ void	draw_column_up(t_map *map, t_player *player, t_point *p0, t_point *p1, unsi
 	
 		if(c == '1')
 			color = 0xFF0000FF;
+		else if(c == ' ')
+			color = 0x000000FF;
 		else
 			color = 0x0000FFFF;
 	}
@@ -174,6 +180,8 @@ void	draw_column_up(t_map *map, t_player *player, t_point *p0, t_point *p1, unsi
 	
 		if(c == '1')
 			color = 0xFF0000FF;
+		else if(c == ' ')
+			color = 0x000000FF;
 		else
 			color = 0x0000FFFF;
 	}
@@ -223,6 +231,8 @@ void	draw_column_down(t_map *map, t_player *player, t_point *p2, t_point *p3, un
 	
 		if(c == '1')
 			color = 0xFF0000FF;
+		else if(c == ' ')
+			color = 0x000000FF;
 		else
 			color = 0x0000FFFF;
 	}
@@ -247,6 +257,8 @@ void	draw_column_down(t_map *map, t_player *player, t_point *p2, t_point *p3, un
 	
 		if(c == '1')
 			color = 0xFF0000FF;
+		else if(c == ' ')
+			color = 0x000000FF;
 		else
 			color = 0x0000FFFF;
 	}
