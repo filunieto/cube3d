@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:36:58 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/13 20:02:45 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/14 19:19:18 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,48 @@ bool is_ext_cub(t_pars* parsing_str)
 	if (leng_s < 4)
 		return (false);
 	extension = file + (leng_s - 1) - 3;
-	//printf("puntero a extension recortada: %s\n", extension);
-	if ( strcmp(extension, ".cub")) //libft
+	if ( strcmp(extension, ".cub"))
 		return (false);
 	return (true);
 }
 
+void draw_copied_map(t_pars* parsing_str) //funcion solo para verificar
+{
+	
+	int i = -1;
+	while(parsing_str->map[++i])
+	{
+		printf("linea de map: %i: %s", i, parsing_str->map[i]);
+	}
+	printf("\nsalto de linea\n");
+}
+
+int copy_file(t_pars* parsing_str)
+{
+	int i;
+	char *line;
+
+	parsing_str->file_inp = open(parsing_str->arg_1, O_RDONLY, CHMOD);
+	if (parsing_str->file_inp < 0)
+	{
+		printf("Problema apertura de archivo, STOP\n"); //repetida antes
+	}
+	i = 0;
+	while (1)
+	{
+		//atencion al orden
+		line = get_next_line(parsing_str->file_inp);
+		//printf("linea para copiar: %s\n", line);
+		parsing_str->map[i] = line; //si el ultimo elemento es Null, lo nultermina
+		//printf("linea de map copiada: %i: %s\n", i, parsing_str->map[i]);
+		i++;
+		if (!line)
+			break;
+		line = NULL;
+	}
+	draw_copied_map(parsing_str);
+	return (1);
+}
 
 /**
  * @brief 
@@ -74,22 +110,24 @@ bool	read_file(t_pars* parsing_str)
 	{
 		parsing_str->line = get_next_line(parsing_str->file_inp);
 		parsing_str->nb_line += 1;
+		
 		if (!parsing_str->line)
 		{
 			break;
 		}
-		printf("%s", parsing_str->line);
 		free(parsing_str->line);
 	}
 	parsing_str->map = calloc(sizeof (*parsing_str->map), parsing_str->nb_line + 1); //libft
 	if (!parsing_str->map)
 		return (false); //habría que liberar algo más? (poner un int de output)
-	free(parsing_str->map);
+	close(parsing_str->file_inp);
+	copy_file(parsing_str); //meter algun error para asegurarse
+	//free(parsing_str->map);
 	return (true);
 	//como nos aseguramos que había llegado al final de linea y que no ha habido un error cualquiera (lectura)
 }
 
-
+//cuidado con el file qu elo estoy abriendo siempre por el findla
 char **ft_parse(char *file_mup)
 {
 	t_pars parsing_str;
@@ -97,7 +135,7 @@ char **ft_parse(char *file_mup)
 	
 	char *para_borrar = "frase test";//para borrar 
 	parsed_map = &para_borrar;//para borrar
-
+	
 	init_strc_pars(&parsing_str);
 	parsing_str.arg_1 = file_mup;
 	if (!is_ext_cub(&parsing_str))
@@ -106,14 +144,15 @@ char **ft_parse(char *file_mup)
 		return (NULL);
 	}
 	//open file
-	parsing_str.file_inp = open(file_mup, O_RDONLY, CHMOD);
+	parsing_str.arg_1 = file_mup;
+	parsing_str.file_inp = open(parsing_str.arg_1, O_RDONLY, CHMOD);
 	if (parsing_str.file_inp < 0)
 	{
 		printf("Problema apertura de archivo, STOP\n"); //funcion generica de error , que imprima y retorne NULL(todo en una linea)
 		return (NULL);
 	}
 	read_file(&parsing_str); //domingo seguimos leyendo el archivo con gnline
-	
+
 	printf("extension correctan y archivo abierto, y lectura correcta palante\n");
 	close(parsing_str.file_inp);
 	return (parsed_map);

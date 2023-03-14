@@ -1,5 +1,15 @@
 #----------------------------- Makefile -----------------------------
 
+#------------------------ Colors --------------------------
+RESET = \033[0m
+GREEN_G = \033[1;32m
+GREEN_F = \033[1;0m\033[32m
+MAGEN_G = \033[1;36m
+MAGEN__F = \033[1;0m\033[36m
+RED_G = \033[1;31m
+RED_F = \033[1;0m\033[31m
+
+
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 INC = inc
@@ -95,6 +105,6 @@ test1: all
 	@echo "$(MAGEN_G)📝 test 1 con un archivo como input$(MAGEN_F) $(RESET)"
 	./$(NAME) ./src/scenarios/map1.cub
 
-test3: all
-	@echo "$(MAGEN_G)📝 test 2 antonio$(MAGEN_F) $(RESET)"
-	./$(NAME) antonio.cu
+test2: all
+	@echo "$(MAGEN_G)📝 test 2 $(MAGEN_F) $(RESET)"
+	./$(NAME) ./src/scenarios/map_completo.cub
