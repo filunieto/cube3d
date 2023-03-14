@@ -6,18 +6,19 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:52:35 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/14 21:12:01 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/14 23:05:04 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/player/Player.h"
 
-extern void init_direction(t_player *player);
-void paint_player(t_player *player);
+extern void	init_direction(t_player *player);
+void		paint_player(t_player *player);
 
 void	pos_player(t_player *player)
 {
-	draw_square_pos(player->img, player->center_point, player->tam, player->color);
+	draw_square_pos(player->img, player->center_point,
+		player->tam, player->color);
 }
 
 void	init_player(mlx_t *mlx, mlx_image_t *img, t_player *player)
@@ -32,19 +33,18 @@ void	init_player(mlx_t *mlx, mlx_image_t *img, t_player *player)
 	init_direction(player);
 	player->color = 0xE0E0E0FF;
 	player->vel = 5;
-	//paint_player(player);
 }
 
-void free_player(t_player *player)
+void	free_player(t_player *player)
 {
 	free(player->center_point);
 	free(player->absolute_direction);
 	free(player->direction);
 }
 
-void paint_player(t_player *player)
+void	paint_player(t_player *player)
 {
 	pos_player(player);
-	draw_line(player->img, player->center_point, player->absolute_direction, 
-			0x00FF00FF);
+	draw_line(player->img, player->center_point, player->absolute_direction,
+		0x00FF00FF);
 }
