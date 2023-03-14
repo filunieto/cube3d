@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:43:08 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/01 20:18:40 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/14 22:52:51 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	draw_line(mlx_image_t *img, t_point *p1, t_point *p2, int color)
 {
 	t_end_point	*fep;
 	t_end_point	*sep;
+
 	sep = (t_end_point *)malloc(sizeof(t_end_point));
 	fep = (t_end_point *)malloc(sizeof(t_end_point));
 	fep->p = (t_point *)malloc(sizeof(t_point));
@@ -36,11 +37,8 @@ void	draw_line(mlx_image_t *img, t_point *p1, t_point *p2, int color)
 	init_variables_line(fep->p, sep->p, fep);
 	fep->color = color;
 	sep->color = fep->color;
-	if (!p1 || !p2)
-	{
-		printf("Error in points passed\n");
+	if (check_points(p1, p2) == -1)
 		return ;
-	}
 	sep->steep = fep->steep;
 	sep->gradient = fep->gradient;
 	fep->xpxl = handle_first_endpoint(img, fep);
