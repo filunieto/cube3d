@@ -13,7 +13,8 @@ using a minimal graphic library, like it is mlx.
 
 ## Features
 
-* [] Wall collisions
+* [x] Wall collisions in minimap
+* [] Wall Collisions in 3d
 * [] Minimap system
 * [] Open and close doors
 * [] Animated sprites
