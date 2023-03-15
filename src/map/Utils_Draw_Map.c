@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:51:44 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/15 19:45:22 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/15 20:32:05 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,104 +14,131 @@
 
 /*
  * Main loop to draw the ceil of column
- * Auxiliar_values=> 0 -> offset_x, 1 -> aux_2, 2 -> aux_3
+ * params=> 0 -> offset_x, 1 -> aux_2, 2 -> aux_3
 */
-void	loop_column_up(t_map *map, t_player *player, t_4vertex *sq1, int *auxiliar_values)
-{
-	unsigned int rest;
-	int color;
 
-	(auxiliar_values[2]) -= map->height;
-	if(auxiliar_values[2]< 0)
-		color = 0x000000FF;	
-	else
-		check_color(map->map[auxiliar_values[2]/ map->height][auxiliar_values[0]], &color);
-	if((auxiliar_values[1] / 60) != 0)
+static void	check_color_columns(t_map *map, int *params, int *color, int comp);
+static void	loop_draw_columns(t_map *map, t_player *player, t_4vertex *sq,
+				int *aux);
+
+void	loop_column_up(t_map *map, t_player *player, t_4vertex *sq1,
+		int *params)
+{
+	unsigned int	rest;
+	int				color;
+
+	params[2] -= map->height;
+	check_color_columns(map, params, &color, -1);
+	if ((params[1] / 60) != 0)
 	{	
-			insert_point(&(sq1->p3), sq1->p0.x, sq1->p0.y);	
-			insert_point(&(sq1->p2), sq1->p1.x, sq1->p1.y);
-			insert_point(&(sq1->p0), sq1->p3.x, sq1->p3.y - map->height);
-			insert_point(&(sq1->p1), sq1->p2.x, sq1->p2.y - map->height);
-			auxiliar_values[1] -= map->height;
+		insert_point(&(sq1->p3), sq1->p0.x, sq1->p0.y);
+		insert_point(&(sq1->p2), sq1->p1.x, sq1->p1.y);
+		insert_point(&(sq1->p0), sq1->p3.x, sq1->p3.y - map->height);
+		insert_point(&(sq1->p1), sq1->p2.x, sq1->p2.y - map->height);
+		params[1] -= map->height;
 	}
 	else
 	{
-		rest = auxiliar_values[1] % map->height;	
-		insert_point(&(sq1->p3), sq1->p0.x, sq1->p0.y);	
+		rest = params[1] % map->height;
+		insert_point(&(sq1->p3), sq1->p0.x, sq1->p0.y);
 		insert_point(&(sq1->p2), sq1->p1.x, sq1->p1.y);
 		insert_point(&(sq1->p0), sq1->p3.x, sq1->p3.y - rest);
-		insert_point(&(sq1->p1), sq1->p2.x, sq1->p2.y - rest);	
-		auxiliar_values[1] = 0;
+		insert_point(&(sq1->p1), sq1->p2.x, sq1->p2.y - rest);
+		params[1] = 0;
 	}
 	draw_square_filled(player->img, sq1, color, 1);
 }
 
 /*
  * Main loop to draw the floor of column
- * Auxiliar_values=> 0 -> offset_x, 1 -> aux_2, 2 -> aux_3
+ * params=> 0 -> offset_x, 1 -> aux_2, 2 -> aux_3
 */
-void	loop_column_down(t_map *map, t_player *player, t_4vertex *sq1, int *auxiliar_values)
+void	loop_column_down(t_map *map, t_player *player, t_4vertex *sq1,
+		int *params)
 {
-	unsigned int rest;
-	int color;
-	auxiliar_values[2] += map->height;
-	if((auxiliar_values[2]/ map->height) >= map->rows)
-		color = 0x000000FF;	
-	else
-		check_color(map->map[auxiliar_values[2]/ map->height][auxiliar_values[0]], &color);	
-	if((auxiliar_values[1] / 60) != 0)
+	unsigned int	rest;
+	int				color;
+
+	params[2] += map->height;
+	check_color_columns(map, params, &color, 1);
+	if ((params[1] / 60) != 0)
 	{	
-		insert_point(&(sq1->p0), sq1->p3.x, sq1->p3.y);	
+		insert_point(&(sq1->p0), sq1->p3.x, sq1->p3.y);
 		insert_point(&(sq1->p1), sq1->p2.x, sq1->p2.y);
 		insert_point(&(sq1->p2), sq1->p1.x, sq1->p1.y + map->height);
 		insert_point(&(sq1->p3), sq1->p0.x, sq1->p0.y + map->height);
-		auxiliar_values[1] -= map->height;
+		params[1] -= map->height;
 	}
 	else
 	{
-		rest = auxiliar_values[1] % map->height;	
-		insert_point(&(sq1->p0), sq1->p3.x, sq1->p3.y);	
+		rest = params[1] % map->height;
+		insert_point(&(sq1->p0), sq1->p3.x, sq1->p3.y);
 		insert_point(&(sq1->p1), sq1->p2.x, sq1->p2.y);
 		insert_point(&(sq1->p2), sq1->p1.x, sq1->p1.y + rest);
 		insert_point(&(sq1->p3), sq1->p0.x, sq1->p0.y + rest);
-		auxiliar_values[1] = 0;
+		params[1] = 0;
 	}
 	draw_square_filled(player->img, sq1, color, 1);
 }
-
 
 /*
  *Function to make the main loop drawing map
  * aux=> 0 -> offset_x, 1 -> aux, 2 -> y
  * */
-void	loop_draw_map(t_map *map, t_player *player, t_4vertex *sq, int *auxiliar_values)
+void	loop_draw_map(t_map *map, t_player *player, t_4vertex *sq, int *aux)
 {
 	unsigned int	rest;
 	int				color;
-	t_line			line;
 
-	auxiliar_values[0] = (player->pos_x - (auxiliar_values[1] - map->semi_len)) / map->width;
-	check_color(map->map[player->pos_y / map->height][auxiliar_values[0]], &color);
-	if ((auxiliar_values[1] / map->width) != 0)	
+	aux[0] = (player->pos_x - (aux[1] - map->semi_len)) / map->width;
+	check_color(map->map[player->pos_y / map->height][aux[0]], &color);
+	if ((aux[1] / map->width) != 0)
 	{
 		insert_point(&(sq->p0), sq->p1.x, sq->p1.y);
 		insert_point(&(sq->p1), sq->p0.x + map->width, sq->p0.y);
 		insert_point(&(sq->p2), sq->p0.x + map->width, sq->p0.y + map->height);
-		insert_point(&(sq->p3), sq->p0.x, sq->p0.y + map->height);	
-		auxiliar_values[1] -= map->width;
+		insert_point(&(sq->p3), sq->p0.x, sq->p0.y + map->height);
+		aux[1] -= map->width;
 	}
 	else
 	{
-		rest = auxiliar_values[1] % map->width;
-		auxiliar_values[1] = 0;
+		rest = aux[1] % map->width;
+		aux[1] = 0;
 		insert_point(&(sq->p0), sq->p1.x, sq->p1.y);
 		insert_point(&(sq->p1), sq->p0.x + rest, sq->p0.y);
 		insert_point(&(sq->p2), sq->p0.x + rest, sq->p0.y + map->height);
 		insert_point(&(sq->p3), sq->p0.x, sq->p0.y + map->height);
 	}
-	insert_points_line(&line, &(sq->p0), &(sq->p1));
-	draw_column_up(map, player, &line, auxiliar_values);
-	insert_points_line(&line, &(sq->p2), &(sq->p3));
-	draw_column_down(map, player, &line, auxiliar_values);
+	loop_draw_columns(map, player, sq, aux);
 	draw_square_filled(player->img, sq, color, 1);
+}
+
+//Function to check the colors when drawing columns
+static void	check_color_columns(t_map *map, int *params, int *color, int comp)
+{
+	if (comp == -1)
+	{
+		if (params[2] < 0)
+			(*color) = 0x000000FF;
+		else
+			check_color(map->map[params[2] / map->height][params[0]], color);
+	}
+	else if (comp == 1)
+	{
+		if ((params[2] / map->height) >= map->rows)
+			*(color) = 0x000000FF;
+		else
+			check_color(map->map[params[2] / map->height][params[0]], color);
+	}
+}
+
+static void	loop_draw_columns(t_map *map, t_player *player, t_4vertex *sq,
+			int *aux)
+{
+	t_line	line;
+
+	insert_points_line(&line, &(sq->p0), &(sq->p1));
+	draw_column_up(map, player, &line, aux);
+	insert_points_line(&line, &(sq->p2), &(sq->p3));
+	draw_column_down(map, player, &line, aux);
 }

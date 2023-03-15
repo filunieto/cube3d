@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:56:52 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/15 16:18:56 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/15 20:33:05 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ void	free_map(t_map *map)
 	free(map->map);
 }
 
-void check_color(char c, int *color)
+void	check_color(char c, int *color)
 {
-	if(c == '1')
+	if (c == '1')
 		*color = 0xFF0000FF;
-	else if(c == ' ')
+	else if (c == ' ')
 		*color = 0x000000FF;
 	else
 		*color = 0x0000FFFF;
