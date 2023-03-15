@@ -14,7 +14,9 @@ SRCS = $(SRC)/main.c $(SRC)/Screen.c $(SRC)/shapes/Line.c \
 	   $(SRC)/player/ClearingImage.c $(SRC)/map/Map.c \
 	   $(SRC)/map/UtilsMap.c $(SRC)/game/Paint.c $(SRC)/map/Movement.c \
 	   $(SRC)/game/Advance_and_Back.c $(SRC)/game/Turn_Right_and_Left.c \
-	   $(SRC)/map/Utils_Draw_Map.c
+	   $(SRC)/map/Utils_Draw_Map.c $(SRC)/map/Checking_Collisions_Sides.c \
+	   $(SRC)/map/Utils_Collisions.c
+
 OBJS = $(SRCS:.c=.o)
 NAME = cub3d
 VALGRIND = val
