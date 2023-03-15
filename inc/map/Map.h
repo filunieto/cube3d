@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:00 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/09 23:14:03 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/15 18:55:54 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,22 @@ typedef struct s_map
 void init_map(t_map *map, t_player *player);
 void free_map(t_map *map);
 
+//Function to check the color of a positio
+void	check_color(char c, int *color);
 //Function to show map
 void show_map(t_map *map);
 
 //Function to draw map
 void	draw_map(t_map *map, t_player *player);
 
+//Function to draw the upper part of the column
+void	draw_column_up(t_map *map, t_player *player, t_point *p0, t_point *p1, unsigned int y, unsigned int offset_x);
+
+//Function to draw the down part of the column
+void	draw_column_down(t_map *map, t_player *player, t_point *p2, t_point *p3, unsigned int y, unsigned int offset_x);
+
 //Function to move player in the direction of direction vector
 void player_advance(t_map *map, t_player *player, int direction);
+
+
 #endif

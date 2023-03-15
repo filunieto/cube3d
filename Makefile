@@ -13,7 +13,8 @@ SRCS = $(SRC)/main.c $(SRC)/Screen.c $(SRC)/shapes/Line.c \
 	   $(SRC)/game/ResizeHook.c $(SRC)/game/KeyHook.c \
 	   $(SRC)/player/ClearingImage.c $(SRC)/map/Map.c \
 	   $(SRC)/map/UtilsMap.c $(SRC)/game/Paint.c $(SRC)/map/Movement.c \
-	   $(SRC)/game/Advance_and_Back.c $(SRC)/game/Turn_Right_and_Left.c
+	   $(SRC)/game/Advance_and_Back.c $(SRC)/game/Turn_Right_and_Left.c \
+	   $(SRC)/map/Utils_Draw_Map.c
 OBJS = $(SRCS:.c=.o)
 NAME = cub3d
 VALGRIND = val

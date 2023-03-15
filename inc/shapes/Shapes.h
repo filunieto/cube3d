@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:43:01 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/14 22:53:50 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/15 19:09:04 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ typedef struct s_point {
 	int	x;
 	int	y;
 }t_point;
+
+//Structure to store a line defined with 2 points
+typedef struct s_line
+{
+	t_point *p0;
+	t_point **p1;
+}t_line;
 
 //Structure to store a square, it goes clockwise i.e. first point is
 //up left
