@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:51:44 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/15 18:53:45 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/15 19:45:22 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,9 @@ void	loop_column_down(t_map *map, t_player *player, t_4vertex *sq1, int *auxilia
  * */
 void	loop_draw_map(t_map *map, t_player *player, t_4vertex *sq, int *auxiliar_values)
 {
-	unsigned int rest;
-	int color;
+	unsigned int	rest;
+	int				color;
+	t_line			line;
 
 	auxiliar_values[0] = (player->pos_x - (auxiliar_values[1] - map->semi_len)) / map->width;
 	check_color(map->map[player->pos_y / map->height][auxiliar_values[0]], &color);
@@ -108,7 +109,9 @@ void	loop_draw_map(t_map *map, t_player *player, t_4vertex *sq, int *auxiliar_va
 		insert_point(&(sq->p2), sq->p0.x + rest, sq->p0.y + map->height);
 		insert_point(&(sq->p3), sq->p0.x, sq->p0.y + map->height);
 	}
-	draw_column_up(map, player, &(sq->p0), &(sq->p1), auxiliar_values[2], auxiliar_values[0]);
-	draw_column_down(map, player, &(sq->p2), &(sq->p3), auxiliar_values[2], auxiliar_values[0]);
+	insert_points_line(&line, &(sq->p0), &(sq->p1));
+	draw_column_up(map, player, &line, auxiliar_values);
+	insert_points_line(&line, &(sq->p2), &(sq->p3));
+	draw_column_down(map, player, &line, auxiliar_values);
 	draw_square_filled(player->img, sq, color, 1);
 }

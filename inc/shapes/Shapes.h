@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:43:01 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/15 19:09:04 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/15 19:17:05 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_point {
 typedef struct s_line
 {
 	t_point *p0;
-	t_point **p1;
+	t_point *p1;
 }t_line;
 
 //Structure to store a square, it goes clockwise i.e. first point is
@@ -54,6 +54,9 @@ typedef struct s_end_point
 
 //Method to introduce a point inside the structure
 void insert_point(t_point *p, int x, int y);
+
+//Function to insert points into a line
+void insert_points_line(t_line *line, t_point *p0, t_point *p1);
 
 //Method to draw lines
 void	draw_line(mlx_image_t *img, t_point *p1, t_point *p2, int color);

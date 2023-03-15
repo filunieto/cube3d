@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:00 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/15 18:55:54 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/15 19:44:18 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void show_map(t_map *map);
 void	draw_map(t_map *map, t_player *player);
 
 //Function to draw the upper part of the column
-void	draw_column_up(t_map *map, t_player *player, t_point *p0, t_point *p1, unsigned int y, unsigned int offset_x);
+void	draw_column_up(t_map *map, t_player *player, t_line *line, int *aux);
 
 //Function to draw the down part of the column
-void	draw_column_down(t_map *map, t_player *player, t_point *p2, t_point *p3, unsigned int y, unsigned int offset_x);
+void	draw_column_down(t_map *map, t_player *player, t_line *line, int *aux);
 
 //Function to move player in the direction of direction vector
 void player_advance(t_map *map, t_player *player, int direction);
