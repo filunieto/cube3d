@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 22:56:29 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/14 22:11:51 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/15 21:30:42 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,27 +120,44 @@ static void	check_horizontal_collision(t_map *map, t_player *player, int advance
 	
 	unsigned int provisional_pos_x;
 	int aux_advance;
-
+	int	aux_x;
+	
+	aux_x = player->pos_x;
 	provisional_pos_x = player->pos_x + advance_x;
 	if(advance_x < 0)
 	{
 		printf("izquierda coord_x: %d\n", (int)(provisional_pos_x - (player->tam / 2)) / map->width);
-		if(check_left_up_player(player, map, advance_x, 0) == 0 &&
-				check_left_down_player(player, map, advance_x, 0) == 0)
-		aux_advance = advance_x;
-		else
-			aux_advance = -1 * ((player->pos_x - (player->tam / 2 )) % map->width);
+		aux_advance = ((player->pos_x - (player->tam / 2)) % map->width);
+		if(aux_advance <= (int)(player->tam / 2) && aux_advance <= (-1 * advance_x)
+				&& aux_advance != 0)
+		{
+			printf("Entrando\n");
+			aux_x -= aux_advance;
+		}
+		else if(check_left_down_player(player, map, advance_x, 0) == 0 && 
+				check_left_up_player(player, map, advance_x, 0) == 0)
+		{
+			printf("New advance_x: %d\n", advance_x);
+			aux_x += advance_x;	
+		}
 	}
 	else
 	{
-		if(check_right_up_player(player, map, advance_x, 0) == 0 &&
-				check_right_down_player(player, map, advance_x, 0) == 0)
-			aux_advance = advance_x;
-		else
-			aux_advance = map->width - player->tam - ((player->pos_x - (player->tam / 2 )) % map->width);
-		printf("derecha coord_x: %d\n", (int)(provisional_pos_x + (player->tam / 2)) / map->width);
+		aux_advance = map->width - ((player->pos_x + (player->tam / 2)) % map->width);
+		if(aux_advance <= (int)(player->tam / 2) && aux_advance <= advance_x 
+				&& aux_advance != 0)
+		{
+			printf("Entrando\n");
+			aux_x += aux_advance;
+		}
+		else if(check_right_down_player(player, map, advance_x, 0) == 0 && 
+				check_left_down_player(player, map, advance_x, 0) == 0)
+		{
+			printf("New advance_x: %d\n", advance_x);
+			aux_x += advance_x;	
+		}
 	}
-		player->pos_x += aux_advance;
+	player->pos_x = aux_x;	
 	printf("Player pos=> x: %d, y: %d\n", player->pos_x, player->pos_y);
 
 }
