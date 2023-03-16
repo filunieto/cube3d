@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:56:52 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/15 20:33:05 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/16 19:31:34 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	check_color(char c, int *color)
 {
 	if (c == '1')
 		*color = 0xFF0000FF;
-	else if (c == ' ')
-		*color = 0x000000FF;
-	else
+	else if (c == 'N' || c == 'E' || c == 'W' || c == 'S' || c == '0')
 		*color = 0x0000FFFF;
+	else 
+		*color = 0x000000FF;
 }
