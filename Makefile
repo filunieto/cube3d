@@ -32,6 +32,9 @@ SRCS = $(SRC)/main.c $(SRC)/Screen.c $(SRC)/shapes/Line.c \
 		src/error/error.c				\
 		src/gnl/get_next_line.c			\
 		src/gnl/get_next_line_utils.c	\
+		src/parse/parse_tools.c			\
+		src/parse/read_map.c			\
+		src/parse/check_lines.c			\
 
 OBJS = $(SRCS:.c=.o)
 NAME = cub3d
@@ -108,3 +111,11 @@ test1: all
 test2: all
 	@echo "$(MAGEN_G)📝 test 2 $(MAGEN_F) $(RESET)"
 	./$(NAME) ./src/scenarios/map_completo.cub
+
+test3: all
+	@echo "$(MAGEN_G)📝 test 3 para verificar parsing $(MAGEN_F) $(RESET)"
+	./$(NAME) ./src/scenarios/parsing_test.cub
+
+test4: all
+	@echo "$(MAGEN_G)📝 test 4 para verificar coordenadas $(MAGEN_F) $(RESET)"
+	./$(NAME) ./src/scenarios/coordenadas_linea.cub
