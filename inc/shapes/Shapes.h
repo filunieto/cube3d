@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:43:01 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/15 19:17:05 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/16 20:00:30 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,9 @@ int	check_points(t_point *p1, t_point *p2);
 void	draw_square(mlx_image_t *img, t_4vertex *square, int color);
 void	draw_square_filled(mlx_image_t *img, t_4vertex *sq, int color, int filled);
 void	draw_square_pos(mlx_image_t *img, t_point *pos, int tam, int color);
+
+//Methods to convert an angle given in grades to rads and viceversa
+float	grades_to_rads(float grades);
+float	rads_to_grades(float rads);
+
 #endif

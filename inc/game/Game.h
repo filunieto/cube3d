@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:21:02 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/09 19:09:19 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:21:40 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "../map/Map.h"
 # include "../../MLX42/include/MLX42/MLX42_Input.h"
 # include "../../memory-leaks/include/memory_leaks.h"
-
+# include "../shapes/Shapes.h"
 typedef struct s_game{
 	
 	mlx_t *mlx;
@@ -31,5 +31,8 @@ void	free_game(t_game *game);
 
 //Function which performs paint algorithm
 void	paint(t_game *game);
+
+//Function responsible of casting rays
+void	cast(t_map *map, t_player *player, float angle, t_point *p_ext);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/16 19:26:37 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:58:59 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_map(t_map *map, t_player *player)
 	char *map_aux[] = {
 			"        1111111111111111111111111",
 			"        1000000000110000000000001",
-			"        1011000001110000000000001",
+			"        10110000011100000N0000001",
 			"        1001000000000000000000001",
 			"111111111011000001110000000000001",
 			"100000000011000001110111110111111",
@@ -37,7 +37,7 @@ void	init_map(t_map *map, t_player *player)
 			"11110111111111011101010010001    ",
 			"11000000110101011100000011001    ",
 			"10000000000000001100000011001    ",
-			"10000000000000001101010010N01    ",
+			"10000000000000001101010010001    ",
 			"1100000111010101111101101000101  ",
 			"11110111 1110101 101111010001    ",
 			"11111111 1111111 111111111111    "
@@ -84,7 +84,6 @@ void	draw_map(t_map *map, t_player *player)
 	rest = (map->semi_len - (player->pos_x % map->width)) % map->width;
 	aux[1] = 2 * map->semi_len;
 	aux[0] = (player->pos_x - (aux[1] - map->semi_len)) / map->width;
-	printf("Char c: %c\n", map->map[player->pos_y / map->height][aux[0]]);
 	check_color(map->map[player->pos_y / map->height][aux[0]], &color);
 	insert_point(&(sq.p0), player->center_point->x - map->semi_len,
 		player->center_point->y - aux[2]);
