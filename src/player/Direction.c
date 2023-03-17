@@ -35,8 +35,6 @@ void	update_direction(t_player *player)
 //Anti-Clockwise = -1, Clockwise = 1
 void	rotate(t_player *player, int clockwise)
 {
-	int		x;
-	int		y;
 	double	angle;
 
 	if (clockwise == 1)
@@ -50,8 +48,6 @@ void	rotate(t_player *player, int clockwise)
 	angle = (player->angle * M_PI) / 180;
 	if (clockwise == -1 || clockwise == 1)
 	{
-		x = player->direction->x;
-		y = player->direction->y;
 		player->direction->x = player->length_direction * cos(angle);
 		player->direction->y = player->length_direction * sin(angle);
 		update_direction(player);

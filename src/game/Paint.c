@@ -22,7 +22,7 @@ void	paint(t_game *game)
 	if(game->player->angle != 360 && game->player->angle != 0)
 	{
 		cast(game->map, game->player, (float)game->player->angle, &p_extremo);
-		draw_line(game->player->img, game->player->center_point, &p_extremo, 0x00FF00FF);
+		draw_line(game->player->img, game->player->center_point, &p_extremo, 0xFF00FFFF);
 	}
 }
 
@@ -48,7 +48,7 @@ void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
 
 	if(rads > (float)(M_PI / 2) && rads < (3*(float)(M_PI / 2)))
 		izquierda = 1;
-	
+	(void)izquierda;	
 	y_intercept = (int)floor(player->pos_y / map->height) * map->height;
 	if(abajo == 1)
 		y_intercept += map->height;
