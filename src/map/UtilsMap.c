@@ -41,9 +41,9 @@ void	free_map(t_map *map)
 void	check_color(char c, int *color)
 {
 	if (c == '1')
-		*color = 0xFF0000FF;
+		*color = COLOR_WALLS;
 	else if (c == 'N' || c == 'E' || c == 'W' || c == 'S' || c == '0')
-		*color = 0x0000FFFF;
+		*color = COLOR_FREE_SPACES;
 	else 
 		*color = 0x000000FF;
 }

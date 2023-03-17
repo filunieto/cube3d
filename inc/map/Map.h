@@ -22,6 +22,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+# define COLOR_WALLS 0x9C0000FF
+# define COLOR_FREE_SPACES 0x490080FF
 typedef struct s_map
 {
 	unsigned int semi_len;

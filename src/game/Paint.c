@@ -39,7 +39,7 @@ void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
 	int wall_hit_x_horizontal;
 	int wall_hit_y_horizontal;
 	int horizontal_hit;
-
+	printf("Angle: %f\n", angle);
 	horizontal_hit = 0;
 	izquierda = 0;
 	abajo = 0;
@@ -59,17 +59,23 @@ void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
 
 	step_y = map->height;
 	step_x = (int)((double)((int)map->height) / tan(rads));
+	printf("tan: %f\n", tan(rads));
 	wall_hit_x_horizontal = x_intercept;
 	wall_hit_y_horizontal = y_intercept;
 	printf("y_intercept: %d\n", y_intercept);	
 	printf("x_intercept: %d\n", x_intercept);
 
 
-	step_y = -step_y;
 	step_x = -step_x;
 	if(abajo == 0)
 	{
+
+		step_y = -step_y;
 		wall_hit_y_horizontal--;
+	}
+	if(abajo == 1)
+	{
+		step_x = -step_x;
 	}
 
 	printf("step_x: %d\n", step_x);
