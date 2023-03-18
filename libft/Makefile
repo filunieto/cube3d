@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+         #
+#    By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/28 21:41:57 by anramire          #+#    #+#              #
-#    Updated: 2023/03/13 19:46:17 by fnieves-         ###   ########.fr        #
+#    Updated: 2023/03/18 16:18:48 by fnieves          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,5 +48,4 @@ bonus: $(BONUSOBJS) $(OBJS) $(INCLUDE)
 	ar rcs $(NAME) $(BONUSOBJS) $(OBJS)
 
 
-run : all
-	./$(NAME) src/scenarios/map1.cub
+

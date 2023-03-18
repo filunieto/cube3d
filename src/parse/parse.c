@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:36:58 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/16 20:30:03 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/18 20:21:02 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * @brief 
  * Inicializamos valores en la estructura
- * 
+ * No sé si habría que iniciliazar los int de RGB, de momento no
  * @param parsing_str 
  */
 void	init_strc_pars(t_pars* parsing_str)
@@ -27,12 +27,23 @@ void	init_strc_pars(t_pars* parsing_str)
 	parsing_str->line = NULL;
 	parsing_str->nb_line = 0;
 	parsing_str->max_leng_line = 0;
-	parsing_str->north = 0;
-	parsing_str->south = 0;
-	parsing_str->east = 0;
-	parsing_str->west = 0;
-	parsing_str->ground = 0;
-	parsing_str->heaven = 0;
+	parsing_str->north.name = 0;
+	parsing_str->south.name = 0;
+	parsing_str->east.name = 0;
+	parsing_str->west.name = 0;
+	parsing_str->north.path = NULL;
+	parsing_str->south.path = NULL;
+	parsing_str->east.path = NULL;
+	parsing_str->west.path = NULL;
+	parsing_str->ground.part = 0;
+	parsing_str->ground.r = -1;
+	parsing_str->ground.g = -1;
+	parsing_str->ground.b = -1;
+	parsing_str->heaven.part = 0;
+	parsing_str->heaven.r = -1;
+	parsing_str->heaven.g = -1;
+	parsing_str->heaven.b = -1;
+	parsing_str->arg_ok = 0;
 }
 
 
@@ -55,27 +66,30 @@ int  is_ext_cub(t_pars* parsing_str)
 	
 	file = parsing_str->arg_1;
 	leng_s =  strlen(file);
-	if (leng_s < 4)
-		return (0);
+	if (leng_s < 4) //que pasaría con el nombre ".cub" ?>>> probar
+		return (1);
 	extension = file + (leng_s - 1) - 3;
-	if ( strcmp(extension, ".cub"))
-		return (0);
-	return (1);
+	if ( ft_strcmp(extension, ".cub"))
+		return (1);
+	return (EXIT_SUCCESS);
 }
 
 
+/*
+//Creo que el prototipo final de la funcion sería como input 
+la estructutra generica , y el file de entrada.
+y int como salida para verificar el error. (0 si todo va bien )
+En los errores usar la misma funcion de salida
+*/
 
-//cuidado con el file qu elo estoy abriendo siempre por el findla
 char **ft_parse(char *file_mup)
 {
 	t_pars parsing_str;
 	//char **parsed_map;
 	
-
-	
 	init_strc_pars(&parsing_str);
 	parsing_str.arg_1 = file_mup;
-	if (!is_ext_cub(&parsing_str))
+	if (is_ext_cub(&parsing_str))
 	{
 		printf("extension no correctan, STOP\n"); //funcion generica de error , que imprima y retorne NULL(todo en una linea)
 		return (NULL);
@@ -92,6 +106,8 @@ char **ft_parse(char *file_mup)
 
 	printf("extension correctan y archivo abierto, y lectura correcta palante\n");
 	close(parsing_str.file_inp);
+	//aqui al final puedo pasar todos los parametros de la estructura pars a la  estructura ppal
+	// entre ellos estructuras
 	return (NULL);
 
 }

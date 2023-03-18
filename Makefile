@@ -11,7 +11,7 @@ RED_F = \033[1;0m\033[31m
 
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra  -O0 -g
 INC = inc
 SRC = src
 INCLUDES = $(INC)/Screen.h $(INC)/shapes/Shapes.h $(INC)/player/Player.h \
@@ -119,3 +119,8 @@ test3: all
 test4: all
 	@echo "$(MAGEN_G)📝 test 4 para verificar coordenadas $(MAGEN_F) $(RESET)"
 	./$(NAME) ./src/scenarios/coordenadas_linea.cub
+
+
+
+leaks : all
+	valgrind --leak-check=full ./$(NAME) ./src/scenarios/map_completo.cub

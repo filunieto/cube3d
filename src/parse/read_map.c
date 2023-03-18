@@ -3,15 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:16:23 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/16 20:40:55 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/18 18:06:00 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/Screen.h"
 
+/*
+podemos borrao despues
+*/
 void draw_copied_map(t_pars* parsing_str) //funcion solo para verificar
 {
 	
@@ -24,6 +27,10 @@ void draw_copied_map(t_pars* parsing_str) //funcion solo para verificar
 		printf("\nesto se imprime porque la ultima linea es null\n");
 }
 
+/*
+	Esta funcion copia 
+*/
+
 int copy_file(t_pars* parsing_str)
 {
 	int i;
@@ -32,23 +39,22 @@ int copy_file(t_pars* parsing_str)
 	parsing_str->file_inp = open(parsing_str->arg_1, O_RDONLY, CHMOD);
 	if (parsing_str->file_inp < 0)
 	{
-		printf("Problema apertura de archivo, STOP\n"); //repetida antes
+		printf("Problema apertura de archivo, STOP\n"); //Usar la función de error y verficar si hay que hacer free
+		return (1);
 	}
 	i = 0;
 	while (1)
 	{
 		//atencion al orden
 		line = get_next_line(parsing_str->file_inp);
-		//printf("linea para copiar: %s\n", line);
 		parsing_str->map[i] = line; //si el ultimo elemento es Null, lo nultermina
-		//printf("linea de map copiada: %i: %s\n", i, parsing_str->map[i]);
 		i++;
 		if (!line)
 			break;
 		line = NULL;
 	}
 	//draw_copied_map(parsing_str);
-	return (1);
+	return (EXIT_SUCCESS);
 }
 
 /**
@@ -74,14 +80,14 @@ int	read_file(t_pars* parsing_str)
 	}
 	parsing_str->map = calloc(sizeof (*parsing_str->map), parsing_str->nb_line + 1); //libft
 	if (!parsing_str->map)
-		return (false); //habría que liberar algo más? (poner un int de output)
+		return (1); //habría que liberar algo más? (poner un int de output)
 	close(parsing_str->file_inp);
-	copy_file(parsing_str); //meter algun error para asegurarse
-	if (check_lines(parsing_str) == 0)
+	copy_file(parsing_str); //meter algun error para asegurarse >>> (if copy_file(parsing_str))
+	if (check_lines(parsing_str))
 	{
 		printf("faltan tokens antes de empezar el map");
 	}
 	//free(parsing_str->map);
-	return (1);
+	return (0);
 	//como nos aseguramos que había llegado al final de linea y que no ha habido un error cualquiera (lectura)
 }

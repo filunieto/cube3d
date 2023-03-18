@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:25:08 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/13 20:02:26 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/18 17:13:28 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "../Screen.h"
 
 /* Error messages */
+#define ERR_MS "Error\n"
 #define ERRNBINP_MES	"Wrong number of inputs\n" //añadir mensaje de Usage si es necesario para tener una funcion generica
 #define USAGE	"Please provide correct format \
 <./cube3d> <file>'\n"
