@@ -1,5 +1,5 @@
-	  	NO      textures/star1.xpm		  
-	WE      textures/star2.xpm 
+	  	NO   	./textures/wall2.xpm
+	WE      ./textures/wall2.xpm
 SO      textures/star4.xpm
 EA      textures/star3.xpm
 		 
@@ -23,3 +23,4 @@ F    20,20,20
 1100000111010101111101111000111
 11110111 1110101 101111010001
 11111111 1111111 111111111111
+

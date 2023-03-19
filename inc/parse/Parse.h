@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:30:57 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/18 20:29:34 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/19 22:30:31 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@
 # define GROUND		6
 # define MAP		7
 
+# define COMMA	','
+
 // enum	code_error
 // {
 // 	ERRNBINP = 10,
@@ -48,6 +50,7 @@ typedef struct s_textur
 {
 	int		name;
 	char	*path;
+	int		file;
 }	t_textur;
 
 
@@ -67,8 +70,10 @@ typedef struct s_pars
 	int		file_inp;
 	char 	*line;
 	int		arg_ok;
+	size_t	nb_line_map;
 	size_t	nb_line;
 	size_t	max_leng_line;
+	//t_textur	cardinal[4]; No me hace falta
 	t_textur	north;
 	t_textur	south;
 	t_textur	east;
@@ -87,6 +92,11 @@ int		read_file(t_pars* parsing_str); //seria necesario NULL
 int		check_lines(t_pars* parsing_str);
 int		check_arguments(t_pars* parsing_str, char **s_splited_cleaned);
 int		check_identifier(t_pars* parsing_str, char *line_splitd);
+int		check_textur_path(t_pars* parsing_str, char **s_splited_cleaned, int id);
+int		check_colours(t_pars* parsing_str, char **s_splited_cleaned, int id);
+int		check_values_rgb(t_pars* parsing_str, char ***rgb, int id);
+
+
 
 int	ft_strcmp(char *s1, char *s2);
 
