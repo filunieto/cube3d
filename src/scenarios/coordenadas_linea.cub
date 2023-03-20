@@ -3,5 +3,5 @@ SO ./ruta_a_la_textura_sur
 WE ./ruta_a_la_textura_oeste
 EA ./ruta_a_la_textura_este
 F 220,100,0
-C 225,30,0
+C 220,100,0
 1111111111111111111111111
