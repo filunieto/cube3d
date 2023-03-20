@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 21:40:39 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/15 23:21:44 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/20 21:34:01 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@
  * given advance_x and advance_y
  * */
 int	check_left_up_player(t_player *player, t_map *map,
-			int advance_x, int advance_y)
+			float advance_x, float advance_y)
 {
-	int	aux_x;
-	int	aux_y;
 
-	aux_x = player->pos_x + advance_x - (player->tam / 2) + 1 ;
-	aux_y = player->pos_y + advance_y - (player->tam / 2);
-	if (map->map[aux_y / map->height][aux_x / map->width] == '1')
+	float aux_x;
+	float aux_y;
+
+	aux_x = player->pos_x + advance_x - (float)(player->tam / 2) + 1.0;
+	aux_y = player->pos_y + advance_y - (float)(player->tam / 2);
+	if (map->map[(int)aux_y / map->height][(int)aux_x / map->width] == '1')
 		return (-1);
 	return (0);
 }
@@ -34,14 +35,14 @@ int	check_left_up_player(t_player *player, t_map *map,
  * given advance_x and advance_y
  * */
 int	check_right_up_player(t_player *player, t_map *map,
-			int advance_x, int advance_y)
+			float advance_x, float advance_y)
 {
-	int	aux_x;
-	int	aux_y;
-
-	aux_x = player->pos_x + advance_x + (player->tam / 2) - 1;
-	aux_y = player->pos_y + advance_y - (player->tam / 2) + 1;
-	if (map->map[aux_y / map->height][aux_x / map->width] == '1')
+	float aux_x;
+	float aux_y;
+	
+	aux_x = player->pos_x + advance_x + (float)(player->tam / 2) - 1.0;
+	aux_y = player->pos_y + advance_y - (float)(player->tam / 2) + 1.0;
+	if (map->map[(int)aux_y / map->height][(int)aux_x / map->width] == '1')
 		return (-1);
 	return (0);
 }
@@ -51,14 +52,14 @@ int	check_right_up_player(t_player *player, t_map *map,
  * given advance_x and advance_y
  * */
 int	check_left_down_player(t_player *player, t_map *map,
-			int advance_x, int advance_y)
+			float advance_x, float advance_y)
 {
-	int	aux_x;
-	int	aux_y;
+	float	aux_x;
+	float	aux_y;
 
-	aux_x = player->pos_x + advance_x - (player->tam / 2) + 1;
-	aux_y = player->pos_y + advance_y + (player->tam / 2) - 1;
-	if (map->map[aux_y / map->height][aux_x / map->width] == '1')
+	aux_x = player->pos_x + advance_x - (float)(player->tam / 2) + 1.0;
+	aux_y = player->pos_y + advance_y + (float)(player->tam / 2) - 1.0;
+	if (map->map[(int)aux_y / map->height][(int)aux_x / map->width] == '1')
 		return (-1);
 	return (0);
 }
@@ -68,14 +69,14 @@ int	check_left_down_player(t_player *player, t_map *map,
  * given advance_x and advance_y
  * */
 int	check_right_down_player(t_player *player, t_map *map,
-			int advance_x, int advance_y)
+			float advance_x, float advance_y)
 {
-	int	aux_x;
-	int	aux_y;
+	float aux_x;
+	float aux_y;
 
-	aux_x = player->pos_x + advance_x + (player->tam / 2) - 1;
-	aux_y = player->pos_y + advance_y + (player->tam / 2) - 1;
-	if (map->map[aux_y / map->height][aux_x / map->width] == '1')
+	aux_x = player->pos_x + advance_x + (float)(player->tam / 2) - 1.0;
+	aux_y = player->pos_y + advance_y + (float)(player->tam / 2) - 1.0;
+	if (map->map[(int)aux_y / map->height][(int)aux_x / map->width] == '1')
 		return (-1);
 	return (0);
 }

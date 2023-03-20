@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/16 22:58:59 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/20 20:16:22 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	init_map(t_map *map, t_player *player)
  *Function to make the main loop drawing map
  * aux=> 0 -> offset_x, 1 -> auxiliar, 2 -> y
  * */
+
 void	draw_map(t_map *map, t_player *player)
 {
 	unsigned int	rest;
@@ -79,12 +80,12 @@ void	draw_map(t_map *map, t_player *player)
 	t_4vertex		sq;
 	int				aux[3];
 	t_line			line;
-
-	aux[2] = player->pos_y % map->height;
-	rest = (map->semi_len - (player->pos_x % map->width)) % map->width;
+	
+	aux[2] = (int)player->pos_y % map->height;
+	rest = (map->semi_len - ((int)player->pos_x % map->width)) % map->width;
 	aux[1] = 2 * map->semi_len;
-	aux[0] = (player->pos_x - (aux[1] - map->semi_len)) / map->width;
-	check_color(map->map[player->pos_y / map->height][aux[0]], &color);
+	aux[0] = ((int)player->pos_x - (aux[1] - map->semi_len)) / map->width;
+	check_color(map->map[(int)player->pos_y / map->height][aux[0]], &color);
 	insert_point(&(sq.p0), player->center_point->x - map->semi_len,
 		player->center_point->y - aux[2]);
 	insert_point(&(sq.p1), sq.p0.x + rest, sq.p0.y);
@@ -92,6 +93,7 @@ void	draw_map(t_map *map, t_player *player)
 	insert_point(&(sq.p3), sq.p0.x, sq.p0.y + map->height);
 	draw_square_filled(player->img, &sq, color, 1);
 	aux[1] -= rest;
+	
 	insert_points_line(&line, &(sq.p0), &(sq.p1));
 	draw_column_up(map, player, &line, aux);
 	insert_points_line(&line, &(sq.p2), &(sq.p3));
@@ -114,13 +116,13 @@ void	draw_column_up(t_map *map, t_player *player, t_line *line, int *aux)
 
 	params[0] = aux[0];
 	params[1] = map->semi_len - aux[2];
-	params[2] = player->pos_y - map->height;
+	params[2] = (int)player->pos_y - map->height;
 	if (params[2] < 0)
 		color = 0x000000FF;
 	else
 		check_color(map->map[params[2] / map->height][params[0]], &color);
 	insert_point(&(sq1.p3), line->p0->x, line->p0->y);
-	insert_point(&(sq1.p2), line->p1->x, line-> p1->y);
+	insert_point(&(sq1.p2), line->p1->x, line->p1->y);
 	insert_point(&(sq1.p0), sq1.p3.x, sq1.p3.y - map->height);
 	insert_point(&(sq1.p1), sq1.p2.x, sq1.p0.y);
 	draw_square_filled(player->img, &sq1, color, 1);
@@ -142,7 +144,7 @@ void	draw_column_down(t_map *map, t_player *player, t_line *line, int *aux)
 
 	params[0] = aux[0];
 	params[1] = map->semi_len - (map->height - aux[2]);
-	params[2] = player->pos_y + map->height;
+	params[2] = (int)player->pos_y + map->height;
 	if ((params[2] / map->height) >= map->rows)
 		color = 0x000000FF;
 	else

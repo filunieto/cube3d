@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 22:31:16 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/16 23:18:27 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/20 20:19:42 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ void	paint(t_game *game)
 	clear_image(game->player);
 	draw_map(game->map, game->player);
 	paint_player(game->player);
-	t_point p_extremo;
+	/*t_point p_extremo;
 		cast(game->map, game->player, (float)game->player->angle, &p_extremo);
-	/*
 		if((game->player->center_point->y - p_extremo.y) > 200){
 			int delta_x = (int)(-200 / (float)tan((float)game->player->angle * M_PI / 180));
 			insert_point(&p_extremo, game->player->center_point->x + delta_x, game->player->center_point->y - 200);
@@ -33,8 +32,7 @@ void	paint(t_game *game)
 			int delta_x = (int)(200 / (float)tan((float)game->player->angle * M_PI / 180));
 			insert_point(&p_extremo, game->player->center_point->x + delta_x, game->player->center_point->y - 200);
 		}
-		*/
-		draw_line(game->player->img, game->player->center_point, &p_extremo, 0xFF00FFFF);
+		draw_line(game->player->img, game->player->center_point, &p_extremo, 0xFF00FFFF);*/
 }
 
 void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
@@ -52,7 +50,7 @@ void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
 	int wall_hit_x_vertical;
 	int wall_hit_y_vertical;
 	int vertical_hit;
-	printf("Angle: %f\n", angle);
+	printf("Angle: %f\n", rads);
 	horizontal_hit = 0;
 	izquierda = 0;
 	abajo = 0;
@@ -93,7 +91,8 @@ void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
 			wall_hit_y_horizontal < (int)(map->rows * map->height))	
 	{
 
-		if(map->map[wall_hit_y_horizontal / map->height][wall_hit_x_horizontal / map->width] == '1')
+		if(map->map[wall_hit_y_horizontal / map->height][wall_hit_x_horizontal / map->width] == '1' || 
+				map->map[(wall_hit_y_horizontal - 1) / map->height][wall_hit_x_horizontal / map->width] == '1' )
 			horizontal_hit = 1;
 		else
 		{
@@ -125,7 +124,8 @@ void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
 			wall_hit_y_vertical < (int)(map->rows * map->height))	
 	{
 
-		if(map->map[wall_hit_y_vertical / map->height][wall_hit_x_vertical / map->width] == '1')
+		if(map->map[wall_hit_y_vertical / map->height][wall_hit_x_vertical / map->width] == '1' ||
+				map->map[wall_hit_y_vertical / map->height][(wall_hit_x_vertical - 1) / map->width] == '1')
 			vertical_hit = 1;
 		else
 		{
