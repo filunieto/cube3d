@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:43:48 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/20 13:05:07 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/20 13:05:54 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	main(int argc, char** argv)
 	ft_parse(argv[1]);
 	
 	/* FElipe */
-	git add 
 	//init_window();
 	//atexit(check_leaks);
 	return (0);
