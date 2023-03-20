@@ -1,6 +1,3 @@
--Display centered player
--Map should move
--Collisions
--Display well when resizing
--Events hooks mouse
--Events hooks keyboard
+-Placing minimap on top right corner
+-Ray casted should stay inside minimap limits
+-Breaking function of cast
