@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:25:08 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/20 00:51:47 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/20 12:19:22 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@
 #define ERR_COLOR_INP3_MES	"RGB values not integers or not in range [0-255] \n"
 #define ERR_COLOR_INP4_MES	"RGB values are equal for colours of heaven and ground \n"
 #define ERR_TEXT_PATH_MES	"impossible to open the path to texture\n"
+#define ERR_OPEN_FD_MES		"Probelma de apertuda de archivo antes de verificaciones\n"
 #define ERR_INP_MAP_MES		"repetdio punto cardinal o falta o el mapa no tiene simbolos correctos\n"
+
 
 
 #define USAGE	"Please provide correct format \
@@ -46,6 +48,7 @@ enum	code_error //podemos usarlo?
 	ERR_COLOR_INP2,
 	ERR_COLOR_INP3,
 	ERR_COLOR_INP4,
+	ERR_OPEN_FD,
 	DRAFT,
 
 };

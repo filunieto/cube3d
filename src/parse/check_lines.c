@@ -6,31 +6,13 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:23:43 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/20 01:46:26 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/20 12:59:08 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/Screen.h"
 
-/*
-	Por qué no está
-*/
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
 
-	i = 0;
-	while (s1[i] && s2[i])
-	{
-		if (s1[i] == s2[i])
-			i++;
-		else
-			break ;
-	}
-	if (s1[i] == s2[i])
-		return (0);
-	return (1);
-}
 
 
 
@@ -55,40 +37,20 @@ int	check_lines(t_pars* parsing_str)
 	while (parsing_str->map[++i])
 	{
 		s_trimmed = ft_strtrim(parsing_str->map[i], SPACE_STR);
-		// free(parsing_str->map[i]); de mmento me quedo con esto para reutilizarlo una vex todos los arg sean ok
-		// parsing_str->map[i] = NULL; 
-		if (ft_strlen(s_trimmed)) //en caso contrario hay que hacer free?? no hay nada en la linea
+		if ( ft_strlen(s_trimmed)) //en caso contrario hay que hacer free?? no hay nada en la linea
 		{
 			s_splited_cleaned =  ft_split(s_trimmed, SPACE);
-			int j = 0;
-			while (s_splited_cleaned[j]) //esta funcion se deja para borrar los elementos espliteados una vez pasadps 
+			if (check_arguments(parsing_str, s_splited_cleaned))
 			{
-				printf ("\nAntes d echequear los tokens. Elementos de Línea i %i , j %i, finalkes spliteaod y lipios:----|%s|---", i, j, s_splited_cleaned[j]);
-				j++;
-			}
-			
-			if (check_arguments(parsing_str, s_splited_cleaned)) //añadir una condicion para que no entre si la linea esta vacia
-			{
-				printf("si la funcion anterior ha devuelto un valor diferente de 0 algo en colores o textura esta jodido. hacer free\n");
-				//si entra aqui hay que liberer el spliteado ..Hacer una función qu eluego repetiremos
+				free_split(&s_splited_cleaned);
+				printf("Parametros de colores o texturas jodido. borra este mensaje y dejar solo free y return. Mesnaje de erro serñaprevio\n");
 				return (1);
 			}
-			// el //check_map(); va a encontra el map y va a verificar que solo hay 1 en los lados 
-			
-			j = 0;
-			while (s_splited_cleaned[j]) //esta funcion se deja para borrar los elementos espliteados una vez pasadps 
-			{
-				//printf ("\nya chequeados, podemos borrar i %i , j %i, finalkes spliteaod y lipios:----|%s|---", i, j, s_splited_cleaned[j]);
-				free(s_splited_cleaned[j]); //borrra , es solo para chequear leaks
-				j++;
-			}
-			free(s_splited_cleaned);
-
+			free_split(&s_splited_cleaned);
 		}
 		free(s_trimmed);
 		s_trimmed = NULL;
 	}
-	free(parsing_str->map);
 	return (0);
 }
 
@@ -99,15 +61,12 @@ int	check_lines(t_pars* parsing_str)
 int	check_arguments(t_pars* parsing_str, char **s_splited_cleaned)
 {
 	int id;
-	//printf("0 donde esta el sefm t fault\n");
+
 	id = check_identifier(parsing_str, s_splited_cleaned[0]);
 	if (id == 0)
 	{
 		return(print_error(ERR_INP_MAP_MES , ERR_INP_MAP));
 	}
-	//printf("1 donde esta el sefm t fault\n");
-
-	//comprobar si son  cardinales la ruta y si son colores o si es un 1(en este ultimo caso hay que verificar que odo está ok)
 	if (id >= NORTH &&  id <= WEST)
 	{
 		if (check_textur_path(parsing_str, &s_splited_cleaned[1], id)) 
@@ -115,7 +74,6 @@ int	check_arguments(t_pars* parsing_str, char **s_splited_cleaned)
 			return(1); //?
 		}
 		parsing_str->arg_ok += 1;
-		
 	}
 	if (id == GROUND ||  id == HEAVEN) //mas facil dividir en 
 	{
@@ -188,32 +146,3 @@ int	check_textur_path(t_pars* parsing_str, char **s_splited_cleaned, int id)
 	return (EXIT_SUCCESS);
 }
 
-int	check_colours(t_pars* parsing_str, char **s_splited_cleaned, int id)
-{
-	int	i;
-	char **rgb; 
-	
-	i = 0;
-	if (s_splited_cleaned[1] != NULL) //Solo hay 2 argumentos : WE ./text xxx 
-		return(print_error(ERR_COLOR_INP_MES, ERR_COLOR_INP));
-
-	rgb = ft_split(s_splited_cleaned[0], COMMA); //hay que liberar: malloc free
-	i = 0;
-	while (rgb[i])
-		i++;
-	i = 0;
-	while (rgb[i])
-		i++;
-	if (i  != 3) //tenemos más d e3 valores
-	{
-		// free split rgb
-		return(print_error(ERR_COLOR_INP2_MES, ERR_COLOR_INP2)); 
-	}
-	if (check_values_rgb(parsing_str, &rgb, id) )
-	{
-		// free split rgb
-		return(ERR_COLOR_INP2); //cambiar, pero hacer un free de RGB  el mensaje
-	}
-	// hacer un free, de split
-	return (EXIT_SUCCESS);
-}

@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:36:58 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/20 00:58:00 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/20 12:10:18 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int  is_ext_cub(t_pars* parsing_str)
 	
 	file = parsing_str->arg_1;
 	leng_s =  strlen(file);
-	if (leng_s <= 4) //que pasaría con el nombre ".cub" ?>>> probar
+	if (leng_s <= 4)
 		return (1);
 	extension = file + (leng_s - 1) - 3;
 	if (ft_strcmp(extension, ".cub"))
@@ -97,7 +97,7 @@ En los errores usar la misma funcion de salida
 /*
 	Probelmas. apertura de path a textura
 	Hablar on andres para integrar la estructura 
-	Buscar función  libft con calloc
+	Buscar función  libft con calloc (ft_split)
 */
 
 char **ft_parse(char *file_mup)
@@ -121,7 +121,7 @@ char **ft_parse(char *file_mup)
 		printf("Problema apertura de archivo, STOP\n"); //funcion generica de error , que imprima y retorne NULL(todo en una linea)
 		return (NULL);
 	}
-	read_file(&parsing_str); //domingo seguimos leyendo el archivo con gnline
+	read_file(&parsing_str);
 	printf("extension correctan y archivo abierto, y lectura correcta palante\n");
 	close(parsing_str.file_inp);
 	//aqui al final puedo pasar todos los parametros de la estructura pars a la  estructura ppal

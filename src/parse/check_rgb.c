@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 21:43:56 by fnieves           #+#    #+#             */
-/*   Updated: 2023/03/20 01:51:53 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/20 12:39:52 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,34 @@ int	check_values_rgb(t_pars* parsing_str, char ***rgb, int id)
 	if (parsing_str->heaven.rgb == parsing_str->ground.rgb) //creo que ambas condicoens no son necesarias. Probar (parsing_str->heaven.rgb == parsing_str->ground.rgb && parsing_str->heaven.rgb != -1)
 		return(print_error(ERR_COLOR_INP4_MES, ERR_COLOR_INP4));
 	return (0);
+}
+
+int	check_colours(t_pars* parsing_str, char **s_splited_cleaned, int id)
+{
+	int	i;
+	char **rgb; 
+	
+	i = 0;
+	if (s_splited_cleaned[1] != NULL) //Solo hay 2 argumentos : WE ./text xxx 
+		return(print_error(ERR_COLOR_INP_MES, ERR_COLOR_INP));
+
+	rgb = ft_split(s_splited_cleaned[0], COMMA); //hay que liberar: malloc free
+	i = 0;
+	while (rgb[i])
+		i++;
+	i = 0;
+	while (rgb[i])
+		i++;
+	if (i  != 3) //tenemos más d e3 valores
+	{
+		// free split rgb
+		return(print_error(ERR_COLOR_INP2_MES, ERR_COLOR_INP2)); 
+	}
+	if (check_values_rgb(parsing_str, &rgb, id) )
+	{
+		// free split rgb
+		return(ERR_COLOR_INP2); //cambiar, pero hacer un free de RGB  el mensaje
+	}
+	// hacer un free, de split
+	return (EXIT_SUCCESS);
 }

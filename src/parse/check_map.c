@@ -1,50 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tools.c                                      :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 19:15:17 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/20 12:57:01 by fnieves          ###   ########.fr       */
+/*   Created: 2023/03/20 12:25:05 by fnieves           #+#    #+#             */
+/*   Updated: 2023/03/20 12:52:51 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/Screen.h"
 
-void free_split (char ***s_splitted)
-{
-	int i;
-	char **array_str;
-
-	i = -1;
-	array_str = *s_splitted;
-	while (array_str[++i])
-	{
-		free(array_str[i]);
-		array_str[i] = NULL;
-	}
-	free(array_str);
-	array_str = NULL;
-}
-
-
 /*
-	Por qué no está
+	vamos a l aprimera linea donde aparezca el mapa. A partir de ahí , verificamos que los caracteres sean los correctso 
+	que este cerrado por 1. que solo haya un jugador
 */
-int	ft_strcmp(char *s1, char *s2)
+int		check_map(t_pars* parsing_str)
 {
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i])
-	{
-		if (s1[i] == s2[i])
-			i++;
-		else
-			break ;
-	}
-	if (s1[i] == s2[i])
-		return (0);
-	return (1);
+	printf("cualquier cosa %i\n", parsing_str->arg_ok);
+	return (EXIT_SUCCESS);
 }

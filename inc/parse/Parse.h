@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:30:57 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/20 00:44:56 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/20 12:45:10 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,16 @@ void	init_strc_pars(t_pars* parsing_str);
 int		is_ext_cub(t_pars* parsing_str);
 int		read_file(t_pars* parsing_str); //seria necesario NULL
 int		check_lines(t_pars* parsing_str);
+int		check_map(t_pars* parsing_str);
 int		check_arguments(t_pars* parsing_str, char **s_splited_cleaned);
 int		check_identifier(t_pars* parsing_str, char *line_splitd);
 int		check_textur_path(t_pars* parsing_str, char **s_splited_cleaned, int id);
 int		check_colours(t_pars* parsing_str, char **s_splited_cleaned, int id);
 int		check_values_rgb(t_pars* parsing_str, char ***rgb, int id);
-int	ft_rgb_atoi(char *str); //cambiar a atoi_rgb y otras partes
+int		ft_rgb_atoi(char *str); //cambiar a atoi_rgb y otras partes
 
 
-
+void free_split (char ***s_splitted);
 
 int	ft_strcmp(char *s1, char *s2);
 

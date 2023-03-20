@@ -32,10 +32,10 @@ SRCS = $(SRC)/main.c $(SRC)/Screen.c $(SRC)/shapes/Line.c \
 		src/error/error.c				\
 		src/gnl/get_next_line.c			\
 		src/gnl/get_next_line_utils.c	\
-		src/parse/parse_tools.c			\
 		src/parse/read_map.c			\
 		src/parse/check_lines.c			\
 		src/parse/check_rgb.c			\
+		src/parse/check_map.c			\
 
 OBJS = $(SRCS:.c=.o)
 NAME = cub3d

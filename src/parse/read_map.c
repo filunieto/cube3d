@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:16:23 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/18 18:06:00 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/20 12:24:14 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,11 @@ int copy_file(t_pars* parsing_str)
 	parsing_str->file_inp = open(parsing_str->arg_1, O_RDONLY, CHMOD);
 	if (parsing_str->file_inp < 0)
 	{
-		printf("Problema apertura de archivo, STOP\n"); //Usar la función de error y verficar si hay que hacer free
-		return (1);
+		return(print_error(ERR_OPEN_FD_MES , ERR_OPEN_FD));
 	}
 	i = 0;
 	while (1)
 	{
-		//atencion al orden
 		line = get_next_line(parsing_str->file_inp);
 		parsing_str->map[i] = line; //si el ultimo elemento es Null, lo nultermina
 		i++;
@@ -62,16 +60,13 @@ int copy_file(t_pars* parsing_str)
  * Función que va a leer todo el archivo y calculara el array de punteros
  * Quiza sería mejor que retornara un int
  * @param parsing_str 
- * @return true 
- * @return false 
  */
 int	read_file(t_pars* parsing_str)
 {
-	while (1)
+	while (1) //esto casi mejor hacer una funcion aparte, para acortar, solo sive para contar lineas
 	{
 		parsing_str->line = get_next_line(parsing_str->file_inp);
 		parsing_str->nb_line += 1;
-		
 		if (!parsing_str->line)
 		{
 			break;
@@ -82,10 +77,23 @@ int	read_file(t_pars* parsing_str)
 	if (!parsing_str->map)
 		return (1); //habría que liberar algo más? (poner un int de output)
 	close(parsing_str->file_inp);
-	copy_file(parsing_str); //meter algun error para asegurarse >>> (if copy_file(parsing_str))
+	if (copy_file(parsing_str))
+	{
+		//hacer free del parsing_str->map, aunque igual no es muy necesario
+		return (1);
+	}
+	//copy_file(parsing_str); //meter algun error para asegurarse >>> (if copy_file(parsing_str))
 	if (check_lines(parsing_str))
 	{
-		printf("faltan tokens antes de empezar el map");
+		//hacer free del parsing_str->map
+		printf("Probelmas antes de parsear solo el mapa. Borra este mensaje em read_line\n");
+		return (1);
+	}
+	if (check_map(parsing_str))
+	{
+		//hacer free del parsing_str->map
+		printf("Probelmas antes de parsear solo el mapa. Borra este mensaje em read_line\n");
+		return (1);
 	}
 	//free(parsing_str->map);
 	return (0);
