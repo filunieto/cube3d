@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:16:23 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/20 12:24:14 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/21 00:33:22 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ int	read_file(t_pars* parsing_str)
 		printf("Probelmas antes de parsear solo el mapa. Borra este mensaje em read_line\n");
 		return (1);
 	}
+	printf("lineas coorectas: miramos el map\n");
+
 	if (check_map(parsing_str))
 	{
 		//hacer free del parsing_str->map

@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:25:05 by fnieves           #+#    #+#             */
-/*   Updated: 2023/03/20 18:57:51 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/21 00:57:46 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,24 @@ int		find_init(t_pars* parsing_str)
 	
 	char *trimmed_spac;
 	char *trimmed_map;
-	i = 0;
-	while (parsing_str->map[i])
+	i = -1;
+	while (parsing_str->map[++i])
 	{
-		
 		trimmed_spac = ft_strtrim(parsing_str->map[i], SPACE_STR);
 		if (ft_strlen(trimmed_spac)) //si no es espacios entra
 		{
 			trimmed_map = ft_strtrim(trimmed_spac, MAP_STR);
 			if (ft_strlen(trimmed_map) == 0)
 			{
-				printf("hemos llegado a la primera linea del mapa: %i", i);
-				//hacer free de los 2  trims aqui dentro
+				free(trimmed_spac);
+				free(trimmed_map);
 				return (i);
 			}
-			//hacer free de trimmed_map
+			free(trimmed_map);
 		}
-		//hacer free de trimmed_spac de espacios
-		i++;
+		free(trimmed_spac);
 	}
+	return(0);
 }
 
 /*
@@ -45,17 +44,37 @@ int		find_init(t_pars* parsing_str)
 */
 int		check_map(t_pars* parsing_str) //is_map_ok : podemos llamar a al afuncion
 {
-	// no hace falta ni split ni trim
-	//encontremos el primer elemnto del mapa, y pasemos ese punteroa otra funcion que verificara todo, y guaradra , linea ppio y final del mapa
-	int	init;
-	int final;
 
-	init = find_init(parsing_str);
-	int i = -1;
-
+	parsing_str->nb_line_map = find_init(parsing_str); //podría guardar este parametro en la estructura?
+	//printf(" linea del mapa en check_map: %i, %s", init, parsing_str->map[init]);
+	if (is_map_consistent(parsing_str))
+	{
+		printf("el mapa está jodio. Borrar este mensaje");
+		return (EXIT_FAILURE);
+	}
 	return (EXIT_SUCCESS);
 }
 
+int		is_map_consistent(t_pars* parsing_str)
+{
+	if (map_char(parsing_str))
+	{
+		return (print_error(ERR_MAP1_MES, ERR_MAP1));
+	}
+	if (map_closed(parsing_str))
+	{
+		return (print_error(ERR_MAP2_MES, ERR_MAP2));
+	}
+	return (EXIT_FAILURE);
+}
+
+/*
+	Seguir por aquí mñana martes
+*/
+int		map_char(t_pars* parsing_str)
+{
+	return (EXIT_FAILURE);
+}
 
 // int	check_lines2(t_pars* parsing_str)
 // {
