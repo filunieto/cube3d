@@ -6,13 +6,13 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 22:31:16 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/20 20:19:42 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/20 22:00:17 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/game/Game.h"
 
-float distancia(t_point *p1, t_point *p2);
+float distancia(float p0x, float p0y, float p1x, float p1y);
 
 //This functiom is constantly executing and it is in charge of repainting
 void	paint(t_game *game)
@@ -20,9 +20,9 @@ void	paint(t_game *game)
 	clear_image(game->player);
 	draw_map(game->map, game->player);
 	paint_player(game->player);
-	/*t_point p_extremo;
+		t_point p_extremo;
 		cast(game->map, game->player, (float)game->player->angle, &p_extremo);
-		if((game->player->center_point->y - p_extremo.y) > 200){
+		/*if((game->player->center_point->y - p_extremo.y) > 200){
 			int delta_x = (int)(-200 / (float)tan((float)game->player->angle * M_PI / 180));
 			insert_point(&p_extremo, game->player->center_point->x + delta_x, game->player->center_point->y - 200);
 		}
@@ -31,8 +31,8 @@ void	paint(t_game *game)
 			
 			int delta_x = (int)(200 / (float)tan((float)game->player->angle * M_PI / 180));
 			insert_point(&p_extremo, game->player->center_point->x + delta_x, game->player->center_point->y - 200);
-		}
-		draw_line(game->player->img, game->player->center_point, &p_extremo, 0xFF00FFFF);*/
+		}*/
+		draw_line(game->player->img, game->player->center_point, &p_extremo, 0xFF00FFFF);
 }
 
 void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
@@ -40,15 +40,15 @@ void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
 	int izquierda;// 0 -> derecha, 1 -> izquierda
 	int abajo;// 0 -> arriba, 1 -> abajo
 	float rads = grades_to_rads(angle);
-	int y_intercept;
-	int x_intercept;
-	int step_y;
-	int step_x;
+	float y_intercept;
+	float x_intercept;
+	float step_y;
+	float step_x;
 	int wall_hit_x_horizontal;
 	int wall_hit_y_horizontal;
 	int horizontal_hit;
-	int wall_hit_x_vertical;
-	int wall_hit_y_vertical;
+	float wall_hit_x_vertical;
+	float wall_hit_y_vertical;
 	int vertical_hit;
 	printf("Angle: %f\n", rads);
 	horizontal_hit = 0;
@@ -60,16 +60,16 @@ void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
 	if(rads > (float)(M_PI / 2) && rads < (3*(float)(M_PI / 2)))
 		izquierda = 1;
 	
-	y_intercept = (int)floor(player->pos_y / map->height) * map->height;
+	y_intercept = floor(player->pos_y / (float)map->height) * (float)map->height;
 	if(abajo == 1)
-		y_intercept += map->height;
+		y_intercept += (float)map->height;
 
-	x_intercept = (int)player->pos_x;
-	x_intercept += (int)((double)(y_intercept - (int)player->pos_y) / tan(rads));
+	x_intercept = player->pos_x;
+	x_intercept += (y_intercept - player->pos_y) / tan(rads);
 
 
 	step_y = map->height;
-	step_x = (int)((double)((int)map->height) / tan(rads));
+	step_x = ((float)((float)map->height) / tan(rads));
 	wall_hit_x_horizontal = x_intercept;
 	wall_hit_y_horizontal = y_intercept;
 
@@ -86,13 +86,13 @@ void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
 		step_x = -step_x;
 	}
 
-	while(horizontal_hit == 0 && wall_hit_x_horizontal < (int)(map->width * map->columns)
-			&& wall_hit_x_horizontal >= 0 && wall_hit_y_horizontal >= 0 &&
-			wall_hit_y_horizontal < (int)(map->rows * map->height))	
+	while(horizontal_hit == 0 && wall_hit_x_horizontal < (float)(map->width * map->columns)
+			&& wall_hit_x_horizontal >= 0.0 && wall_hit_y_horizontal >= 0.0 &&
+			wall_hit_y_horizontal < (float)(map->rows * map->height))	
 	{
 
-		if(map->map[wall_hit_y_horizontal / map->height][wall_hit_x_horizontal / map->width] == '1' || 
-				map->map[(wall_hit_y_horizontal - 1) / map->height][wall_hit_x_horizontal / map->width] == '1' )
+		if(map->map[(int)wall_hit_y_horizontal / map->height][(int)wall_hit_x_horizontal / map->width] == '1' || 
+				map->map[((int)wall_hit_y_horizontal - 1) / map->height][(int)wall_hit_x_horizontal / map->width] == '1' )
 			horizontal_hit = 1;
 		else
 		{
@@ -100,15 +100,16 @@ void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
 			wall_hit_y_horizontal += step_y;
 		}
 	}
+	
 	//Aqui acaba la parte horizontal
-	x_intercept = floor(player->pos_x / map->width) * map->width;
+	x_intercept = floor(player->pos_x / (float)map->width) * (float)map->width;
 	if(izquierda == 0)
 		x_intercept += map->width;
 
-	y_intercept = (int)player->pos_y;
-	y_intercept += (int)((double)(x_intercept - (int)player->pos_x) * tan(rads));
-	step_x = map->width;
-	step_y = (int)((double)((int)map->height) * tan(rads));
+	y_intercept = player->pos_y;
+	y_intercept += ((float)(x_intercept - player->pos_x) * tan(rads));
+	step_x = (float)map->width;
+	step_y = ((float)((float)map->height) * tan(rads));
 	wall_hit_y_vertical = y_intercept;
 	wall_hit_x_vertical = x_intercept;
 	if(izquierda == 1)
@@ -119,52 +120,50 @@ void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
 	}
 	
 	vertical_hit = 0;	
-	while(vertical_hit  == 0 && wall_hit_x_vertical < (int)(map->width * map->columns)
-			&& wall_hit_x_vertical >= 0 && wall_hit_y_vertical >= 0 &&
-			wall_hit_y_vertical < (int)(map->rows * map->height))	
+	while(vertical_hit  == 0 && wall_hit_x_vertical < (float)(map->width * map->columns)
+			&& wall_hit_x_vertical >= 0.0 && wall_hit_y_vertical >= 0.0 &&
+			wall_hit_y_vertical < (float)(map->rows * map->height))	
 	{
 
-		if(map->map[wall_hit_y_vertical / map->height][wall_hit_x_vertical / map->width] == '1' ||
-				map->map[wall_hit_y_vertical / map->height][(wall_hit_x_vertical - 1) / map->width] == '1')
+		if(map->map[(int)wall_hit_y_vertical / map->height][(int)wall_hit_x_vertical / map->width] == '1' ||
+				map->map[(int)wall_hit_y_vertical / map->height][((int)wall_hit_x_vertical - 1) / map->width] == '1')
 			vertical_hit = 1;
 		else
 		{
-			printf("wall_hit_x_vertical: %d\n", wall_hit_x_vertical);
-			printf("wall_hit_y_vertical: %d\n", wall_hit_y_vertical);
+			printf("wall_hit_x_vertical: %f\n", wall_hit_x_vertical);
+			printf("wall_hit_y_vertical: %f\n", wall_hit_y_vertical);
 			wall_hit_x_vertical += step_x;
 			wall_hit_y_vertical += step_y;
 		}
 	}
+			printf("wall_hit_x_vertical: %f\n", wall_hit_x_vertical);
+			printf("wall_hit_y_vertical: %f\n", wall_hit_y_vertical);
 	
-			printf("wall_hit_x_vertical: %d\n", wall_hit_x_vertical);
-			printf("wall_hit_y_vertical: %d\n", wall_hit_y_vertical);
-	t_point aux;
-	t_point horizontal;
-	t_point vertical;
-	insert_point(&aux, player->pos_x, player->pos_y);
-	insert_point(&horizontal,wall_hit_x_horizontal, wall_hit_y_horizontal);
-	insert_point(&vertical, wall_hit_x_vertical, wall_hit_y_vertical);
-	if(distancia(&aux, &horizontal) <= distancia(&aux, &vertical))
+	
+	if(distancia(player->pos_x, player->pos_y, wall_hit_x_horizontal, wall_hit_y_horizontal) <= distancia(player->pos_x, player->pos_y, wall_hit_x_vertical, wall_hit_y_vertical))
 	{
 		printf("Horizontal\n");
-	insert_point(p_ext, player->center_point->x + wall_hit_x_horizontal - player->pos_x,
-			player->center_point->y + wall_hit_y_horizontal - player->pos_y);
+		float x = (float)player->center_point->x + wall_hit_x_horizontal - player->pos_x;
+		float y = (float)player->center_point->y + wall_hit_y_horizontal - player->pos_y;
+		insert_point(p_ext, (int)x, (int)y);
 	}
 	else
 	{
 		printf("Vertical\n");
-		insert_point(p_ext, player->center_point->x + wall_hit_x_vertical - player->pos_x,
-			player->center_point->y + wall_hit_y_vertical - player->pos_y);
-	}	
+
+		float x = (float)player->center_point->x + wall_hit_x_vertical - player->pos_x;
+		float y = (float)player->center_point->y + wall_hit_y_vertical - player->pos_y;
+		insert_point(p_ext, (int)x, (int)y);
+		}	
 	printf("Final function\n");
 }
 
-float distancia(t_point *p1, t_point *p2)
+float distancia(float p0x, float p0y, float p1x, float p1y)
 {
-	double distance_x = pow(p1->x - p2->x, 2);
-	double distance_y = pow(p1->y - p2->y, 2);
-	double root = sqrt(distance_x + distance_y);
+	float distance_x = pow(p0x - p1x, 2);
+	float distance_y = pow(p0y - p1y, 2);
+	float distance = sqrt(distance_x + distance_y);
 
-	float res = (float)root;
-	return res;
+
+	return distance;
 }
