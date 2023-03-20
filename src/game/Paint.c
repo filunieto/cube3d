@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 22:31:16 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/20 23:05:22 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/20 23:34:51 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
 	float wall_hit_x_vertical;
 	float wall_hit_y_vertical;
 	int vertical_hit;
-	printf("Angle: %f, rads: %f\n", angle,rads);
+	
 	horizontal_hit = 0;
 	izquierda = 0;
 	abajo = 0;
@@ -138,24 +138,19 @@ void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
 		}
 	}
 	
-			printf("wall_hit_x_horizontal: %f\n", wall_hit_x_horizontal);
-			printf("wall_hit_y_horizontal: %f\n", wall_hit_y_horizontal);
 	if(distancia(player->pos_x, player->pos_y, wall_hit_x_horizontal, wall_hit_y_horizontal) <= distancia(player->pos_x, player->pos_y, wall_hit_x_vertical, wall_hit_y_vertical))
 	{
-		printf("Horizontal\n");
 		float x = (float)player->center_point->x + wall_hit_x_horizontal - player->pos_x;
 		float y = (float)player->center_point->y + wall_hit_y_horizontal - player->pos_y;
 		insert_point(p_ext, (int)x, (int)y);
 	}
 	else
 	{
-		printf("Vertical\n");
 
 		float x = (float)player->center_point->x + wall_hit_x_vertical - player->pos_x;
 		float y = (float)player->center_point->y + wall_hit_y_vertical - player->pos_y;
 		insert_point(p_ext, (int)x, (int)y);
 		}	
-	printf("Final function\n");
 }
 
 float distancia(float p0x, float p0y, float p1x, float p1y)
