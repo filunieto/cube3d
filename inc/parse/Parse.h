@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:30:57 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/19 22:30:31 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/20 00:44:56 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,10 @@ typedef struct s_textur
 typedef struct s_colour
 {
 	int		part;
-	int		r;
+	int		r; //creo que podemos borrarlas
 	int		g;
 	int 	b;
+	int		rgb;
 }	t_colour;
 
 typedef struct s_pars
@@ -95,6 +96,8 @@ int		check_identifier(t_pars* parsing_str, char *line_splitd);
 int		check_textur_path(t_pars* parsing_str, char **s_splited_cleaned, int id);
 int		check_colours(t_pars* parsing_str, char **s_splited_cleaned, int id);
 int		check_values_rgb(t_pars* parsing_str, char ***rgb, int id);
+int	ft_rgb_atoi(char *str); //cambiar a atoi_rgb y otras partes
+
 
 
 

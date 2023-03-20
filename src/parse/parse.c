@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:36:58 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/19 22:29:57 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/20 00:58:00 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@
  */
 void	init_strc_pars(t_pars* parsing_str)
 {
-	int i;
 
-	i = 0;
 	parsing_str->arg_1 = NULL;
 	parsing_str->error_pars = false;
 	parsing_str->map = NULL;
@@ -46,13 +44,16 @@ void	init_strc_pars(t_pars* parsing_str)
 	parsing_str->west.path = NULL;
 	
 	parsing_str->ground.part = 0;
-	parsing_str->ground.r = -1;
+	parsing_str->ground.r = -1; //creo que estos no hacen falta
 	parsing_str->ground.g = -1;
 	parsing_str->ground.b = -1;
 	parsing_str->heaven.part = 0;
 	parsing_str->heaven.r = -1;
 	parsing_str->heaven.g = -1;
 	parsing_str->heaven.b = -1;
+	parsing_str->heaven.rgb = -1;
+	parsing_str->ground.rgb = -1;
+
 	parsing_str->arg_ok = 0;
 	parsing_str->nb_line_map = 0;
 }

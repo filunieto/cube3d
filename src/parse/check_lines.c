@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:23:43 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/19 22:21:43 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/20 01:26:44 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,14 @@ int	check_lines(t_pars* parsing_str)
 int	check_arguments(t_pars* parsing_str, char **s_splited_cleaned)
 {
 	int id;
-	
+	//printf("0 donde esta el sefm t fault\n");
 	id = check_identifier(parsing_str, s_splited_cleaned[0]);
 	if (id == 0)
 	{
 		return(print_error(ERR_INP_MAP_MES , ERR_INP_MAP));
 	}
+	//printf("1 donde esta el sefm t fault\n");
+
 	//comprobar si son  cardinales la ruta y si son colores o si es un 1(en este ultimo caso hay que verificar que odo está ok)
 	if (id >= NORTH &&  id <= WEST)
 	{
@@ -115,12 +117,16 @@ int	check_arguments(t_pars* parsing_str, char **s_splited_cleaned)
 		parsing_str->arg_ok += 1;
 		
 	}
+
 	if (id == GROUND ||  id == HEAVEN) //mas facil dividir en 
 	{
+
 		if (check_colours(parsing_str, &s_splited_cleaned[1], id)) //verificar qeu solo haya 2 elementos
 		{
 			return (1);
 		}
+		printf("4 donde esta el sefm t fault\n");
+
 		parsing_str->arg_ok += 1;
 	}
 	//creo qeu no hago nada
@@ -160,7 +166,7 @@ int	check_identifier(t_pars* parsing_str, char *line_splitd)
 int	check_textur_path(t_pars* parsing_str, char **s_splited_cleaned, int id)
 {
 	int fd;
-	int fd2;
+	int fd2; //este es de prueba
 
 	if (s_splited_cleaned[1] != NULL) //hay más argumentos de la cuenta NO ./text xxx
 		return(print_error(ERR_TEXT_INP_MES, ERR_TEXT_INP));
@@ -174,8 +180,8 @@ int	check_textur_path(t_pars* parsing_str, char **s_splited_cleaned, int id)
 	//podría tambien poner un else if con id, en 4 casos y asignarle eso al path correcto. Puedo borrar el array y asigbaserlos
 	if (id == NORTH)
 	{
-		//recuerda hacer close en algún momento
-		parsing_str->north.path = open(s_splited_cleaned[0], O_RDONLY); //mos quedamos con el archivo en file si es posible 
+		//recuerda hacer close en algún momento de los archivos
+		//parsing_str->north.path = open(s_splited_cleaned[0], O_RDONLY); //mos quedamos con el archivo en file si es posible 
 		parsing_str->north.file = fd;
 	}
 	else if (id == SOUTH)
@@ -194,9 +200,18 @@ int	check_colours(t_pars* parsing_str, char **s_splited_cleaned, int id)
 	char **rgb; 
 
 	i = 0;
+
 	if (s_splited_cleaned[1] != NULL) //Solo hay 2 argumentos : WE ./text xxx 
 		return(print_error(ERR_COLOR_INP_MES, ERR_COLOR_INP));
+
 	rgb = ft_split(s_splited_cleaned[0], COMMA); //hay que liberar: malloc free
+	i = 0;
+	while (rgb[i])
+	{
+		printf("\n9 miramo sel spliteado justo en check_colours : %i. string : %s \n", i , rgb[i]);
+		i++;
+	}
+	i = 0;
 	while (rgb[i])
 		i++;
 	if (i  != 3) //tenemos más d e3 valores
@@ -204,15 +219,14 @@ int	check_colours(t_pars* parsing_str, char **s_splited_cleaned, int id)
 		// free split rgb
 		return(print_error(ERR_COLOR_INP2_MES, ERR_COLOR_INP2)); 
 	}
+
 	if (check_values_rgb(parsing_str, &rgb, id) )
 	{
 		// free split rgb
 		return(ERR_COLOR_INP2); //cambiar, pero hacer un free de RGB  el mensaje
 	}
-	
-	//split con ,
-	//pasar a int los input
-	//verificar los valores
-	//asignarlos a la estructura
+	// hacer un free, de split
+	printf("10 donde esta el sefm t fault\n");
+
 	return (EXIT_SUCCESS);
 }
