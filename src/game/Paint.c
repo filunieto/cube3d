@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 22:31:16 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/20 22:00:17 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/20 23:05:22 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
 	float x_intercept;
 	float step_y;
 	float step_x;
-	int wall_hit_x_horizontal;
-	int wall_hit_y_horizontal;
+	float wall_hit_x_horizontal;
+	float wall_hit_y_horizontal;
 	int horizontal_hit;
 	float wall_hit_x_vertical;
 	float wall_hit_y_vertical;
 	int vertical_hit;
-	printf("Angle: %f\n", rads);
+	printf("Angle: %f, rads: %f\n", angle,rads);
 	horizontal_hit = 0;
 	izquierda = 0;
 	abajo = 0;
@@ -91,8 +91,7 @@ void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
 			wall_hit_y_horizontal < (float)(map->rows * map->height))	
 	{
 
-		if(map->map[(int)wall_hit_y_horizontal / map->height][(int)wall_hit_x_horizontal / map->width] == '1' || 
-				map->map[((int)wall_hit_y_horizontal - 1) / map->height][(int)wall_hit_x_horizontal / map->width] == '1' )
+		if(map->map[(int)wall_hit_y_horizontal / map->height][(int)wall_hit_x_horizontal / map->width] == '1' || map->map[((int)wall_hit_y_horizontal - 1) / map->height][(int)wall_hit_x_horizontal / map->width] == '1' )
 			horizontal_hit = 1;
 		else
 		{
@@ -112,13 +111,17 @@ void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
 	step_y = ((float)((float)map->height) * tan(rads));
 	wall_hit_y_vertical = y_intercept;
 	wall_hit_x_vertical = x_intercept;
+	
+	step_y = -step_y;
 	if(izquierda == 1)
 	{
 		step_x = -step_x;
 
 		wall_hit_x_vertical--;
 	}
-	
+	if(izquierda == 0)
+		step_y = -step_y;
+
 	vertical_hit = 0;	
 	while(vertical_hit  == 0 && wall_hit_x_vertical < (float)(map->width * map->columns)
 			&& wall_hit_x_vertical >= 0.0 && wall_hit_y_vertical >= 0.0 &&
@@ -130,16 +133,13 @@ void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
 			vertical_hit = 1;
 		else
 		{
-			printf("wall_hit_x_vertical: %f\n", wall_hit_x_vertical);
-			printf("wall_hit_y_vertical: %f\n", wall_hit_y_vertical);
 			wall_hit_x_vertical += step_x;
 			wall_hit_y_vertical += step_y;
 		}
 	}
-			printf("wall_hit_x_vertical: %f\n", wall_hit_x_vertical);
-			printf("wall_hit_y_vertical: %f\n", wall_hit_y_vertical);
 	
-	
+			printf("wall_hit_x_horizontal: %f\n", wall_hit_x_horizontal);
+			printf("wall_hit_y_horizontal: %f\n", wall_hit_y_horizontal);
 	if(distancia(player->pos_x, player->pos_y, wall_hit_x_horizontal, wall_hit_y_horizontal) <= distancia(player->pos_x, player->pos_y, wall_hit_x_vertical, wall_hit_y_vertical))
 	{
 		printf("Horizontal\n");

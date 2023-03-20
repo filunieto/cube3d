@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 22:56:29 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/20 21:31:14 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/20 23:18:32 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ void	player_advance(t_map *map, t_player *player, int direction)
 	float	advance_x;
 	float	advance_y;
 	angle = (player->angle * M_PI) / 180;
+	printf("Advance=> angle: %f\n", angle);
 	if (direction == -1 || direction == 1)
 	{
 		advance_x = (float)direction * player->vel * cos(angle);
 		advance_y = (float)direction * player->vel * sin(angle);
+		printf("advance_x: %f, advance_y: %f\n", advance_x, advance_y);
 		check_collision(map, player, advance_x, advance_y);
 	}
 }
@@ -50,7 +52,7 @@ void	player_advance(t_map *map, t_player *player, int direction)
 static void	check_collision(t_map *map, t_player *player,
 			float advance_x, float advance_y)
 {
-	if (advance_y != 0.0 && ((int)advance_x == 0))
+	if (advance_y != 0.0 && advance_x == 0)
 		check_vertical_collision(map, player, advance_y);
 	else if (advance_x != 0 && advance_y == 0)
 		check_horizontal_collision(map, player, advance_x);
