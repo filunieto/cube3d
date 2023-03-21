@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 22:58:43 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/20 19:54:21 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:48:46 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	rotate(t_player *player, int clockwise)
 	double	angle;
 
 	if (clockwise == 1)
-		player->angle += 6;
+		player->angle += ANGLE_ROTATE;
 	else if (clockwise == -1)
-		player->angle -= 6;
+		player->angle -= ANGLE_ROTATE;
 	if (player->angle < 0)
 		player->angle = 360 + player->angle;
 	else if (player->angle > 360)

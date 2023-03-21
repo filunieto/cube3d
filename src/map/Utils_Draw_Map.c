@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:51:44 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/21 19:11:08 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/21 21:01:58 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,17 @@ void	loop_draw_map(t_map *map, t_player *player, t_4vertex *sq, int *aux)
 	unsigned int	rest;
 	int				color;
 
-	aux[0] = ((int)player->pos_x - (aux[1] - map->semi_len)) / map->width;
-	check_color(map->map[(int)player->pos_y / map->height][aux[0]], &color);
+	//aux[0] = ((int)player->pos_x - (aux[1] - map->semi_len)) / map->width;
+	if((int)((int)player->pos_x - (aux[1] - map->semi_len)) < 0)
+	{
+		color = 0x000000FF;
+		aux[0] = -1;
+	}	
+	else
+	{
+		aux[0] = ((int)player->pos_x - (aux[1] - map->semi_len)) / map->width;
+		check_color(map->map[(int)player->pos_y / map->height][aux[0]], &color);
+	}
 	if ((aux[1] / map->width) != 0)
 	{
 		insert_point(&(sq->p0), sq->p1.x, sq->p1.y);

@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:21:02 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/21 18:40:48 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:41:13 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ float distancia(float p0x, float p0y, float p1x, float p1y);
 //Function to limit the direction line in minimap
 void adjust_line(t_map *map, t_player *player, t_point_f *p_extremo, t_point *p_final);
 
+void	key_advance_and_back_aux(void *param);
 #endif

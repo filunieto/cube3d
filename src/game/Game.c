@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 22:16:43 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/21 19:23:15 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:00:07 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	init_game(mlx_t *mlx, mlx_image_t *img, t_game *game)
 	init_map(game->map, game->player);
 	show_map(game->map);
 	paint(game);
+	mlx_loop_hook(mlx, key_advance_and_back_aux, game);
 	mlx_resize_hook(game->mlx, resize_func, game);
-	mlx_key_hook(game->mlx, &key_func, game);
 }
 
 void	free_game(t_game *game)
