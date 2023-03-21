@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:52:21 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/14 22:51:59 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:07:45 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ void	insert_point(t_point *p, int x, int y)
 	p->y = y;
 }
 
+void	insert_point_f(t_point_f *p, float x, float y)
+{
+	p->x = x;
+	p->y = y;
+}
 int	check_points(t_point *p1, t_point *p2)
 {
 	if (!p1 || !p2)

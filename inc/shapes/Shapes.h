@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:43:01 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/16 20:00:30 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:06:39 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,17 @@
 # include "../../memory-leaks/include/memory_leaks.h"
 # include "../../MLX42/include/MLX42/MLX42.h"
 
-//Structure to store a point in cartesians
+//Structure to store a point in cartesians with integer precision
 typedef struct s_point {
 	int	x;
 	int	y;
 }t_point;
+
+//Structure to store a point in cartesions with floating point precision
+typedef struct s_point_f {
+	float x;
+	float y;
+}t_point_f;
 
 //Structure to store a line defined with 2 points
 typedef struct s_line
@@ -52,9 +58,9 @@ typedef struct s_end_point
 
 }t_end_point;
 
-//Method to introduce a point inside the structure
+//Methods to introduce a point inside the structure
 void insert_point(t_point *p, int x, int y);
-
+void insert_point_f(t_point_f *p, float x, float y);
 //Function to insert points into a line
 void insert_points_line(t_line *line, t_point *p0, t_point *p1);
 
