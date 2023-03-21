@@ -3,116 +3,98 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 19:46:29 by anramire          #+#    #+#             */
-/*   Updated: 2022/04/27 22:33:54 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:46:37 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	get_strs(char const *str, char c);
-static char		**get_split_strs(const char *str, char c, size_t n, size_t *i);
-static char		*copy(char const *str, size_t f_pos, size_t l_pos);
-static int		init_var(size_t *i, size_t *n_strs, size_t *auxi, int init);
-
-char	**ft_split(char const *s, char c)
+static void	ft_countsubs(const char *s, char c, size_t *n_subs)
 {
-	size_t	n_strs;
-	char	**strs;
-	size_t	i;
+	char	*travers;
 
-	n_strs = get_strs(s, c);
-	if (n_strs == 0)
+	*n_subs = 0;
+	if (!s)
+		return ;
+	travers = (char *)s;
+	while (*travers)
 	{
-		strs = (char **) malloc(sizeof (char *));
-		strs[0] = NULL;
-		return (strs);
-	}
-	return (get_split_strs(s, c, n_strs, &i));
-}
-
-static size_t	get_strs(char const *str, char c)
-{
-	size_t	i;
-	size_t	n_strs;
-	size_t	aux;
-
-	aux = 1;
-	n_strs = 0;
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if ((str[i] != c) && (aux == 1))
+		if (*travers == c)
+			travers++;
+		else
 		{
-			n_strs++;
-			aux = 0;
+			(*n_subs)++;
+			while (*travers && *travers != c)
+				travers++;
 		}
-		if (str[i] == c)
-			aux = 1;
-		i++;
 	}
-	return (n_strs);
 }
 
-static char	**get_split_strs(const char *str, char c, size_t n, size_t *i)
+static void	ft_free_str(char ***arr_str, size_t i_failedsub)
 {
-	char	**strs;
-	size_t	aux;
-	size_t	f_pos;
-
-	strs = (char **)malloc((n + 1) * sizeof(char *));
-	if (strs == NULL)
-		return (NULL);
-	init_var(i, &n, &aux, 1);
-	while (str[*i] != '\0')
-	{
-		if (str[*i] != c && aux == 1)
-			f_pos = init_var(i, &n, &aux, 0);
-		if ((str[*i] == c) && (aux == 0))
-		{
-			aux = 1;
-			strs[n++] = copy(str, f_pos, (*i) - 1);
-		}
-		(*i)++;
-	}
-	if (str[(*i) - 1] != c)
-		strs[n++] = copy(str, f_pos, (*i) - 1);
-	strs[n] = NULL;
-	return (strs);
-}
-
-static char	*copy(char const *str, size_t f_pos, size_t l_pos)
-{
-	char	*cpy;
 	size_t	i;
 
 	i = 0;
-	cpy = (char *)malloc((l_pos - f_pos + 2) * sizeof(char));
-	if (cpy == NULL)
-		return (NULL);
-	while (f_pos <= l_pos)
+	while (i < i_failedsub)
 	{
-		cpy[i] = str[f_pos];
+		free((*arr_str)[i]);
 		i++;
-		f_pos++;
 	}
-	cpy[i] = '\0';
-	return (cpy);
+	free(*arr_str);
+	*arr_str = NULL;
 }
 
-static int	init_var(size_t *i, size_t *n_strs, size_t *aux, int init)
+static char	*ft_makesub(char *travers, char c, size_t *sublen)
 {
-	if (init == 1)
-	{
-		(*i) = 0;
-		(*n_strs) = 0;
-		(*aux) = 1;
-	}
+	char	*endofsub;
+	char	*sub;
+
+	endofsub = ft_strchr(travers, c);
+	if (!endofsub)
+		*sublen = ft_strlen(travers);
 	else
+		*sublen = endofsub - travers;
+	sub = ft_calloc(((*sublen) + 1), sizeof(char));
+	if (!sub)
+		return (NULL);
+	return (ft_memcpy(sub, travers, *sublen));
+}
+
+static void	ft_fill_arr(const char *s, char c, size_t n_subs, char ***arr_str)
+{
+	char	*travers;
+	size_t	sublen;
+	size_t	i;
+
+	i = 0;
+	travers = (char *)s;
+	while (i < n_subs)
 	{
-		(*aux) = 0;
+		while (*travers == c)
+			travers++;
+		(*arr_str)[i] = ft_makesub(travers, c, &sublen);
+		if (!(*arr_str)[i])
+			ft_free_str(arr_str, i);
+		i++;
+		travers = travers + sublen;
 	}
-	return (*i);
+	(*arr_str)[i] = NULL;
+}
+
+char	**ft_split(const char *s, char c)
+{
+	char	**arr_str;
+	size_t	n_subs;
+
+	if (!s)
+		return (NULL);
+	ft_countsubs(s, c, &n_subs);
+	arr_str = malloc((n_subs + 1) * sizeof(char *));
+	if (!arr_str)
+		return (NULL);
+	ft_fill_arr(s, c, n_subs, &arr_str);
+	return (arr_str);
 }

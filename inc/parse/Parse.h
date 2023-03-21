@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:30:57 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/21 16:33:00 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:18:13 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define HEAVEN_STR 	"C"
 # define GROUND_STR		"F"
 # define MAP_STR		" 01NSEW\n"
+# define NO_PLAYER_STR		" 01\n"
 # define ONES_STR		" 1\n"
 
 # define ONE		'1'
@@ -77,7 +78,7 @@ typedef struct s_pars
 	size_t	nb_line_map;
 	size_t	nb_endline_map;
 	size_t	nb_line;
-	size_t	max_leng_line;
+	size_t	max_leng_map;
 	//t_textur	cardinal[4]; No me hace falta
 	t_textur	north;
 	t_textur	south;
@@ -111,12 +112,15 @@ int		map_right_closed(t_pars* parsing_str);
 
 int		find_end(t_pars* parsing_str);
 int		find_init(t_pars* parsing_str);
+int		find_max_line(t_pars* parsing_str);
 
 int	print_error(char *error_msg, int return_val);
 
 void free_split (char ***s_splitted);
 
 int	ft_strcmp(char *s1, char *s2);
+
+int		one_player(t_pars* parsing_str);
 
 
 

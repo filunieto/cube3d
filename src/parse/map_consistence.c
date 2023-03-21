@@ -6,11 +6,53 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:29:19 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/21 16:43:29 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:13:45 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/Screen.h"
+
+int		map_upper_closed(t_pars* parsing_str)
+{
+	int	j;
+	int leng;
+	char *line_1;
+	char *line_2;
+
+	j = 0;
+	leng = parsing_str->max_leng_map;
+	line_1 = parsing_str->map[parsing_str->nb_line_map];
+	line_2 = parsing_str->map[parsing_str->nb_line_map + 1];
+	if (line_1[j] == '0')
+		if (line_2[j] != '1'  || line_1[j + 1] != '1')
+			return(print_error(ERR_MAP3_MES, ERR_MAP3));
+	if (line_1[j + leng - 1] == '0') //se supone que estamos en un caracter antes del \n, por eso restamos 1 (0 +len)
+		if (line_2[j + leng - 1 ] != '1'  || line_1[j + leng - 2] != '1')
+			return(print_error(ERR_MAP3_MES, ERR_MAP3));
+	while (line_1[++j] != '\n')
+	{
+		if (line_1[j] == '0')
+		{
+			if (line_2[j - 1 ] != '1' || line_2[j] != '1' || line_2[j + 1] != '1');
+			printf("no se´que pasa en esta condicon\n");
+			//return;
+		}
+		j++;
+	}
+	return (EXIT_SUCCESS);
+}
+
+
+
+int		map_closed(t_pars* parsing_str) //hay que verificar que denajo de un 1 siempre haya otro 1
+{
+	if (map_upper_closed(parsing_str))
+		return (ERR_MAP3);
+	return (EXIT_SUCCESS);
+}
+
+
+
 
 /**
  * @brief 
@@ -24,7 +66,7 @@
 
 int		map_char(t_pars* parsing_str)
 {
-	//char	*trimmed_spac;
+
 	char	*trimmed_map;
 	int		i;
 
@@ -32,7 +74,6 @@ int		map_char(t_pars* parsing_str)
 	while (++i <= (int)parsing_str->nb_endline_map)
 	{
 		trimmed_map = ft_strtrim(parsing_str->map[i], MAP_STR);
-		//printf(" despues de trimear linea %i, chars si long 0 |%s| y su longitud %zu\n",i ,trimmed_map, ft_strlen(trimmed_map));
 		if (ft_strlen(trimmed_map) != 0)
 		{
 			free(trimmed_map);
@@ -40,7 +81,6 @@ int		map_char(t_pars* parsing_str)
 		}
 		free(trimmed_map);
 	}
-	
 	return (EXIT_SUCCESS);
 }
 
@@ -63,7 +103,6 @@ int		map_left_closed(t_pars* parsing_str)
 	i = parsing_str->nb_line_map;
 	while (++i < (int)parsing_str->nb_endline_map)
 	{
-		//printf("para los laterales string = %s \n", parsing_str->map[i]);
 		trimmed = ft_strtrim(parsing_str->map[i], SPACE_STR);
 		one_side = ft_strchr(trimmed, ONE);
 		if (one_side != trimmed)
@@ -120,7 +159,7 @@ int		map_right_closed(t_pars* parsing_str)
  * @return int 
  */
 
-int		map_closed(t_pars* parsing_str)
+int		map_closed2(t_pars* parsing_str) //hay que verificar que denajo de un 1 siempre haya otro 1
 {
 	char *trimmed_one;
 	size_t leng_trimm;
