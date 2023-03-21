@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:51:44 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/20 20:18:46 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:11:08 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	loop_column_up(t_map *map, t_player *player, t_4vertex *sq1,
 
 	params[2] -= map->height;
 	check_color_columns(map, params, &color, -1);
-	if ((params[1] / 60) != 0)
+	if ((params[1] / map->height) != 0)
 	{	
 		insert_point(&(sq1->p3), sq1->p0.x, sq1->p0.y);
 		insert_point(&(sq1->p2), sq1->p1.x, sq1->p1.y);
@@ -61,7 +61,7 @@ void	loop_column_down(t_map *map, t_player *player, t_4vertex *sq1,
 
 	params[2] += map->height;
 	check_color_columns(map, params, &color, 1);
-	if ((params[1] / 60) != 0)
+	if ((params[1] / map->height) != 0)
 	{	
 		insert_point(&(sq1->p0), sq1->p3.x, sq1->p3.y);
 		insert_point(&(sq1->p1), sq1->p2.x, sq1->p2.y);

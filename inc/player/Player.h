@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:51:40 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/20 19:18:49 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:11:34 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PLAYER_H
 # define WIDTH 1920
 # define HEIGHT 1080
+# define MARGINS 180
 # include "../../MLX42/include/MLX42/MLX42.h"
 # include "../../memory-leaks/include/memory_leaks.h"
 # include "../shapes/Shapes.h"

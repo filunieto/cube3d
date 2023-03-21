@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/20 20:16:22 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:04:33 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	init_map(t_map *map, t_player *player)
 			"11110111 1110101 101111010001    ",
 			"11111111 1111111 111111111111    "
 	};
-	map->semi_len = 200;
-	map->width = 60;
-	map->height = 60;
+	map->semi_len = 150;
+	map->width = 30;
+	map->height = 30;
 	map->rows = rows;
 	map->columns = ft_strlen(map_aux[i]);
 	map->map = (char **) malloc(rows * sizeof(char *));	
