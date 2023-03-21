@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:25:05 by fnieves           #+#    #+#             */
-/*   Updated: 2023/03/21 13:26:06 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:59:53 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ int		check_map(t_pars* parsing_str) //is_map_ok : podemos llamar a al afuncion
 		return(print_error(ERR_MAP0_MES, ERR_MAP0));
 	if (is_map_consistent(parsing_str))
 	{
-		printf("el mapa está jodio. Borrar este mensaje");
+		printf("el mapa está jodio. Borrar este mensaje despues");
 		return (EXIT_FAILURE);
 	}
+	printf("En check map , map consisten d emomento\n");
 	return (EXIT_SUCCESS);
 }
 
@@ -41,10 +42,10 @@ int		is_map_consistent(t_pars* parsing_str)
 	{
 		return (print_error(ERR_MAP1_MES, ERR_MAP1));
 	}
-	// if (map_closed(parsing_str))
-	// {
-	// 	return (print_error(ERR_MAP2_MES, ERR_MAP2));
-	// }
+	if (map_closed(parsing_str)) //segiuir por auqi depsues de comer . usar strchr y strrrchr
+	{
+		return (print_error(ERR_MAP2_MES, ERR_MAP2));
+	}
 	// if (one_player(parsing_str))
 	// {
 	// 	return (print_error(ERR_MAP3_MES, ERR_MAP3));
@@ -53,37 +54,6 @@ int		is_map_consistent(t_pars* parsing_str)
 }
 
 
-/**
- * @brief 
- * Esta función verifica que solo tengamos los caracteres 1 , 0, W
- * E, W, N.
- * 
- * @param parsing_str 
- * @return int 0 sí los caracteres son corretcos
- * otro valor en caso contrario
- */
-
-int		map_char(t_pars* parsing_str)
-{
-	//char	*trimmed_spac;
-	char	*trimmed_map;
-	int		i;
-
-	i = parsing_str->nb_line_map - 1;
-	while (++i <= (int)parsing_str->nb_endline_map)
-	{
-		trimmed_map = ft_strtrim(parsing_str->map[i], MAP_STR);
-		printf(" despues de trimear chars si long 0 |%s| y su longitud %zu\n",trimmed_map, ft_strlen(trimmed_map));
-		if (ft_strlen(trimmed_map) != 1)
-		{
-			free(trimmed_map);
-			return(print_error(ERR_MAP1_MES, ERR_MAP1));
-		}
-		free(trimmed_map);
-	}
-	
-	return (EXIT_SUCCESS);
-}
 
 /**
  * @brief 

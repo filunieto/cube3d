@@ -36,6 +36,7 @@ SRCS = $(SRC)/main.c $(SRC)/Screen.c $(SRC)/shapes/Line.c \
 		src/parse/check_lines.c			\
 		src/parse/check_rgb.c			\
 		src/parse/check_map.c			\
+		src/parse/map_consistence.c		\
 
 OBJS = $(SRCS:.c=.o)
 NAME = cub3d

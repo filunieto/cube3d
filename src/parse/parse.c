@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:36:58 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/21 12:46:24 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:00:02 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ char **ft_parse(char *file_mup)
 		return (NULL);
 	}
 	read_file(&parsing_str);
-	printf("extension correctan y archivo abierto, y lectura correcta palante\n");
+	//printf("extension correctan y archivo abierto, y lectura correcta palante\n");
 	close(parsing_str.file_inp);
 	//aqui al final puedo pasar todos los parametros de la estructura pars a la  estructura ppal
 	// entre ellos estructuras

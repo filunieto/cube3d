@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:16:23 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/21 00:33:22 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/21 15:01:49 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,24 +80,24 @@ int	read_file(t_pars* parsing_str)
 	if (copy_file(parsing_str))
 	{
 		//hacer free del parsing_str->map, aunque igual no es muy necesario
-		return (1);
+		return (EXIT_FAILURE);
 	}
 	//copy_file(parsing_str); //meter algun error para asegurarse >>> (if copy_file(parsing_str))
 	if (check_lines(parsing_str))
 	{
 		//hacer free del parsing_str->map
 		printf("Probelmas antes de parsear solo el mapa. Borra este mensaje em read_line\n");
-		return (1);
+		return (EXIT_FAILURE);
 	}
-	printf("lineas coorectas: miramos el map\n");
+	printf("lineas previas al map coorectas: miramos el map\n");
 
 	if (check_map(parsing_str))
 	{
 		//hacer free del parsing_str->map
 		printf("Probelmas antes de parsear solo el mapa. Borra este mensaje em read_line\n");
-		return (1);
+		return (EXIT_FAILURE);
 	}
 	//free(parsing_str->map);
-	return (0);
+	return (EXIT_SUCCESS);
 	//como nos aseguramos que había llegado al final de linea y que no ha habido un error cualquiera (lectura)
 }

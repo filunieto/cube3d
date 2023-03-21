@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:30:57 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/21 12:48:35 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/21 16:33:00 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@
 # define WEST_STR		"WE"
 # define HEAVEN_STR 	"C"
 # define GROUND_STR		"F"
-# define MAP_STR		"01NSEW"
+# define MAP_STR		" 01NSEW\n"
+# define ONES_STR		" 1\n"
+
+# define ONE		'1'
 
 # define CARDINALS		"NSEW"
 # define TEXTURE		"HG"
@@ -103,6 +106,9 @@ int		ft_rgb_atoi(char *str); //cambiar a atoi_rgb y otras partes
 int		map_char(t_pars* parsing_str);
 int		is_map_consistent(t_pars* parsing_str);
 int		map_closed(t_pars* parsing_str);
+int		map_left_closed(t_pars* parsing_str);
+int		map_right_closed(t_pars* parsing_str);
+
 int		find_end(t_pars* parsing_str);
 int		find_init(t_pars* parsing_str);
 
