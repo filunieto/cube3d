@@ -48,27 +48,27 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/felipe/.local/lib/python3.8/site-packages/cmake/data/bin/cmake
+CMAKE_COMMAND = /Users/fnieves-/.brew/Cellar/cmake/3.25.2/bin/cmake
 
 # The command to remove a file.
-RM = /home/felipe/.local/lib/python3.8/site-packages/cmake/data/bin/cmake -E rm -f
+RM = /Users/fnieves-/.brew/Cellar/cmake/3.25.2/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/media/felipe/Datos/Programacion/42/Core_curriculum/proyectos curriculares/cube3d_proyect/cub3d/MLX42"
+CMAKE_SOURCE_DIR = "/System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos goinfre/cube3d proyecto/cube3d_gitlab/MLX42"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/media/felipe/Datos/Programacion/42/Core_curriculum/proyectos curriculares/cube3d_proyect/cub3d/MLX42/build"
+CMAKE_BINARY_DIR = "/System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos goinfre/cube3d proyecto/cube3d_gitlab/MLX42/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/felipe/.local/lib/python3.8/site-packages/cmake/data/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/Users/fnieves-/.brew/Cellar/cmake/3.25.2/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -78,7 +78,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/felipe/.local/lib/python3.8/site-packages/cmake/data/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/Users/fnieves-/.brew/Cellar/cmake/3.25.2/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/media/felipe/Datos/Programacion/42/Core_curriculum/proyectos curriculares/cube3d_proyect/cub3d/MLX42/build/CMakeFiles" "/media/felipe/Datos/Programacion/42/Core_curriculum/proyectos curriculares/cube3d_proyect/cub3d/MLX42/build//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos goinfre/cube3d proyecto/cube3d_gitlab/MLX42/build/CMakeFiles" "/System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos goinfre/cube3d proyecto/cube3d_gitlab/MLX42/build//CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/media/felipe/Datos/Programacion/42/Core_curriculum/proyectos curriculares/cube3d_proyect/cub3d/MLX42/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos goinfre/cube3d proyecto/cube3d_gitlab/MLX42/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target

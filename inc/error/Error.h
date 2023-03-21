@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:25:08 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/21 00:54:56 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/21 13:05:43 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 #define ERR_COLOR_INP3_MES	"RGB values not integers or not in range [0-255] \n"
 #define ERR_COLOR_INP4_MES	"RGB values are equal for colours of heaven and ground \n"
 #define ERR_TEXT_PATH_MES	"impossible to open the path to texture\n"
+#define ERR_MAP0_MES	"Map with less than 3 lines. there is no possibility to place the player\n"
 #define ERR_MAP1_MES	"chars in map differents from 0,1, W, S, E, N\n"
 #define ERR_MAP2_MES	"map not surrounded by 1\n"
+#define ERR_MAP3_MES	"more than 1 player\n"
 
 #define ERR_OPEN_FD_MES		"Probelma de apertuda de archivo antes de verificaciones\n"
 #define ERR_INP_MAP_MES		"repetdio punto cardinal o falta o el mapa no tiene simbolos correctos\n"
@@ -51,15 +53,16 @@ enum	code_error //podemos usarlo?
 	ERR_COLOR_INP2,
 	ERR_COLOR_INP3,
 	ERR_COLOR_INP4,
+	ERR_MAP0,
 	ERR_MAP1,
 	ERR_MAP2,
+	ERR_MAP3,
 	ERR_OPEN_FD,
 	DRAFT,
 
 };
 
 
-int	print_error(char *error_msg, int return_val);
 
 
 #endif

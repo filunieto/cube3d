@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:30:57 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/21 00:57:15 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/21 12:48:35 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_pars
 	char 	*line;
 	int		arg_ok;
 	size_t	nb_line_map;
+	size_t	nb_endline_map;
 	size_t	nb_line;
 	size_t	max_leng_line;
 	//t_textur	cardinal[4]; No me hace falta
@@ -102,10 +103,10 @@ int		ft_rgb_atoi(char *str); //cambiar a atoi_rgb y otras partes
 int		map_char(t_pars* parsing_str);
 int		is_map_consistent(t_pars* parsing_str);
 int		map_closed(t_pars* parsing_str);
+int		find_end(t_pars* parsing_str);
+int		find_init(t_pars* parsing_str);
 
-
-
-
+int	print_error(char *error_msg, int return_val);
 
 void free_split (char ***s_splitted);
 

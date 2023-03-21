@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:36:58 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/20 12:10:18 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/21 12:46:24 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ void	init_strc_pars(t_pars* parsing_str)
 	parsing_str->file_inp = -1;
 	parsing_str->line = NULL;
 	parsing_str->nb_line = 0;
+	parsing_str->nb_endline_map = 0;
 	parsing_str->max_leng_line = 0;
+	
 
 	// while (++i <= 4) // NO me quedo con esto de los cardinales
 	// {

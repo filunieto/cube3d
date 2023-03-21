@@ -3,14 +3,94 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:25:05 by fnieves           #+#    #+#             */
-/*   Updated: 2023/03/21 00:57:46 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/21 13:26:06 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/Screen.h"
+
+
+
+/*
+	vamos a l aprimera linea donde aparezca el mapa. A partir de ahí , verificamos que los caracteres sean los correctso 
+	que este cerrado por 1. que solo haya un jugador
+*/
+int		check_map(t_pars* parsing_str) //is_map_ok : podemos llamar a al afuncion
+{
+
+	parsing_str->nb_line_map = find_init(parsing_str); //podría guardar este parametro en la estructura?
+	parsing_str->nb_endline_map = find_end(parsing_str);
+	// printf(" linea inicial del mapa en check_map: %zu, %s,\n y linea final final : %zu, %s\n", 
+	// parsing_str->nb_line_map, parsing_str->map[parsing_str->nb_line_map], parsing_str->nb_endline_map, parsing_str->map[parsing_str->nb_endline_map] );
+	if (parsing_str->nb_endline_map - parsing_str->nb_line_map < 2)
+		return(print_error(ERR_MAP0_MES, ERR_MAP0));
+	if (is_map_consistent(parsing_str))
+	{
+		printf("el mapa está jodio. Borrar este mensaje");
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
+
+int		is_map_consistent(t_pars* parsing_str)
+{
+	if (map_char(parsing_str))
+	{
+		return (print_error(ERR_MAP1_MES, ERR_MAP1));
+	}
+	// if (map_closed(parsing_str))
+	// {
+	// 	return (print_error(ERR_MAP2_MES, ERR_MAP2));
+	// }
+	// if (one_player(parsing_str))
+	// {
+	// 	return (print_error(ERR_MAP3_MES, ERR_MAP3));
+	// }
+	return (EXIT_SUCCESS);
+}
+
+
+/**
+ * @brief 
+ * Esta función verifica que solo tengamos los caracteres 1 , 0, W
+ * E, W, N.
+ * 
+ * @param parsing_str 
+ * @return int 0 sí los caracteres son corretcos
+ * otro valor en caso contrario
+ */
+
+int		map_char(t_pars* parsing_str)
+{
+	//char	*trimmed_spac;
+	char	*trimmed_map;
+	int		i;
+
+	i = parsing_str->nb_line_map - 1;
+	while (++i <= (int)parsing_str->nb_endline_map)
+	{
+		trimmed_map = ft_strtrim(parsing_str->map[i], MAP_STR);
+		printf(" despues de trimear chars si long 0 |%s| y su longitud %zu\n",trimmed_map, ft_strlen(trimmed_map));
+		if (ft_strlen(trimmed_map) != 1)
+		{
+			free(trimmed_map);
+			return(print_error(ERR_MAP1_MES, ERR_MAP1));
+		}
+		free(trimmed_map);
+	}
+	
+	return (EXIT_SUCCESS);
+}
+
+/**
+ * @brief 
+ * Encuentra la primera línea del map. No verifica consistencia
+ * @param parsing_str 
+ * @return int valor de comienzo
+ */
 
 int		find_init(t_pars* parsing_str)
 {
@@ -35,70 +115,30 @@ int		find_init(t_pars* parsing_str)
 		}
 		free(trimmed_spac);
 	}
-	return(0);
+	return(EXIT_SUCCESS);
 }
 
-/*
-	vamos a l aprimera linea donde aparezca el mapa. A partir de ahí , verificamos que los caracteres sean los correctso 
-	que este cerrado por 1. que solo haya un jugador
-*/
-int		check_map(t_pars* parsing_str) //is_map_ok : podemos llamar a al afuncion
+/**
+ * @brief 
+ * Encuentra la última línea del map.  No verifica consistencia
+ * @param parsing_str 
+ * @return int valor del final
+ */
+
+int		find_end(t_pars* parsing_str)
 {
-
-	parsing_str->nb_line_map = find_init(parsing_str); //podría guardar este parametro en la estructura?
-	//printf(" linea del mapa en check_map: %i, %s", init, parsing_str->map[init]);
-	if (is_map_consistent(parsing_str))
+	int i;
+	char *trimmed_spac;
+	int end;
+	
+	end = 0;
+	i = parsing_str->nb_line_map -1;
+	while (parsing_str->map[++i])
 	{
-		printf("el mapa está jodio. Borrar este mensaje");
-		return (EXIT_FAILURE);
+		trimmed_spac = ft_strtrim(parsing_str->map[i], SPACE_STR);
+		if (ft_strlen(trimmed_spac)) //si no es espacios entra
+			end++;
+		free(trimmed_spac);
 	}
-	return (EXIT_SUCCESS);
+	return(end + parsing_str->nb_line_map - 1);
 }
-
-int		is_map_consistent(t_pars* parsing_str)
-{
-	if (map_char(parsing_str))
-	{
-		return (print_error(ERR_MAP1_MES, ERR_MAP1));
-	}
-	if (map_closed(parsing_str))
-	{
-		return (print_error(ERR_MAP2_MES, ERR_MAP2));
-	}
-	return (EXIT_FAILURE);
-}
-
-/*
-	Seguir por aquí mñana martes
-*/
-int		map_char(t_pars* parsing_str)
-{
-	return (EXIT_FAILURE);
-}
-
-// int	check_lines2(t_pars* parsing_str)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	char *s_trimmed;
-// 	char **s_splited_cleaned;
-// 	while (parsing_str->map[++i])
-// 	{
-// 		s_trimmed = ft_strtrim(parsing_str->map[i], SPACE_STR);
-// 		if ( ft_strlen(s_trimmed)) //en caso contrario hay que hacer free?? no hay nada en la linea
-// 		{
-// 			s_splited_cleaned =  ft_split(s_trimmed, SPACE);
-// 			if (check_arguments(parsing_str, s_splited_cleaned))
-// 			{
-// 				free_split(&s_splited_cleaned);
-// 				printf("Parametros de colores o texturas jodido. borra este mensaje y dejar solo free y return. Mesnaje de erro serñaprevio\n");
-// 				return (1);
-// 			}
-// 			free_split(&s_splited_cleaned);
-// 		}
-// 		free(s_trimmed);
-// 		s_trimmed = NULL;
-// 	}
-// 	return (0);
-// }

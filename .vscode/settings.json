@@ -24,6 +24,7 @@
 		"get_next_line.h": "c",
 		"screen.h": "c",
 		"random": "c",
-		"array": "c"
+		"array": "c",
+		"ios": "c"
 	}
 }
