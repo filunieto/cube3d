@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:00 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/15 19:44:18 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/21 21:26:39 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ void	draw_column_down(t_map *map, t_player *player, t_line *line, int *aux);
 
 //Function to move player in the direction of direction vector
 void player_advance(t_map *map, t_player *player, int direction);
+
+//Function to advance to the sides with 'A' or 'D', left == 1 goes to left
+//left == -1 goes to right
+void	player_advance_lateral(t_map *map, t_player *player, int left);
 
 
 #endif

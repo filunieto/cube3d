@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 22:18:24 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/21 20:05:47 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/21 21:27:30 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,16 @@ void	key_advance_and_back_aux(void *param)
 {
 	t_game *game = (t_game*)param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
-	{
 		player_advance(game->map, game->player, 1);
-		paint(game);
-
-	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
-	{
 		player_advance(game->map, game->player, -1);
-		paint(game);
-	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
-	{
 		rotate(game->player, -1);
-		paint(game);
-	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
-	{
 		rotate(game->player, 1);
-		paint(game);
-	}
+	if(mlx_is_key_down(game->mlx, MLX_KEY_A))
+		player_advance_lateral(game->map, game->player, 1);
+	if(mlx_is_key_down(game->mlx, MLX_KEY_D	))
+		player_advance_lateral(game->map, game->player, -1);
+	paint(game);
 }
