@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:30:57 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/21 19:18:13 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:16:46 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define CHMOD		0644
 # define SPACE_STR		" \t\n"
-# define SPACE		' '
+
 # define NORTH_STR		"NO"
 # define SOUTH_STR		"SO"
 # define EAST_STR		"EA"
@@ -28,10 +28,15 @@
 # define NO_PLAYER_STR		" 01\n"
 # define ONES_STR		" 1\n"
 
-# define ONE		'1'
+# define ONE			'1'
+# define PLAYER_N		'N'
+# define PLAYER_S		'S'
+# define PLAYER_E		'E'
+# define PLAYER_W		'W'
 
 # define CARDINALS		"NSEW"
 # define TEXTURE		"HG"
+
 # define NORTH		1
 # define SOUTH		2
 # define EAST		3
@@ -41,6 +46,8 @@
 # define MAP		7
 
 # define COMMA	','
+# define PT	'.'
+# define SPACE	' '
 
 // enum	code_error
 // {
@@ -79,7 +86,8 @@ typedef struct s_pars
 	size_t	nb_endline_map;
 	size_t	nb_line;
 	size_t	max_leng_map;
-	//t_textur	cardinal[4]; No me hace falta
+	char	player;
+	char 	**map_normal;
 	t_textur	north;
 	t_textur	south;
 	t_textur	east;
@@ -121,6 +129,15 @@ void free_split (char ***s_splitted);
 int	ft_strcmp(char *s1, char *s2);
 
 int		one_player(t_pars* parsing_str);
+
+int		normalize_map(t_pars* parsing_str);
+int		copy_map(t_pars* parsing_str);
+int		copy_char2(t_pars* parsing_str, char *map, char *map_norml); //borrar
+int		copy_char(t_pars* parsing_str, int line_run);
+
+
+
+
 
 
 

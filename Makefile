@@ -38,6 +38,7 @@ SRCS = $(SRC)/main.c $(SRC)/Screen.c $(SRC)/shapes/Line.c \
 		src/parse/check_map.c			\
 		src/parse/map_consistence.c		\
 		src/parse/map_one_player.c		\
+		src/parse/normalice_map.c		\
 
 OBJS = $(SRCS:.c=.o)
 NAME = cub3d
@@ -109,7 +110,7 @@ run :
 
 test1: all
 	@echo "$(MAGEN_G)📝 test 1 con un archivo como input$(MAGEN_F) $(RESET)"
-	./$(NAME) ./src/scenarios/map1.cub
+	./$(NAME) ./src/scenarios/cubedwrong.cub
 
 test2: all
 	@echo "$(MAGEN_G)📝 test 2 $(MAGEN_F) $(RESET)"

@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:25:08 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/21 19:43:51 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:34:33 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 #define ERR_MAP6_MES	"right line from map not closed\n"
 #define ERR_MAP8_MES	"no player\n"
 #define ERR_MAP9_MES	"more than 1 player\n"
+#define ERR_MAP10_MES	"map not at the end\n"
+#define ERR_MALLO_MES	"error malloc\n"
 
 #define ERR_OPEN_FD_MES		"Probelma de apertuda de archivo antes de verificaciones\n"
 #define ERR_INP_MAP_MES		"repetdio punto cardinal o falta o el mapa no tiene simbolos correctos\n"
@@ -68,6 +70,8 @@ enum	code_error //podemos usarlo?
 	ERR_MAP7,
 	ERR_MAP8,
 	ERR_MAP9,
+	ERR_MAP10,
+	ERR_MALLO,
 	ERR_OPEN_FD,
 	DRAFT,
 

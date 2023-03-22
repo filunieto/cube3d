@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:16:23 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/21 15:01:49 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:14:56 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	read_file(t_pars* parsing_str)
 		}
 		free(parsing_str->line);
 	}
-	parsing_str->map = calloc(sizeof (*parsing_str->map), parsing_str->nb_line + 1); //libft
+	parsing_str->map = ft_calloc(sizeof (*parsing_str->map), parsing_str->nb_line + 1); //libft
 	if (!parsing_str->map)
 		return (1); //habría que liberar algo más? (poner un int de output)
 	close(parsing_str->file_inp);
@@ -90,7 +90,6 @@ int	read_file(t_pars* parsing_str)
 		return (EXIT_FAILURE);
 	}
 	printf("lineas previas al map coorectas: miramos el map\n");
-
 	if (check_map(parsing_str))
 	{
 		//hacer free del parsing_str->map

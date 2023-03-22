@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:25:05 by fnieves           #+#    #+#             */
-/*   Updated: 2023/03/21 20:04:59 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:31:41 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,19 @@ int		check_map(t_pars* parsing_str) //is_map_ok : podemos llamar a al afuncion
 	parsing_str->nb_line_map = find_init(parsing_str); //podría guardar este parametro en la estructura?
 	parsing_str->nb_endline_map = find_end(parsing_str);
 	parsing_str->max_leng_map = find_max_line(parsing_str);
+	// printf despues de yoga imprimir los valores de mapa para normalizacion para diferentes mapas
+	printf("linea inicio: %zu , liena final %zu, max leng %zu\n",parsing_str->nb_line_map, parsing_str->nb_endline_map ,parsing_str->max_leng_map );
+	printf(" par amalloquear mapa mas nullterminated %zu\n",parsing_str->nb_endline_map - parsing_str->nb_line_map + 2 ); 
 	if (parsing_str->nb_endline_map - parsing_str->nb_line_map < 2)
 		return(print_error(ERR_MAP0_MES, ERR_MAP0));
+	if (parsing_str->nb_line_map < 6)
+		return(print_error(ERR_MAP10_MES, ERR_MAP10));
 	if (is_map_consistent(parsing_str))
 	{
-		printf("el mapa está jodio. Borrar este mensaje despues");
+		//printf("el mapa está jodio. Borrar este mensaje despues");
 		return (EXIT_FAILURE);
 	}
-	printf("En check map , map consisten d emomento\n");
+	//printf("En check map , map consisten d emomento.\n");
 	return (EXIT_SUCCESS);
 }
 
@@ -49,7 +54,7 @@ int		is_map_consistent(t_pars* parsing_str)
 
 /**
  * @brief 
- * Encuentra la primera línea del map. No verifica consistencia
+ * Encuentra la primera línea del map. No verifica consistencia, contando desde 0
  * @param parsing_str 
  * @return int valor de comienzo
  */
@@ -57,9 +62,9 @@ int		is_map_consistent(t_pars* parsing_str)
 int		find_init(t_pars* parsing_str)
 {
 	int i;
-	
 	char *trimmed_spac;
 	char *trimmed_map;
+
 	i = -1;
 	while (parsing_str->map[++i])
 	{
@@ -82,7 +87,7 @@ int		find_init(t_pars* parsing_str)
 
 /**
  * @brief 
- * Encuentra la última línea del map.  No verifica consistencia
+ * Encuentra la última línea del map. No verifica consistencia, contando desde 0
  * @param parsing_str 
  * @return int valor del final
  */
@@ -92,20 +97,32 @@ int		find_end(t_pars* parsing_str)
 	int i;
 	char *trimmed_spac;
 	int end;
+	int leng_line;
 	
-	end = 0;
-	i = parsing_str->nb_line_map -1;
-	while (parsing_str->map[++i])
+	end = parsing_str->nb_line - 2;
+	i = 0;
+	while (end >= (int)parsing_str->nb_line_map)
 	{
-		trimmed_spac = ft_strtrim(parsing_str->map[i], SPACE_STR);
-		if (ft_strlen(trimmed_spac)) //si no es espacios entra
-			end++;
+		trimmed_spac = ft_strtrim(parsing_str->map[end], SPACE_STR);
+		leng_line = ft_strlen(trimmed_spac);
 		free(trimmed_spac);
+		if (leng_line == 0)
+			i++;
+		else 
+			break;
+		end--;
 	}
-	return(end + parsing_str->nb_line_map - 1);
+	return(end);
 }
 
-int		find_max_line(t_pars* parsing_str) // de vuelve la long sin  incluir   \n
+/**
+ * @brief 
+ * Devuelve la longitud máxima del map para calcular la 
+ * matriz normalizada. Nop inclouye el salto de linea
+ * @param parsing_str 
+ * @return int 
+ */
+int		find_max_line(t_pars* parsing_str)
 {
 	size_t	max_leng_map;
 	size_t	leng_line;
@@ -113,7 +130,7 @@ int		find_max_line(t_pars* parsing_str) // de vuelve la long sin  incluir   \n
 
 	max_leng_map = 0;
 	i = parsing_str->nb_line_map;
-	while (i < (int)parsing_str->nb_endline_map)
+	while (i <= (int)parsing_str->nb_endline_map)
 	{
 		leng_line = ft_strlen(parsing_str->map[i]);
 		if (leng_line > max_leng_map)

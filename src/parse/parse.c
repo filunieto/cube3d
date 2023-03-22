@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:36:58 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/21 19:16:24 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:30:44 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,7 @@ void	init_strc_pars(t_pars* parsing_str)
 	parsing_str->nb_endline_map = 0;
 	parsing_str->max_leng_map = 0;
 
-	
 
-	// while (++i <= 4) // NO me quedo con esto de los cardinales
-	// {
-	// 	parsing_str->cardinal[i].name = 0;
-	// 	parsing_str->cardinal[i].path = NULL;
-	// }
 	parsing_str->north.name = 0;
 	parsing_str->south.name = 0;
 	parsing_str->east.name = 0;
@@ -59,6 +53,8 @@ void	init_strc_pars(t_pars* parsing_str)
 
 	parsing_str->arg_ok = 0;
 	parsing_str->nb_line_map = 0;
+	parsing_str->player = 0;
+	parsing_str->map_normal = NULL;
 }
 
 
@@ -99,8 +95,11 @@ En los errores usar la misma funcion de salida
 
 /*
 	Probelmas. apertura de path a textura
+	Verificar extension
 	Hablar on andres para integrar la estructura 
-	Buscar función  libft con calloc (ft_split)
+	Error cuando no hay mapa o el mapa está al principiop 
+	REpasar. los free y leaks
+
 */
 
 char **ft_parse(char *file_mup)
@@ -130,5 +129,4 @@ char **ft_parse(char *file_mup)
 	//aqui al final puedo pasar todos los parametros de la estructura pars a la  estructura ppal
 	// entre ellos estructuras
 	return (NULL);
-
 }
