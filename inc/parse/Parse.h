@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:30:57 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/22 18:16:46 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/22 18:39:06 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@
 # define COMMA	','
 # define PT	'.'
 # define SPACE	' '
+# define EOL	'\n'
 
 // enum	code_error
 // {
@@ -133,7 +134,7 @@ int		one_player(t_pars* parsing_str);
 int		normalize_map(t_pars* parsing_str);
 int		copy_map(t_pars* parsing_str);
 int		copy_char2(t_pars* parsing_str, char *map, char *map_norml); //borrar
-int		copy_char(t_pars* parsing_str, int line_run);
+void	copy_char(t_pars* parsing_str, int line_run);
 
 
 

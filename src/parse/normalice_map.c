@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:43:48 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/22 18:23:30 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/22 22:23:55 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,44 +44,52 @@ int	copy_map(t_pars* parsing_str)
 {
 	int line_run;
 	int last_lin;
-	//int	i;
 
 	line_run = parsing_str->nb_line_map;
 	last_lin = parsing_str->nb_endline_map;
-	//i = -1;
-	while(line_run < (int)parsing_str->nb_endline_map)
+	while(line_run <= (int)parsing_str->nb_endline_map)
 	{
-	
-		//copy_char(parsing_str, parsing_str->map[line_run], parsing_str->map_normal[line_run - parsing_str->nb_line_map]);
 		copy_char(parsing_str, line_run);
 		line_run++;
 	}
-	//para cada liena desde el comienzo del map. Copiar char por char y si no encuentra nada o un espacio pone un .
 	return (EXIT_SUCCESS);
 }
 
-int	copy_char(t_pars* parsing_str, int line_run) //esta funcion puedes ser un void
+//Esta fincion está dando probelmas cuando hay espacios o tabuladores encima dle map. Verificar la primer alínea. Ni zorra que pasa
+void	copy_char(t_pars* parsing_str, int line_run) //esta funcion puedes ser un void
 {
-	int i;
+	size_t i;
 	char *map;
 	char *map_norml;
 	
 	map = parsing_str->map[line_run];
 	map_norml = parsing_str->map_normal[line_run - parsing_str->nb_line_map];
 	i = -1;
-	printf("Principio de copy char: entra la linea %i. |%s|\n, ",line_run, map);
-	while (++i < (int)parsing_str->max_leng_map)
+	//printf("Principio de copy char: entra la linea %i. |%s|\n, ",line_run + 1, map);
+	//printf("\nPrincipio de copy char: entra la linea %i.len= %zu,  |%s|, \n, ",line_run + 1,ft_strlen(map),  map );	
+	//printf("\nPrincipio de copy char: entra la linea %i.len= %zu,  |%s|, \n , Calloc |%s|\n",line_run + 1,ft_strlen(map),  map , map_norml);
+	while (++i < ft_strlen(map) - 1) //no consideramos 
 	{
-		
-		if (map[i] == SPACE || !map[i])
-		{
+		//printf("map[i] %c, map_norml[i] \n%c" ,map[i] , map_norml[i]);
+		//printf ("indice i %zu en primer  while\n", i);
+		if (map[i] == SPACE || map[i] == EOL)
 			map_norml[i] = PT;
-		}
+		else if (map[i] == '1' || map[i] == '0' || map[i] == parsing_str->player)
+			map_norml[i] =  map[i];
 		else
-		{
-			map_norml[i] = map[i];
-		}
+			printf("caracter raro residual %c\n", map[i]);
+	
 	}
-	printf(" final en copy char: linea del mapa_nomrliazado %lu. |%s|\n, ",line_run - parsing_str->nb_line_map, map_norml);
-	return (EXIT_SUCCESS);
+	//printf("len= %zu y longitud maxima mapa %zu\n", ft_strlen(map), parsing_str->max_leng_map);
+	//printf("Iterador antes %zu\n",i);
+	while (i < parsing_str->max_leng_map)
+	{
+		//printf ("indice i %zu en segundo  while\n", i);
+		map_norml[i] = PT;
+		i++;
+	}
+	//printf(" final en copy char: linea del mapa_nomrliazado %lu. |%s|\n, ",line_run - parsing_str->nb_line_map, map_norml);
+	//printf("longitud %zu,", ft_strlen(map_norml));
+	//printf("Iterador despues  %zu\n",i);
+	printf("%s\n", map_norml);
 }
