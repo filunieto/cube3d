@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:29:19 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/22 17:44:30 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/22 22:52:42 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,25 @@
 // }
 
 
+static void draw_normalize(t_pars* parsing_str)
+{
+	int i = 0;
+
+	while (parsing_str->map_normal[i])
+	{
+		printf("%s\n",parsing_str->map_normal[i] );
+		i++;
+	}
+}
+
 //una vez aquí: Solo hay un jugador y todos los caracteres son correctos en el mapa
 int		map_closed(t_pars* parsing_str) //hay que verificar que denajo de un 1 siempre haya otro 1 
 {
-	if(normalize_map(parsing_str))
+	if (normalize_map(parsing_str))
 		return (EXIT_FAILURE);
-		 //seguir por aqui
+	//draw_normalize(parsing_str);
+	if (char_per_char_map(parsing_str))
+		return (EXIT_FAILURE);
 	// if (map_upper_closed(parsing_str))
 	// 	return (ERR_MAP3);
 	return (EXIT_SUCCESS);

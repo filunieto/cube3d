@@ -7,8 +7,8 @@ WE      textures/star2.xpm
 SO      textures/star4.xpm
 EA      textures/star3.xpm
 
-
 		
+
    111
    111  1111111111111111111111111
    101  1000000000110000000000001
@@ -27,6 +27,8 @@ EA      textures/star3.xpm
                                     111001
                                     100001
                                     111111
+    
+
 
 
 

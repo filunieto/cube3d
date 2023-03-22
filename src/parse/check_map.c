@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:25:05 by fnieves           #+#    #+#             */
-/*   Updated: 2023/03/22 17:31:41 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/22 22:41:23 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int		check_map(t_pars* parsing_str) //is_map_ok : podemos llamar a al afuncion
 	parsing_str->nb_endline_map = find_end(parsing_str);
 	parsing_str->max_leng_map = find_max_line(parsing_str);
 	// printf despues de yoga imprimir los valores de mapa para normalizacion para diferentes mapas
-	printf("linea inicio: %zu , liena final %zu, max leng %zu\n",parsing_str->nb_line_map, parsing_str->nb_endline_map ,parsing_str->max_leng_map );
-	printf(" par amalloquear mapa mas nullterminated %zu\n",parsing_str->nb_endline_map - parsing_str->nb_line_map + 2 ); 
+	//printf("linea inicio: %zu , liena final %zu, max leng %zu\n",parsing_str->nb_line_map, parsing_str->nb_endline_map ,parsing_str->max_leng_map );
+	//printf(" par amalloquear mapa mas nullterminated %zu\n",parsing_str->nb_endline_map - parsing_str->nb_line_map + 2 ); 
 	if (parsing_str->nb_endline_map - parsing_str->nb_line_map < 2)
 		return(print_error(ERR_MAP0_MES, ERR_MAP0));
 	if (parsing_str->nb_line_map < 6)

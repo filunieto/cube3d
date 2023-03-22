@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:43:48 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/22 22:23:55 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/22 23:12:15 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,42 @@ void	copy_char(t_pars* parsing_str, int line_run) //esta funcion puedes ser un v
 	//printf(" final en copy char: linea del mapa_nomrliazado %lu. |%s|\n, ",line_run - parsing_str->nb_line_map, map_norml);
 	//printf("longitud %zu,", ft_strlen(map_norml));
 	//printf("Iterador despues  %zu\n",i);
-	printf("%s\n", map_norml);
+	//printf("%s\n", map_norml);
+}
+
+
+int	char_per_char_map(t_pars* parsing_str)
+{
+	int i;
+	int j;
+	char c;
+
+	i = -1;
+	while (parsing_str->map_normal[++i])
+	{
+		j = -1;
+		while (parsing_str->map_normal[i][++j])
+		{
+			//c = parsing_str->map_normal[i][j];
+			if (parsing_str->map_normal[i][j] == '0') //creo que hay que añadir el player, además dle 0
+			{
+				if (check_around_0(parsing_str, i , j)) //si encuentra un space alrededor que devuelva int
+				{
+					return(EXIT_FAILURE);
+				}
+			}
+		}
+	}
+	return (EXIT_SUCCESS);
+}
+
+int	check_around_0(t_pars* parsing_str, int i , int j)
+{
+	
+	if (i = 0) //si esta en primera y ultima  linea , que salga con error
+		return(print_error(ERR_MAP3_MES, ERR_MAP3));
+	// if (i = parsing_str->nb_line_map - poner la última linea) //si esta en primera y ultima  linea , que salga con error
+	// 	return(print_error(ERR_MAP4_MES, ERR_MAP4));
+	if (parsing_str->map_normal[i - 1][j] == ' ' || parsing_str->map_normal[i - 1][j] == ' ' ||) //seguir por aqui jueves
+	return (EXIT_SUCCESS);
 }

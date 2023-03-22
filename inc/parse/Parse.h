@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:30:57 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/22 18:39:06 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/22 23:04:33 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,9 @@ int		normalize_map(t_pars* parsing_str);
 int		copy_map(t_pars* parsing_str);
 int		copy_char2(t_pars* parsing_str, char *map, char *map_norml); //borrar
 void	copy_char(t_pars* parsing_str, int line_run);
+int	char_per_char_map(t_pars* parsing_str);
+int	check_around_0(t_pars* parsing_str, int i , int j);
+
 
 
 
