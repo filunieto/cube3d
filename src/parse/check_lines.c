@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_lines.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:23:43 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/20 23:28:33 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/23 13:57:36 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/Screen.h"
-
-
-
 
 
 /**
@@ -21,13 +18,9 @@
  * 
  * @param parsing_str 
  * @return int 
- REcuerda que el segundo elemento acaba en \n
-Elementos de Línea i 1 , j 0, finalkes spliteaod y lipios:----|SO|---
-Elementos de Línea i 1 , j 1, finalkes spliteaod y lipios:----|./ruta_a_la_textura_sur
-|---
  */
 
-int	check_lines(t_pars* parsing_str)
+int	check_lines(t_pars* parsing_str) //seguir por aqui despoues de comer. Preguntar por l aapertura de l atextura
 {
 	int	i;
 

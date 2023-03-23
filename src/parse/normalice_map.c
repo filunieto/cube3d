@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:43:48 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/23 12:26:47 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/23 12:42:06 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,10 @@ int	char_per_char_map(t_pars* parsing_str)
 		j = -1;
 		while (parsing_str->map_normal[i][++j])
 		{
-			//c = parsing_str->map_normal[i][j];
 			if (parsing_str->map_normal[i][j] == '0' || parsing_str->map_normal[i][j] == parsing_str->player) //creo que hay que añadir el player, además dle 0
 			{
 				if (check_around(parsing_str, i , j)) //si encuentra un space alrededor que devuelva int
-				{
 					return(EXIT_FAILURE);
-				}
 			}
 		}
 	}
@@ -124,26 +121,16 @@ int	char_per_char_map(t_pars* parsing_str)
 // parsing_str->nb_line_map, parsing_str->nb_endline_map ,parsing_str->max_leng_map );
 int	check_around(t_pars* parsing_str, int i , int j)
 {
-	
-	if (i == 0) //si esta en primera  linea , que salga con error
+	if (i == 0)
 		return(print_error(ERR_MAP3_MES, ERR_MAP3));
 	if (i == (int)(parsing_str->nb_endline_map - parsing_str->nb_line_map))
-		{
-		printf ("si entra en ultims fila un 0 %i \n", i);
 		return(print_error(ERR_MAP4_MES, ERR_MAP4));
-	} //si esta  ultima  linea , que salga con error
 	if (j == 0)
 		return(print_error(ERR_MAP5_MES, ERR_MAP5)); 
-	if (j == (int)parsing_str->max_leng_map)
-	{	
-		printf ("si entra en ultims columna %i ", j);
+	if (j == (int)parsing_str->max_leng_map - 1)
 		return(print_error(ERR_MAP6_MES, ERR_MAP6));
-	}
 	if (parsing_str->map_normal[i - 1][j] == PT || parsing_str->map_normal[i][j - 1] == PT || 
 	parsing_str->map_normal[i][j + 1] == PT || parsing_str->map_normal[i + 1][j] == PT)
-	{
 		return(print_error(ERR_MAP2_MES, ERR_MAP2));
-	} //seguir por aqui jueves
 	return (EXIT_SUCCESS);
-
 }

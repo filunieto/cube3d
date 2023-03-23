@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:30:57 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/23 12:11:52 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:46:01 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,10 @@ typedef struct s_pars
 
 
 
-char	**ft_parse(char *file_mup);
+int	ft_parse(char *file_mup);
 void	init_strc_pars(t_pars* parsing_str);
 int		is_ext_cub(t_pars* parsing_str);
-int		read_file(t_pars* parsing_str); //seria necesario NULL
+int		lets_beggin_parse(t_pars* parsing_str); //seria necesario NULL
 int		check_lines(t_pars* parsing_str);
 int		check_map(t_pars* parsing_str);
 int		check_arguments(t_pars* parsing_str, char **s_splited_cleaned);
@@ -137,6 +137,7 @@ int		copy_char2(t_pars* parsing_str, char *map, char *map_norml); //borrar
 void	copy_char(t_pars* parsing_str, int line_run);
 int	char_per_char_map(t_pars* parsing_str);
 int	check_around(t_pars* parsing_str, int i , int j);
+int	read_copy_file(t_pars* parsing_str);
 
 
 
