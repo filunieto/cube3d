@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_lines.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:23:43 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/23 13:57:36 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/23 16:06:27 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 int	check_lines(t_pars* parsing_str) //seguir por aqui despoues de comer. Preguntar por l aapertura de l atextura
 {
 	int	i;
-
-	i = -1;
 	char *s_trimmed;
 	char **s_splited_cleaned;
+	
+	i = -1;
 	while (parsing_str->map[++i])
 	{
 		s_trimmed = ft_strtrim(parsing_str->map[i], SPACE_STR);
@@ -35,23 +35,24 @@ int	check_lines(t_pars* parsing_str) //seguir por aqui despoues de comer. Pregun
 			s_splited_cleaned =  ft_split(s_trimmed, SPACE);
 			if (check_arguments(parsing_str, s_splited_cleaned))
 			{
+				free(s_trimmed);
 				free_split(&s_splited_cleaned);
-				printf("Parametros de colores o texturas jodido. borra este mensaje y dejar solo free y return. Mesnaje de erro serñaprevio\n");
-				return (1);
+				//printf("Parametros de colores o texturas jodido. borra este mensaje y dejar solo free y return. Mesnaje de erro serñaprevio\n");
+				return (EXIT_FAILURE);
 			}
 			free_split(&s_splited_cleaned);
 		}
 		free(s_trimmed);
-		s_trimmed = NULL;
+		//s_trimmed = NULL;
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 /*
 	chequear la ruta tambien , si existe. Que a est funcion no llegue una linea vacia. Verificar antes
 	crear u parametro all_arg ok (pra decir que los valores no están repetidos, las rutas se abren y los colores son correctos)
 */
-int	check_arguments(t_pars* parsing_str, char **s_splited_cleaned)
+int	check_arguments(t_pars* parsing_str, char **s_splited_cleaned) //seguir aqui despues cafe
 {
 	int id;
 
@@ -89,9 +90,9 @@ int	check_arguments(t_pars* parsing_str, char **s_splited_cleaned)
 
 int	check_identifier(t_pars* parsing_str, char *line_splitd)
 {
-	if (!parsing_str->north.name && !ft_strcmp(line_splitd, NORTH_STR) ) //if (!parsing_str->cardinal[1].name)
+	if (!parsing_str->north.name && !ft_strcmp(line_splitd, NORTH_STR) )
 	{
-		return (parsing_str->north.name = NORTH); //parsing_str->cardinal[1].name = NORTH;
+		return (parsing_str->north.name = NORTH);
 	}
 	else if (!parsing_str->south.name &&  !ft_strcmp(line_splitd, SOUTH_STR))
 		return (parsing_str->south.name = SOUTH);
