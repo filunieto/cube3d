@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:25:05 by fnieves           #+#    #+#             */
-/*   Updated: 2023/03/22 22:41:23 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/23 12:15:31 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		check_map(t_pars* parsing_str) //is_map_ok : podemos llamar a al afuncion
 	parsing_str->nb_endline_map = find_end(parsing_str);
 	parsing_str->max_leng_map = find_max_line(parsing_str);
 	// printf despues de yoga imprimir los valores de mapa para normalizacion para diferentes mapas
-	//printf("linea inicio: %zu , liena final %zu, max leng %zu\n",parsing_str->nb_line_map, parsing_str->nb_endline_map ,parsing_str->max_leng_map );
+	printf("linea inicio: %zu , liena final %zu, max leng %zu\n",parsing_str->nb_line_map, parsing_str->nb_endline_map ,parsing_str->max_leng_map );
 	//printf(" par amalloquear mapa mas nullterminated %zu\n",parsing_str->nb_endline_map - parsing_str->nb_line_map + 2 ); 
 	if (parsing_str->nb_endline_map - parsing_str->nb_line_map < 2)
 		return(print_error(ERR_MAP0_MES, ERR_MAP0));
@@ -32,10 +32,9 @@ int		check_map(t_pars* parsing_str) //is_map_ok : podemos llamar a al afuncion
 		return(print_error(ERR_MAP10_MES, ERR_MAP10));
 	if (is_map_consistent(parsing_str))
 	{
-		//printf("el mapa está jodio. Borrar este mensaje despues");
 		return (EXIT_FAILURE);
 	}
-	//printf("En check map , map consisten d emomento.\n");
+	printf("En check map , map consisten d emomento y cerrado por 1.\n");
 	return (EXIT_SUCCESS);
 }
 

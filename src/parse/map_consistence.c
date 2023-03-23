@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:29:19 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/22 22:52:42 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/23 12:15:11 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 // }
 
 
-static void draw_normalize(t_pars* parsing_str)
+ void draw_normalize(t_pars* parsing_str)
 {
 	int i = 0;
 
@@ -63,8 +63,6 @@ int		map_closed(t_pars* parsing_str) //hay que verificar que denajo de un 1 siem
 	//draw_normalize(parsing_str);
 	if (char_per_char_map(parsing_str))
 		return (EXIT_FAILURE);
-	// if (map_upper_closed(parsing_str))
-	// 	return (ERR_MAP3);
 	return (EXIT_SUCCESS);
 }
 

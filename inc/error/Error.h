@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:25:08 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/22 16:34:33 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/23 12:10:46 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 #define ERR_TEXT_PATH_MES	"impossible to open the path to texture\n"
 #define ERR_MAP0_MES	"Map with less than 3 lines. there is no possibility to place the player\n"
 #define ERR_MAP1_MES	"chars in map differents from 0,1, W, S, E, N\n"
-#define ERR_MAP2_MES	"map not surrounded by 1\n"
+#define ERR_MAP2_MES	"map not closed by 1\n"
 #define ERR_MAP3_MES	"upper line from map not closed\n"
 #define ERR_MAP4_MES	"bottom line from map not closed\n"
 #define ERR_MAP5_MES	"left line from map not closed\n"
