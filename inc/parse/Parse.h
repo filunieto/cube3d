@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:30:57 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/23 13:46:01 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/23 23:55:04 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define MAP_STR		" 01NSEW\n"
 # define NO_PLAYER_STR		" 01\n"
 # define ONES_STR		" 1\n"
+
 
 # define ONE			'1'
 # define PLAYER_N		'N'
@@ -95,6 +96,8 @@ typedef struct s_pars
 	t_textur	west;
 	t_colour	heaven; //inicializar los char a 0
 	t_colour	ground;
+	int			arra_arg[6];
+	
 }	t_pars;
 
 

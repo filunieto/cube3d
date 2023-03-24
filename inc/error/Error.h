@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:25:08 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/23 13:01:49 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/24 00:07:10 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@
 #define ERR_COLOR_INP3_MES	"RGB values not integers or not in range [0-255] \n"
 #define ERR_COLOR_INP4_MES	"RGB values are equal for colours of heaven and ground \n"
 #define ERR_TEXT_PATH_MES	"impossible to open the path to texture\n"
+#define ERR_REPET_NO	"cardinal North repited\n"
+#define ERR_REPET_SO	"cardinal South repited\n"
+#define ERR_REPET_EA	"cardinal East repited\n"
+#define ERR_REPET_WE	"cardinal West repited\n"
+#define ERR_REPET_F		"heaven argument repited\n"
+#define ERR_REPET_G		"ground argument repited\n"
+
 #define ERR_MAP0_MES	"map with less than 3 lines. there is no possibility to place the player\n"
 #define ERR_MAP1_MES	"chars in map differents from 0,1, W, S, E, N\n"
 #define ERR_MAP2_MES	"map not closed by 1\n"

@@ -2,10 +2,10 @@ F    20,20,20
 C    5,5,4
 
 
-NO      textures/star1.xpm
-WE      textures/star2.xpm
-SO      textures/star4.xpm
-EA      textures/star3.xpm
+NO      ./src/textures/wall1.xpm
+WE      ./src/textures/wall2.xpm
+SO      ./src/textures/wall3.xpm
+EA      ./src/textures/wall4.xpm
 
 		
 

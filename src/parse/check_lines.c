@@ -3,64 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   check_lines.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:23:43 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/23 16:06:27 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/24 00:10:15 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/Screen.h"
 
 
-/**
- * @brief 
- * 
- * @param parsing_str 
- * @return int 
- */
 
-int	check_lines(t_pars* parsing_str) //seguir por aqui despoues de comer. Preguntar por l aapertura de l atextura
-{
-	int	i;
-	char *s_trimmed;
-	char **s_splited_cleaned;
-	
-	i = -1;
-	while (parsing_str->map[++i])
-	{
-		s_trimmed = ft_strtrim(parsing_str->map[i], SPACE_STR);
-		if ( ft_strlen(s_trimmed)) //en caso contrario hay que hacer free?? no hay nada en la linea
-		{
-			s_splited_cleaned =  ft_split(s_trimmed, SPACE);
-			if (check_arguments(parsing_str, s_splited_cleaned))
-			{
-				free(s_trimmed);
-				free_split(&s_splited_cleaned);
-				//printf("Parametros de colores o texturas jodido. borra este mensaje y dejar solo free y return. Mesnaje de erro serñaprevio\n");
-				return (EXIT_FAILURE);
-			}
-			free_split(&s_splited_cleaned);
-		}
-		free(s_trimmed);
-		//s_trimmed = NULL;
-	}
-	return (EXIT_SUCCESS);
-}
-
-/*
-	chequear la ruta tambien , si existe. Que a est funcion no llegue una linea vacia. Verificar antes
-	crear u parametro all_arg ok (pra decir que los valores no están repetidos, las rutas se abren y los colores son correctos)
-*/
 int	check_arguments(t_pars* parsing_str, char **s_splited_cleaned) //seguir aqui despues cafe
 {
 	int id;
 
 	id = check_identifier(parsing_str, s_splited_cleaned[0]);
 	if (id == 0)
-	{
-		return(print_error(ERR_INP_MAP_MES , ERR_INP_MAP));
-	}
+		return(EXIT_FAILURE);
 	if (id >= NORTH &&  id <= WEST)
 	{
 		if (check_textur_path(parsing_str, &s_splited_cleaned[1], id)) 
@@ -77,9 +37,7 @@ int	check_arguments(t_pars* parsing_str, char **s_splited_cleaned) //seguir aqui
 		}
 		parsing_str->arg_ok += 1;
 	}
-	//creo qeu no hago nada
-	return (0);
-	
+	return (EXIT_SUCCESS);
 }
 
 /*
@@ -87,12 +45,30 @@ int	check_arguments(t_pars* parsing_str, char **s_splited_cleaned) //seguir aqui
 	Igual puedo dividr la funcion para identificar el error de mnaera más explicita
 	modificar
 */
-
 int	check_identifier(t_pars* parsing_str, char *line_splitd)
 {
-	if (!parsing_str->north.name && !ft_strcmp(line_splitd, NORTH_STR) )
+	int i = 0;
+
+	char	*card_arr[6] = { NORTH_STR, SOUTH_STR, EAST_STR, WEST_STR , HEAVEN_STR , GROUND_STR };
+	char	*error_ar[6] = { ERR_REPET_NO,ERR_REPET_SO, ERR_REPET_EA, ERR_REPET_WE, ERR_REPET_F, ERR_REPET_G};
+	while (i < 6)
 	{
-		return (parsing_str->north.name = NORTH);
+		if (!ft_strcmp(line_splitd, card_arr[i]))
+		{
+			if (!parsing_str->arra_arg[i + 1])
+				return(parsing_str->arra_arg[i + 1] = card_arr[i]);
+			else
+				return(print_error(error_ar[i], 0));
+		}
+		i++;
+	}
+
+	if (!ft_strcmp(line_splitd, NORTH_STR))
+	{
+		if (!parsing_str->north.name )
+			return (parsing_str->north.name = NORTH);
+		else
+			return (print_error(ERR_REPET_NO, 0));
 	}
 	else if (!parsing_str->south.name &&  !ft_strcmp(line_splitd, SOUTH_STR))
 		return (parsing_str->south.name = SOUTH);
@@ -104,33 +80,26 @@ int	check_identifier(t_pars* parsing_str, char *line_splitd)
 		return (parsing_str->heaven.part = HEAVEN);
 	else if (!parsing_str->ground.part &&  !ft_strcmp(line_splitd, GROUND_STR))
 		return (parsing_str->ground.part = GROUND);
-	// pasar esta condicion al otro programa ar au erro mas especifico (ft_strlen(ft_strtrim(line_splitd, MAP_STR)) == 0)
 	else if (parsing_str->arg_ok == 6 &&  (ft_strlen(ft_strtrim(line_splitd, MAP_STR)) == 0)  ) 
 		return (MAP); 
 	else
 		return (0);
 }
 
+/*
+	este file hay que cerrarlo en algun sitio
+*/
 int	check_textur_path(t_pars* parsing_str, char **s_splited_cleaned, int id)
 {
 	int fd;
-	int fd2; //este es de prueba
 
-	if (s_splited_cleaned[1] != NULL) //hay más argumentos de la cuenta NO ./text xxx
+	if (s_splited_cleaned[1] != NULL)
 		return(print_error(ERR_TEXT_INP_MES, ERR_TEXT_INP));
 	fd = open(s_splited_cleaned[0], O_RDONLY, CHMOD);
-	fd2 = open(s_splited_cleaned[0], O_RDONLY);
 	if (fd < 0)
-	{
-		printf("archivo para abrir |%s| y valores f %i y f2 %i. Seguimos aunque hay que revisar\n",s_splited_cleaned[0], fd, fd2 );
-		//return(print_error(ERR_TEXT_PATH_MES, ERR_TEXT_PATH)); //funcion generica de error , que imprima y retorne NULL(todo en una linea)
-	}
+		return(print_error(ERR_TEXT_PATH_MES, ERR_TEXT_PATH));
 	if (id == NORTH)
-	{
-		//recuerda hacer close en algún momento de los archivos
-		//parsing_str->north.path = open(s_splited_cleaned[0], O_RDONLY); //mos quedamos con el archivo en file si es posible 
 		parsing_str->north.file = fd;
-	}
 	else if (id == SOUTH)
 		parsing_str->south.file = fd;
 	else if (id == EAST)
@@ -140,3 +109,34 @@ int	check_textur_path(t_pars* parsing_str, char **s_splited_cleaned, int id)
 	return (EXIT_SUCCESS);
 }
 
+/**
+ * @brief 
+ * 
+ * @param parsing_str 
+ * @return int 
+ */
+int	check_lines(t_pars* parsing_str) //seguir por aqui despoues de comer. Preguntar por l aapertura de l atextura
+{
+	int	i;
+	char *s_trimmed;
+	char **s_splited_cleaned;
+	
+	i = -1;
+	while (parsing_str->map[++i])
+	{
+		s_trimmed = ft_strtrim(parsing_str->map[i], SPACE_STR);
+		if (ft_strlen(s_trimmed)) //en caso contrario hay que hacer free?? no hay nada en la linea
+		{
+			s_splited_cleaned =  ft_split(s_trimmed, SPACE);
+			if (check_arguments(parsing_str, s_splited_cleaned))
+			{
+				free(s_trimmed);
+				free_split(&s_splited_cleaned);
+				return (EXIT_FAILURE);
+			}
+			free_split(&s_splited_cleaned);
+		}
+		free(s_trimmed);
+	}
+	return (EXIT_SUCCESS);
+}

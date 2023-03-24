@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:36:58 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/23 13:56:10 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/23 23:36:08 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	ft_parse(char *file_mup)
 	if (parsing_str.file_inp < 0)
 		return (print_error(ERR_OPEN_FILE, 1));
 	lets_beggin_parse(&parsing_str);
+	printf("hemos acabdaod el ft_parse, y todo bien . hAcemos el free e igiulamaos estructura\n");
 	//Aqiu hay que gacer un free de todo , ya que todo salio bien , pero primero hay que copiatr datos entre las estructuras
 	return (EXIT_SUCCESS);
 }

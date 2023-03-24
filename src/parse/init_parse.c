@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 13:03:54 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/23 13:04:21 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/23 23:54:28 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 void	init_strc_pars(t_pars* parsing_str)
 {
 
+	int i = 0;
+	while (i)
+	{
+		parsing_str->arra_arg[i] = 0;
+		i++;
+	}
 	parsing_str->arg_1 = NULL;
 	parsing_str->error_pars = false;
 	parsing_str->map = NULL;
@@ -55,4 +61,5 @@ void	init_strc_pars(t_pars* parsing_str)
 	parsing_str->nb_line_map = 0;
 	parsing_str->player = 0;
 	parsing_str->map_normal = NULL;
+	
 }
