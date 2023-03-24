@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:47:59 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/21 18:19:41 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/24 21:32:05 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 float distancia(float p0x, float p0y, float p1x, float p1y);
 
-void	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext)
+float	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext)
 {
 	int izquierda;// 0 -> derecha, 1 -> izquierda
 	int abajo;// 0 -> arriba, 1 -> abajo
@@ -59,19 +59,18 @@ void	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext)
 	{
 
 		step_y = -step_y;
-		wall_hit_y_horizontal--;
+		//wall_hit_y_horizontal--;
 	}
 	if(abajo == 1)
 	{
 		step_x = -step_x;
 	}
-
 	while(horizontal_hit == 0 && wall_hit_x_horizontal < (float)(map->width * map->columns)
-			&& wall_hit_x_horizontal >= 0.0 && wall_hit_y_horizontal >= 0.0 &&
+			&& wall_hit_x_horizontal > 1.0 && wall_hit_y_horizontal > 1.0 &&
 			wall_hit_y_horizontal < (float)(map->rows * map->height))	
 	{
-
-		if(map->map[(int)wall_hit_y_horizontal / map->height][(int)wall_hit_x_horizontal / map->width] == '1' || map->map[((int)wall_hit_y_horizontal - 1) / map->height][(int)wall_hit_x_horizontal / map->width] == '1' )
+//' 
+		if(map->map[(int)wall_hit_y_horizontal / map->height][(int)wall_hit_x_horizontal / map->width] == '1' || (abajo == 0 && map->map[(int)(wall_hit_y_horizontal - 1) / map->height][((int)wall_hit_x_horizontal) / map->width] == '1'))
 			horizontal_hit = 1;
 		else
 		{
@@ -79,7 +78,6 @@ void	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext)
 			wall_hit_y_horizontal += step_y;
 		}
 	}
-	
 	//Aqui acaba la parte horizontal
 	x_intercept = floor(player->pos_x / (float)map->width) * (float)map->width;
 	if(izquierda == 0)
@@ -97,19 +95,18 @@ void	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext)
 	{
 		step_x = -step_x;
 
-		wall_hit_x_vertical--;
+		//wall_hit_x_vertical--;
 	}
 	if(izquierda == 0)
 		step_y = -step_y;
-
 	vertical_hit = 0;	
 	while(vertical_hit  == 0 && wall_hit_x_vertical < (float)(map->width * map->columns)
-			&& wall_hit_x_vertical >= 0.0 && wall_hit_y_vertical >= 0.0 &&
+			&& wall_hit_x_vertical > 1.0 && wall_hit_y_vertical > 1.0 &&
 			wall_hit_y_vertical < (float)(map->rows * map->height))	
 	{
-
-		if(map->map[(int)wall_hit_y_vertical / map->height][(int)wall_hit_x_vertical / map->width] == '1' ||
-				map->map[(int)wall_hit_y_vertical / map->height][((int)wall_hit_x_vertical - 1) / map->width] == '1')
+//
+		if(map->map[(int)wall_hit_y_vertical / map->height][(int)wall_hit_x_vertical / map->width] == '1' 
+			|| (izquierda == 1 && map->map[((int)wall_hit_y_vertical) / map->height][(int)(wall_hit_x_vertical - 1) / map->width] == '1'))
 			vertical_hit = 1;
 		else
 		{
@@ -118,11 +115,14 @@ void	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext)
 		}
 	}
 	
-	if(distancia(player->pos_x, player->pos_y, wall_hit_x_horizontal, wall_hit_y_horizontal) <= distancia(player->pos_x, player->pos_y, wall_hit_x_vertical, wall_hit_y_vertical))
+	float horizontal_distance = distancia(player->pos_x, player->pos_y, wall_hit_x_horizontal, wall_hit_y_horizontal);
+	float vertical_distance = distancia(player->pos_x, player->pos_y, wall_hit_x_vertical, wall_hit_y_vertical);
+	if(horizontal_distance <= vertical_distance)
 	{
 		/*float x = (float)player->center_point->x + wall_hit_x_horizontal - player->pos_x;
 		float y = (float)player->center_point->y + wall_hit_y_horizontal - player->pos_y;*/
 		insert_point_f(p_ext, wall_hit_x_horizontal, wall_hit_y_horizontal);
+		return horizontal_distance;
 	}
 	else
 	{
@@ -130,7 +130,9 @@ void	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext)
 		/*float x = (float)player->center_point->x + wall_hit_x_vertical - player->pos_x;
 		float y = (float)player->center_point->y + wall_hit_y_vertical - player->pos_y;*/
 		insert_point_f(p_ext, wall_hit_x_vertical, wall_hit_y_vertical);
-		}	
+			
+		return vertical_distance;
+	}	
 }
 
 float distancia(float p0x, float p0y, float p1x, float p1y)

@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:43:01 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/21 18:06:39 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/24 18:45:57 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,6 @@ void	draw_square_pos(mlx_image_t *img, t_point *pos, int tam, int color);
 float	grades_to_rads(float grades);
 float	rads_to_grades(float rads);
 
+//Function to normalize angle given in grades
+float normalize_angle (float angle);
 #endif

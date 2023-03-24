@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:51:40 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/21 19:49:15 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:59:01 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define HEIGHT 1080
 # define MARGINS 180
 # define ANGLE_ROTATE 3
+# define FOV 60
 # include "../../MLX42/include/MLX42/MLX42.h"
 # include "../../memory-leaks/include/memory_leaks.h"
 # include "../shapes/Shapes.h"
@@ -37,7 +38,7 @@ typedef struct s_player{
 	t_point *absolute_direction;
 	int angle;
 	int color;
-
+	float fov;
 }t_player;
 
 //Functions to init player a define a position
