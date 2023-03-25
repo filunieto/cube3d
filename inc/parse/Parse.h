@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:30:57 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/25 12:58:21 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/25 13:39:41 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@
 # define SPACE	' '
 # define EOL	'\n'
 
+
+// # define	card_arr  { NORTH_STR, SOUTH_STR, EAST_STR, WEST_STR , HEAVEN_STR , GROUND_STR }
+// # define	error_ar { ERR_REPET_NO,ERR_REPET_SO, ERR_REPET_EA, ERR_REPET_WE, ERR_REPET_F, ERR_REPET_G}
+// # define	card_char { NORTH, SOUTH, EAST, WEST , HEAVEN , GROUND}
 // enum	code_error
 // {
 // 	ERRNBINP = 10,

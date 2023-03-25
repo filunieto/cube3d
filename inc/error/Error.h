@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:25:08 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/24 00:07:10 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/25 14:01:24 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@
 #define ERR_MAP8_MES	"no player\n"
 #define ERR_MAP9_MES	"more than 1 player\n"
 #define ERR_MAP10_MES	"map not at the end\n"
+#define ERR_MAP11_MES	"chars in map at cheking lines before checck map_differents from 0,1, W, S, E, N\n"
+
+#define ERR_MAP12_MES	"We do not have all the inputs cardinals/textures at the begginig\n"
+
 #define ERR_MALLO_MES	"error malloc\n"
 #define ERR_EXT_MES		"file extension not .cub\n"
 

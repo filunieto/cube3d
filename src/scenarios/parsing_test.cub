@@ -1,4 +1,4 @@
-	  	NO   	./textures/wall2.xpm
+	  	NO   	./src/textures/wall1.xpm
 	WE      ./textures/wall2.xpm
 SO      textures/star4.xpm
 EA      textures/star3.xpm

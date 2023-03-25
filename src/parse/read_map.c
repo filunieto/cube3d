@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:16:23 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/25 13:32:50 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/25 14:15:43 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	lets_beggin_parse(t_pars* parsing_str)
 	printf("lineas ok. Vamos a ver el map\n");
 	if (check_map(parsing_str))
 		return (EXIT_FAILURE);
+	printf("mapa consistente a bprrar todo y free\n");	
 	// el free lo hacemos en parse
 	return (EXIT_SUCCESS);
 	//como nos aseguramos que había llegado al final de linea y que no ha habido un error cualquiera (lectura)
