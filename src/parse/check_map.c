@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:25:05 by fnieves           #+#    #+#             */
-/*   Updated: 2023/03/25 12:55:15 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/25 15:07:23 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,23 @@
 */
 int		check_map(t_pars* parsing_str) //is_map_ok : podemos llamar a al afuncion
 {
-	parsing_str->nb_line_map = find_init(parsing_str); //podría guardar este parametro en la estructura?
+	//parsing_str->nb_line_map = find_init(parsing_str); //podría guardar este parametro en la estructura?
 	parsing_str->nb_endline_map = find_end(parsing_str);
 	parsing_str->max_leng_map = find_max_line(parsing_str);
+
 	// printf despues de yoga imprimir los valores de mapa para normalizacion para diferentes mapas
 	//printf("linea inicio: %zu , liena final %zu, max leng %zu\n",parsing_str->nb_line_map, parsing_str->nb_endline_map ,parsing_str->max_leng_map );
 	//printf(" par amalloquear mapa mas nullterminated %zu\n",parsing_str->nb_endline_map - parsing_str->nb_line_map + 2 ); 
 	if (parsing_str->nb_endline_map - parsing_str->nb_line_map < 2)
 		return(print_error(ERR_MAP0_MES, ERR_MAP0));
+	//printf("segmentatin faul map2\n");	
 	if (parsing_str->nb_line_map < 6)
 		return(print_error(ERR_MAP10_MES, ERR_MAP10));
 	if (is_map_consistent(parsing_str))
 	{
 		return (EXIT_FAILURE);
 	}
+	//printf("segmentatin faul map4\n");	
 	//printf("En check map , map consisten d emomento y cerrado por 1.\n");
 	return (EXIT_SUCCESS);
 }
@@ -42,10 +45,13 @@ int		is_map_consistent(t_pars* parsing_str)
 {
 	if (map_char(parsing_str))
 		return (EXIT_FAILURE);
+	//printf("segmentatin faul map1.1\n");	
 	if (one_player(parsing_str))
 		return (EXIT_FAILURE);
+	//printf("segmentatin faul map2.2\n");	
 	if (map_closed(parsing_str)) //si lo que rodea a 1 0 es un espacio 
 		return (EXIT_FAILURE);
+	//printf("segmentatin faul map3.3\n");	
 	return (EXIT_SUCCESS);
 }
 

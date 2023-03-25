@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_one_player.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:45:19 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/22 11:46:22 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/25 14:41:55 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ int	one_player(t_pars* parsing_str)
 		return(print_error(ERR_MAP8_MES, ERR_MAP8));
 	if (player > 1)
 		return(print_error(ERR_MAP9_MES, ERR_MAP9));
-	printf("Borrar este mensaje. El jugador es %c.\n",parsing_str->player );
+	//printf("Borrar este mensaje. El jugador es %c.\n",parsing_str->player );
 	return (EXIT_SUCCESS);
 }

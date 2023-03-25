@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:25:08 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/25 14:01:24 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/25 15:05:16 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 #define ERR_MAP11_MES	"chars in map at cheking lines before checck map_differents from 0,1, W, S, E, N\n"
 
 #define ERR_MAP12_MES	"We do not have all the inputs cardinals/textures at the begginig\n"
+#define ERR_MAP13_MES	" inputs cardinals/textures missing\n"
 
 #define ERR_MALLO_MES	"error malloc\n"
 #define ERR_EXT_MES		"file extension not .cub\n"

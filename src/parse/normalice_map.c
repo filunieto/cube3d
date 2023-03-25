@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 17:43:48 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/25 13:34:47 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/25 14:46:34 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	copy_char(t_pars* parsing_str, int line_run) //esta funcion puedes ser un v
 }
 
 
-int	char_per_char_map(t_pars* parsing_str)
+int	char_per_char_map(t_pars* parsing_str) //verificar donde entra
 {
 	int i;
 	int j;
@@ -117,8 +117,10 @@ int	char_per_char_map(t_pars* parsing_str)
 
 //	printf("linea inicio: %zu , liena final %zu, max leng %zu\n",
 // parsing_str->nb_line_map, parsing_str->nb_endline_map ,parsing_str->max_leng_map );
-int	check_around(t_pars* parsing_str, int i , int j)
+int	check_around(t_pars* parsing_str, int i , int j) //comprobar aqui los seg fault , punto por punto. Entra donde no debe? sabado 25 mar
 {
+	//printf("check around: punto i %i, j %i y char %c \n", i , j, parsing_str->map_normal[i][j]);	
+
 	if (i == 0)
 		return(print_error(ERR_MAP3_MES, ERR_MAP3));
 	if (i == (int)(parsing_str->nb_endline_map - parsing_str->nb_line_map))

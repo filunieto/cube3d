@@ -115,7 +115,7 @@ test1: all
 
 test2: all
 	@echo "$(MAGEN_G)📝 test 2 $(MAGEN_F) $(RESET)"
-	./$(NAME) ./src/scenarios/map_completo.cub
+	./$(NAME) ./src/scenarios/example.cub
 
 test3: all
 	@echo "$(MAGEN_G)📝 test 3 para verificar parsing $(MAGEN_F) $(RESET)"
@@ -124,7 +124,6 @@ test3: all
 test4: all
 	@echo "$(MAGEN_G)📝 test 4 para verificar coordenadas $(MAGEN_F) $(RESET)"
 	./$(NAME) ./src/scenarios/coordenadas_linea.cub
-
 
 
 leaks : all
