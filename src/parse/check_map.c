@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:25:05 by fnieves           #+#    #+#             */
-/*   Updated: 2023/03/25 15:07:23 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/25 15:31:08 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 */
 int		check_map(t_pars* parsing_str) //is_map_ok : podemos llamar a al afuncion
 {
+	if (find_init(parsing_str))
+	{
+		return(print_error(ERR_MAP10_MES, ERR_MAP10));
+	}
 	//parsing_str->nb_line_map = find_init(parsing_str); //podría guardar este parametro en la estructura?
 	parsing_str->nb_endline_map = find_end(parsing_str);
 	parsing_str->max_leng_map = find_max_line(parsing_str);
@@ -66,28 +70,24 @@ int		is_map_consistent(t_pars* parsing_str)
 
 int		find_init(t_pars* parsing_str)
 {
-	int i;
+	//int i;
 	char *trimmed_spac;
-	char *trimmed_map;
+	//char *trimmed_map;
+	int leng_strim;
 
-	i = -1;
-	while (parsing_str->map[++i])
+	//i = parsing_str->nb_line_map;
+	while (parsing_str->map[parsing_str->nb_line_map])
 	{
-		trimmed_spac = ft_strtrim(parsing_str->map[i], SPACE_STR);
-		if (ft_strlen(trimmed_spac)) //si no es espacios entra
-		{
-			trimmed_map = ft_strtrim(trimmed_spac, MAP_STR);
-			if (ft_strlen(trimmed_map) == 0)
-			{
-				free(trimmed_spac);
-				free(trimmed_map);
-				return (i);
-			}
-			free(trimmed_map);
-		}
+		//printf(" en find_init %s e indidce %li \n", parsing_str->map[parsing_str->nb_line_map], parsing_str->nb_line_map);
+		trimmed_spac = ft_strtrim(parsing_str->map[parsing_str->nb_line_map], SPACE_STR);
+		leng_strim = ft_strlen(trimmed_spac);
 		free(trimmed_spac);
+		if (leng_strim == 0)
+			parsing_str->nb_line_map++;
+		else
+			return(EXIT_SUCCESS);
 	}
-	return(EXIT_SUCCESS);
+	return(EXIT_FAILURE);
 }
 
 /**

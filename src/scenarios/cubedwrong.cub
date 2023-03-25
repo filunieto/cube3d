@@ -1,18 +1,13 @@
 
 C    20,5,20
-
+F    20,20,20
 NO      ./src/textures/wall1.xpm
 
 SO      ./src/textures/wall3.xpm
 EA      ./src/textures/wall4.xpm
 
+WE      ./src/textures/wall2.xpm	
 
-
-
-
-
-F    20,20,20
-	WE      ./src/textures/wall2.xpm	
 
 
 
@@ -34,7 +29,7 @@ F    20,20,20
                                     111001
                                     100001
                                     111111
-
+mdjd
 
 
 
