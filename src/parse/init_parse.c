@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 13:03:54 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/23 23:54:28 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/25 13:30:12 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,19 @@
 void	init_strc_pars(t_pars* parsing_str)
 {
 
-	int i = 0;
-	while (i)
-	{
-		parsing_str->arra_arg[i] = 0;
-		i++;
-	}
+	// int i = 0;
+	// while (i)
+	// {
+	// 	parsing_str->arra_arg[i] = 0;
+	// 	printf(" en init: i %i, parsing_str->arra_arg[i] %i \n" , i, parsing_str->arra_arg[i]);
+	// 	i++;
+	// }
+	parsing_str->arra_arg[0] = 0;
+	parsing_str->arra_arg[1] = 0;
+	parsing_str->arra_arg[2] = 0;
+	parsing_str->arra_arg[3] = 0;
+	parsing_str->arra_arg[4] = 0;
+	parsing_str->arra_arg[5] = 0;
 	parsing_str->arg_1 = NULL;
 	parsing_str->error_pars = false;
 	parsing_str->map = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:16:23 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/23 13:58:58 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/25 13:32:50 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	lets_beggin_parse(t_pars* parsing_str)
 		return (EXIT_FAILURE);
 	if (check_lines(parsing_str))
 		return (EXIT_FAILURE);
+	printf("lineas ok. Vamos a ver el map\n");
 	if (check_map(parsing_str))
 		return (EXIT_FAILURE);
 	// el free lo hacemos en parse

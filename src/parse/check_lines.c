@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_lines.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:23:43 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/24 00:10:15 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/25 13:34:05 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,13 @@ int	check_arguments(t_pars* parsing_str, char **s_splited_cleaned) //seguir aqui
 	if (id >= NORTH &&  id <= WEST)
 	{
 		if (check_textur_path(parsing_str, &s_splited_cleaned[1], id)) 
-		{
-			return(1); //?
-		}
+			return(EXIT_FAILURE); //?
 		parsing_str->arg_ok += 1;
 	}
 	if (id == GROUND ||  id == HEAVEN) //mas facil dividir en 
 	{
 		if (check_colours(parsing_str, &s_splited_cleaned[1], id)) //verificar qeu solo haya 2 elementos
-		{
-			return (1);
-		}
+			return (EXIT_FAILURE);
 		parsing_str->arg_ok += 1;
 	}
 	return (EXIT_SUCCESS);
@@ -47,43 +43,46 @@ int	check_arguments(t_pars* parsing_str, char **s_splited_cleaned) //seguir aqui
 */
 int	check_identifier(t_pars* parsing_str, char *line_splitd)
 {
-	int i = 0;
+	int i;
 
+	i = 0;
 	char	*card_arr[6] = { NORTH_STR, SOUTH_STR, EAST_STR, WEST_STR , HEAVEN_STR , GROUND_STR };
 	char	*error_ar[6] = { ERR_REPET_NO,ERR_REPET_SO, ERR_REPET_EA, ERR_REPET_WE, ERR_REPET_F, ERR_REPET_G};
+	char 	card_char[6] = { NORTH, SOUTH, EAST, WEST , HEAVEN , GROUND};
 	while (i < 6)
 	{
-		if (!ft_strcmp(line_splitd, card_arr[i]))
+		if (!ft_strcmp(line_splitd, card_arr[i])) // si nos llega un punto cardnal 
 		{
-			if (!parsing_str->arra_arg[i + 1])
-				return(parsing_str->arra_arg[i + 1] = card_arr[i]);
+			if (parsing_str->arra_arg[i] == 0) //y no está repetido
+				return(parsing_str->arra_arg[i] = card_char[i]);
 			else
-				return(print_error(error_ar[i], 0));
+				return(print_error(error_ar[i], 0)); //o ya lo teniamos
 		}
 		i++;
 	}
-
-	if (!ft_strcmp(line_splitd, NORTH_STR))
+	if (parsing_str->arg_ok == 6)
 	{
-		if (!parsing_str->north.name )
-			return (parsing_str->north.name = NORTH);
-		else
-			return (print_error(ERR_REPET_NO, 0));
+		if (ft_strlen(ft_strtrim(line_splitd, MAP_STR)) != 0) //si despues de tner los 6 argumentos,encuentra caracter que nosea de mapa
+			return(print_error(ERR_MAP1_MES, 0)); //o ya lo teniamos
 	}
-	else if (!parsing_str->south.name &&  !ft_strcmp(line_splitd, SOUTH_STR))
-		return (parsing_str->south.name = SOUTH);
-	else if (!parsing_str->east.name &&  !ft_strcmp(line_splitd, EAST_STR))
-		return (parsing_str->east.name = EAST);
-	else if (!parsing_str->west.name &&  !ft_strcmp(line_splitd, WEST_STR))
-		return (parsing_str->west.name = WEST);
-	else if (!parsing_str->heaven.part &&  !ft_strcmp(line_splitd, HEAVEN_STR))
-		return (parsing_str->heaven.part = HEAVEN);
-	else if (!parsing_str->ground.part &&  !ft_strcmp(line_splitd, GROUND_STR))
-		return (parsing_str->ground.part = GROUND);
-	else if (parsing_str->arg_ok == 6 &&  (ft_strlen(ft_strtrim(line_splitd, MAP_STR)) == 0)  ) 
-		return (MAP); 
-	else
-		return (0);
+	return (MAP);
+	// if (!ft_strcmp(line_splitd, NORTH_STR))
+	// {
+	// 	if (!parsing_str->north.name )
+	// 		return (parsing_str->north.name = NORTH);
+	// 	else
+	// 		return (print_error(ERR_REPET_NO, 0));
+	// }
+	// else if (!parsing_str->south.name &&  !ft_strcmp(line_splitd, SOUTH_STR))
+	// 	return (parsing_str->south.name = SOUTH);
+	// else if (!parsing_str->east.name &&  !ft_strcmp(line_splitd, EAST_STR))
+	// 	return (parsing_str->east.name = EAST);
+	// else if (!parsing_str->west.name &&  !ft_strcmp(line_splitd, WEST_STR))
+	// 	return (parsing_str->west.name = WEST);
+	// else if (!parsing_str->heaven.part &&  !ft_strcmp(line_splitd, HEAVEN_STR))
+	// 	return (parsing_str->heaven.part = HEAVEN);
+	// else if (!parsing_str->ground.part &&  !ft_strcmp(line_splitd, GROUND_STR))
+	// 	return (parsing_str->ground.part = GROUND);
 }
 
 /*

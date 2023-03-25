@@ -1,5 +1,4 @@
-F    20,20,20
-C    5,5,4
+
 
 
 NO      ./src/textures/wall1.xpm
@@ -7,6 +6,8 @@ WE      ./src/textures/wall2.xpm
 SO      ./src/textures/wall3.xpm
 EA      ./src/textures/wall4.xpm
 
+C    5,5,4
+F    20,20,20
 		
 
    111

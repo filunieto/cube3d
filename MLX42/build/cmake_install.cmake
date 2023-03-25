@@ -1,4 +1,4 @@
-# Install script for directory: /System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos goinfre/cube3d proyecto/cube3d_gitlab/MLX42
+# Install script for directory: /media/felipe/Datos/Programacion/42/Core_curriculum/proyectos curriculares/cube3d_proyect/cub3d/MLX42
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -27,6 +27,11 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
+# Install shared libraries without execute permission?
+if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
+  set(CMAKE_INSTALL_SO_NO_EXE "1")
+endif()
+
 # Is this installation the result of a crosscompile?
 if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
@@ -34,7 +39,7 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/objdump")
+  set(CMAKE_OBJDUMP "/usr/bin/objdump")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -45,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos goinfre/cube3d proyecto/cube3d_gitlab/MLX42/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/media/felipe/Datos/Programacion/42/Core_curriculum/proyectos curriculares/cube3d_proyect/cub3d/MLX42/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

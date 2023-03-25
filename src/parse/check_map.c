@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:25:05 by fnieves           #+#    #+#             */
-/*   Updated: 2023/03/23 23:35:01 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/25 12:55:15 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		is_map_consistent(t_pars* parsing_str)
 }
 
 
-
+//qeu pasa si despues de lo sparametros , solo tenemos espacios y no hay mapa??
 /**
  * @brief 
  * Encuentra la primera línea del map. No verifica consistencia, contando desde 0

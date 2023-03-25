@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:30:57 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/23 23:55:04 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/25 12:58:21 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@
 
 typedef struct s_textur
 {
-	int		name;
+	int		name; //este campo no me hace falta. Si solo necesito id o char para el path, no es necsario una estruct. Puedo poner directamente en la estructur aparse  el cmapo
 	char	*path;
 	int		file;
 }	t_textur;
