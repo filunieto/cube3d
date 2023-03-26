@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:36:58 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/26 17:38:27 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/26 23:35:42 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,13 @@ En los errores usar la misma funcion de salida
 */
 
 /*
-	Probelmas. apertura de path a textura
-	Verificar extension
 	Hablar on andres para integrar la estructura 
 	Error cuando no hay mapa o el mapa está al principiop 
-	REpasar. los free y leaks.
 	Andres , hace free de su estructura prinicpal?
 	usar strdup para copiar los paths si necesario a Andres
-	Hacer un close del file si no est á hecho
+	Hacer un close del file si no est á hecho >>> creo que ok
+	verifcar el reporte de valgrind 
+	
 
 */
 
@@ -58,7 +57,7 @@ int	ft_parse(char *file_mup) //añadir la estructura generica de Andres
 		return (EXIT_FAILURE);
 	}
 	//Antes  dle free funcion   primero para copiatr datos entre las estructuras
-	printf("acabdo ft_parser . todo corecto y free antes de copair estructuras.\n");
 	free_parser(&parsing_str);
+	printf("acabdo ft_parser .y free hecho.\n");
 	return (EXIT_SUCCESS);
 }

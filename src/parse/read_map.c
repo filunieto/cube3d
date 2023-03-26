@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:16:23 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/26 17:38:35 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/26 23:23:36 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,9 @@ int	lets_beggin_parse(t_pars* parsing_str)
 		return (EXIT_FAILURE);
 	if (check_lines(parsing_str))
 		return (EXIT_FAILURE);
-	printf("lineas ok. Vamos a ver el map\n");
+	//printf("lineas ok. Vamos a ver el map\n");
 	if (check_map(parsing_str))
 		return (EXIT_FAILURE);
-	//printf("mapa consistente a bprrar todo y free\n");
 	//copy de estructura parser a estructura general. Atencion, usar srtrdup para hacer free
 	//free_parser(parsing_str);
 	return (EXIT_SUCCESS);

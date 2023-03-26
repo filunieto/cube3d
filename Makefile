@@ -131,3 +131,6 @@ leaks : all
 
 leaks1 : all
 	valgrind --leak-check=full ./$(NAME) ./src/scenarios/cubedwrong.cub
+
+leaks2 : all
+	valgrind --leak-check=full ./$(NAME) ./src/scenarios/example.cub
