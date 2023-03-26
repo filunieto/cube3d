@@ -6,13 +6,11 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:25:05 by fnieves           #+#    #+#             */
-/*   Updated: 2023/03/25 15:31:08 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/26 15:09:06 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/Screen.h"
-
-
 
 /*
 	vamos a l aprimera linea donde aparezca el mapa. A partir de ahí , verificamos que los caracteres sean los correctso 
@@ -21,27 +19,15 @@
 int		check_map(t_pars* parsing_str) //is_map_ok : podemos llamar a al afuncion
 {
 	if (find_init(parsing_str))
-	{
 		return(print_error(ERR_MAP10_MES, ERR_MAP10));
-	}
-	//parsing_str->nb_line_map = find_init(parsing_str); //podría guardar este parametro en la estructura?
 	parsing_str->nb_endline_map = find_end(parsing_str);
 	parsing_str->max_leng_map = find_max_line(parsing_str);
-
-	// printf despues de yoga imprimir los valores de mapa para normalizacion para diferentes mapas
-	//printf("linea inicio: %zu , liena final %zu, max leng %zu\n",parsing_str->nb_line_map, parsing_str->nb_endline_map ,parsing_str->max_leng_map );
-	//printf(" par amalloquear mapa mas nullterminated %zu\n",parsing_str->nb_endline_map - parsing_str->nb_line_map + 2 ); 
 	if (parsing_str->nb_endline_map - parsing_str->nb_line_map < 2)
 		return(print_error(ERR_MAP0_MES, ERR_MAP0));
-	//printf("segmentatin faul map2\n");	
 	if (parsing_str->nb_line_map < 6)
 		return(print_error(ERR_MAP10_MES, ERR_MAP10));
 	if (is_map_consistent(parsing_str))
-	{
 		return (EXIT_FAILURE);
-	}
-	//printf("segmentatin faul map4\n");	
-	//printf("En check map , map consisten d emomento y cerrado por 1.\n");
 	return (EXIT_SUCCESS);
 }
 

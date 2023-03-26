@@ -6,11 +6,13 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:16:23 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/25 14:15:43 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/26 17:38:35 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/Screen.h"
+
+
 
 
 /**
@@ -37,7 +39,7 @@ int copy_file(t_pars* parsing_str)
 		i++;
 		if (!line)
 			break;
-		line = NULL;
+		line = NULL;//no creo que sea necesario
 	}
 	close(parsing_str->file_inp);	
 	return (EXIT_SUCCESS);
@@ -59,8 +61,9 @@ int	lets_beggin_parse(t_pars* parsing_str)
 	printf("lineas ok. Vamos a ver el map\n");
 	if (check_map(parsing_str))
 		return (EXIT_FAILURE);
-	printf("mapa consistente a bprrar todo y free\n");	
-	// el free lo hacemos en parse
+	//printf("mapa consistente a bprrar todo y free\n");
+	//copy de estructura parser a estructura general. Atencion, usar srtrdup para hacer free
+	//free_parser(parsing_str);
 	return (EXIT_SUCCESS);
 	//como nos aseguramos que había llegado al final de linea y que no ha habido un error cualquiera (lectura)
 }
@@ -84,26 +87,11 @@ int	read_copy_file(t_pars* parsing_str)
 			break;
 		free(parsing_str->line);
 	}
+	close(parsing_str->file_inp);
 	parsing_str->map = ft_calloc(sizeof (*parsing_str->map), parsing_str->nb_line + 1);
 	if (!parsing_str->map)
 		return (print_error(ERR_MALLO_MES, 1));
-	close(parsing_str->file_inp);
 	if (copy_file(parsing_str))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
-
-/*
-podemos borrao despues
-*/
-// void draw_copied_map(t_pars* parsing_str) //funcion solo para verificar
-// {
-	
-// 	int i = -1;
-// 	while(parsing_str->map[++i])
-// 	{
-// 		printf("linea de map: %i: %s", i, parsing_str->map[i]);
-// 	}
-// 	if (!parsing_str->map[i])
-// 		printf("\nesto se imprime porque la ultima linea es null\n");
-// }

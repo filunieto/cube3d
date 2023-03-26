@@ -128,3 +128,6 @@ test4: all
 
 leaks : all
 	valgrind --leak-check=full ./$(NAME) ./src/scenarios/map_completo.cub
+
+leaks1 : all
+	valgrind --leak-check=full ./$(NAME) ./src/scenarios/cubedwrong.cub

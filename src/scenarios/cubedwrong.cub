@@ -1,6 +1,6 @@
 
-C    20,5,20
-F    20,20,20
+C    20,20,20
+F    20,5,20
 NO      ./src/textures/wall1.xpm
 
 SO      ./src/textures/wall3.xpm
@@ -29,7 +29,6 @@ WE      ./src/textures/wall2.xpm
                                     111001
                                     100001
                                     111111
-mdjd
 
 
 

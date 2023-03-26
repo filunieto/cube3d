@@ -6,13 +6,14 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:29:19 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/25 15:15:29 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/26 15:04:33 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/Screen.h"
 
-
+//en  esta funcion cuando la usamos , en la ultima linea intenamos acceder a algo que no podemos
+//revisar con mapas con 2 islas, y en char per char. Será la /n?
  void draw_normalize(t_pars* parsing_str)
 {
 	int i = 0;
@@ -29,8 +30,8 @@ int		map_closed(t_pars* parsing_str) //hay que verificar que denajo de un 1 siem
 {
 	if (normalize_map(parsing_str))
 		return (EXIT_FAILURE);
-	//printf("segmentatin faul map closed 1\n");	
 	draw_normalize(parsing_str);
+	//printf("despues de draw\n");	
 	if (char_per_char_map(parsing_str)) //aqui me esta dando algo
 		return (EXIT_FAILURE);
 	//printf("segmentatin fault after che per char\n");	
@@ -69,125 +70,45 @@ int		map_char(t_pars* parsing_str)
 	return (EXIT_SUCCESS);
 }
 
-/**
- * @brief
- * Chequea que el primer elemento de las lineas de las lineas izq
- * exterior, sea 1
- * 
- * @param parsing_str 
- * @return int valor diferente de 0, error
- */
-
-// int		map_left_closed(t_pars* parsing_str)
-// {
-
-// 	int	i;
-// 	char	*one_side;
-// 	char	*trimmed;
-	
-// 	i = parsing_str->nb_line_map;
-// 	while (++i < (int)parsing_str->nb_endline_map)
-// 	{
-// 		trimmed = ft_strtrim(parsing_str->map[i], SPACE_STR);
-// 		one_side = ft_strchr(trimmed, ONE);
-// 		if (one_side != trimmed)
-// 		{
-// 			free(trimmed);
-// 			return(print_error(ERR_MAP5_MES, ERR_MAP5));
-// 		}
-// 		free(trimmed);
-// 	}
-// 	return (EXIT_SUCCESS);
-// }
 
 
-/**
- * @brief
- * Chequea que el primer elemento de las lineas por debajo de la superior
- * y encima de la inferior sea 1, mediante aritmetica de punteros
- * 
- * @param parsing_str 
- * @return int valor diferente de 0, error
- */
+int	char_per_char_map(t_pars* parsing_str) //verificar donde entra
+{
+	int i;
+	int j;
 
-// int		map_right_closed(t_pars* parsing_str)
-// {
+	i = -1;
+	//printf("char_per_char_map 1\n");	
 
-// 	int	i;
-// 	char	*one_side;
-// 	char	*trimmed;
-// 	int		leng_line;
-	
-// 	i = parsing_str->nb_line_map;
-// 	while (++i < (int)parsing_str->nb_endline_map)
-// 	{
-// 		trimmed = ft_strtrim(parsing_str->map[i], SPACE_STR);
-// 		leng_line = ft_strlen(trimmed);
-// 		one_side = ft_strrchr(trimmed, ONE);
-// 		if (one_side != trimmed + leng_line - 1)
-// 		{
-// 			free(trimmed);
-// 			return(print_error(ERR_MAP6_MES, ERR_MAP6));
-// 		}
-// 		free(trimmed);
-// 	}
-// 	return (EXIT_SUCCESS);
-// }
+	while (parsing_str->map_normal[++i])
+	{
+		j = -1;
+		while (parsing_str->map_normal[i][++j])
+		{
+			if (parsing_str->map_normal[i][j] == '0' 
+			|| parsing_str->map_normal[i][j] == parsing_str->player) //creo que hay que añadir el player, además dle 0
+				if (check_around(parsing_str, i , j)) //si encuentra un space alrededor que devuelva int
+					return(EXIT_FAILURE);
+		}
+	}
+	return (EXIT_SUCCESS);
+}
 
-
-
-
-// int		map_closed2(t_pars* parsing_str) //hay que verificar que denajo de un 1 siempre haya otro 1
-// {
-// 	char *trimmed_one;
-// 	size_t leng_trimm;
-
-// 	trimmed_one = ft_strtrim(parsing_str->map[parsing_str->nb_line_map], ONES_STR);
-// 	leng_trimm = ft_strlen((trimmed_one));
-// 	free(trimmed_one);
-// 	if (leng_trimm)
-// 		return(print_error(ERR_MAP3_MES, ERR_MAP3));
-// 	trimmed_one = ft_strtrim(parsing_str->map[parsing_str->nb_endline_map], ONES_STR);
-// 	leng_trimm = ft_strlen((trimmed_one));
-// 	free(trimmed_one);
-// 	if (leng_trimm)
-// 		return(print_error(ERR_MAP4_MES, ERR_MAP4));
-// 	if (map_left_closed(parsing_str))
-// 		return (ERR_MAP5);
-// 	if (map_right_closed(parsing_str))
-// 		return (ERR_MAP6);
-// 	return (EXIT_SUCCESS);
-// }
-
-
-
-// int		map_upper_closed(t_pars* parsing_str)
-// {
-// 	int	j;
-// 	int leng;
-// 	char *line_1;
-// 	char *line_2;
-
-// 	j = 0;
-// 	leng = parsing_str->max_leng_map;
-// 	line_1 = parsing_str->map[parsing_str->nb_line_map];
-// 	line_2 = parsing_str->map[parsing_str->nb_line_map + 1];
-// 	if (line_1[j] == '0')
-// 		if (line_2[j] != '1'  || line_1[j + 1] != '1')
-// 			return(print_error(ERR_MAP3_MES, ERR_MAP3));
-// 	if (line_1[j + leng - 1] == '0') //se supone que estamos en un caracter antes del \n, por eso restamos 1 (0 +len)
-// 		if (line_2[j + leng - 1 ] != '1'  || line_1[j + leng - 2] != '1')
-// 			return(print_error(ERR_MAP3_MES, ERR_MAP3));
-// 	while (line_1[++j] != '\n')
-// 	{
-// 		if (line_1[j] == '0')
-// 		{
-// 			if (line_2[j - 1 ] != '1' || line_2[j] != '1' || line_2[j + 1] != '1');
-// 				printf("no se´que pasa en esta condicon1\n");
-// 			//return;
-// 			printf("no se´que pasa en esta condicon 2\n");
-// 		}
-// 		j++;
-// 	}
-// 	return (EXIT_SUCCESS);
-// }
+//	printf("linea inicio: %zu , liena final %zu, max leng %zu\n",
+// parsing_str->nb_line_map, parsing_str->nb_endline_map ,parsing_str->max_leng_map );
+int	check_around(t_pars* parsing_str, int i , int j) //comprobar aqui los seg fault , punto por punto. Entra donde no debe? sabado 25 mar
+{
+	//printf("check around: punto i %i, j %i y char %c \n", i , j, parsing_str->map_normal[i][j]);	
+	if (i == 0)
+		return(print_error(ERR_MAP3_MES, ERR_MAP3));
+	if (i == (int)(parsing_str->nb_endline_map - parsing_str->nb_line_map))
+		return(print_error(ERR_MAP4_MES, ERR_MAP4));
+	if (j == 0)
+		return(print_error(ERR_MAP5_MES, ERR_MAP5)); 
+	if (j == (int)parsing_str->max_leng_map - 1)
+		return(print_error(ERR_MAP6_MES, ERR_MAP6));
+	if (parsing_str->map_normal[i - 1][j] == PT || parsing_str->map_normal[i][j - 1] == PT || 
+	parsing_str->map_normal[i][j + 1] == PT || parsing_str->map_normal[i + 1][j] == PT)
+		return(print_error(ERR_MAP2_MES, ERR_MAP2));
+	return (EXIT_SUCCESS);
+}

@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:23:43 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/25 15:05:25 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/26 14:31:52 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ int	check_identifier(t_pars* parsing_str, char *line_splitd)
 }
 
 /*
-	este file hay que cerrarlo en algun sitio. No sé si pasar el path o el file. Preguntar a ANdres. (mejor el path)
+	este file hay que cerrarlo en algun sitio.
+	No sé si pasar el path o el file. 
+	Preguntar a ANdres. (mejor el path)
 */
 int	check_textur_path(t_pars* parsing_str, char **s_splited_cleaned, int id)
 {
@@ -104,7 +106,7 @@ int	check_textur_path(t_pars* parsing_str, char **s_splited_cleaned, int id)
  * @param parsing_str 
  * @return int 
  */
-int	check_lines(t_pars* parsing_str) //seguir por aqui despoues de comer. Preguntar por l aapertura de l atextura
+int	check_lines(t_pars* parsing_str)
 {
 	int	i;
 	char *s_trimmed;
@@ -131,5 +133,4 @@ int	check_lines(t_pars* parsing_str) //seguir por aqui despoues de comer. Pregun
 		return (print_error(ERR_MAP13_MES, 1));
 	parsing_str->nb_line_map = i;
 	return (EXIT_SUCCESS);
-
 }

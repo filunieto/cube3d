@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:30:57 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/25 13:39:41 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/26 17:37:19 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define MAP		7
 
 # define COMMA	','
-# define PT	'.'
+# define PT	'.' //cambiar este parametro según Andrés quiera
 # define SPACE	' '
 # define EOL	'\n'
 
@@ -82,9 +82,10 @@ typedef struct s_colour
 
 typedef struct s_pars
 {
-	char	**map;
+	char	**map; //hay que hacer free
+	char 	**map_normal; //hay que hacer free
 	bool	error_pars;
-	char	*arg_1;
+	char	*arg_1; //esto lo uso? es el input agrgv , no hay que hacer free
 	int		file_inp;
 	char 	*line;
 	int		arg_ok;
@@ -93,7 +94,6 @@ typedef struct s_pars
 	size_t	nb_line;
 	size_t	max_leng_map;
 	char	player;
-	char 	**map_normal;
 	t_textur	north;
 	t_textur	south;
 	t_textur	east;
@@ -123,8 +123,8 @@ int		ft_rgb_atoi(char *str); //cambiar a atoi_rgb y otras partes
 int		map_char(t_pars* parsing_str);
 int		is_map_consistent(t_pars* parsing_str);
 int		map_closed(t_pars* parsing_str);
-int		map_left_closed(t_pars* parsing_str);
-int		map_right_closed(t_pars* parsing_str);
+// int		map_left_closed(t_pars* parsing_str);
+// int		map_right_closed(t_pars* parsing_str);
 
 int		find_end(t_pars* parsing_str);
 int		find_init(t_pars* parsing_str);
@@ -140,13 +140,15 @@ int		one_player(t_pars* parsing_str);
 
 int		normalize_map(t_pars* parsing_str);
 int		copy_map(t_pars* parsing_str);
-int		copy_char2(t_pars* parsing_str, char *map, char *map_norml); //borrar
+// int		copy_char2(t_pars* parsing_str, char *map, char *map_norml); //borrar
 void	copy_char(t_pars* parsing_str, int line_run);
-int	char_per_char_map(t_pars* parsing_str);
-int	check_around(t_pars* parsing_str, int i , int j);
-int	read_copy_file(t_pars* parsing_str);
+int		char_per_char_map(t_pars* parsing_str);
+int		check_around(t_pars* parsing_str, int i , int j);
+int		read_copy_file(t_pars* parsing_str);
+int		free_split_rgb(char ***rgb, char *message);
 
 
+ void	free_parser(t_pars* parsing_str);
 
 
 
