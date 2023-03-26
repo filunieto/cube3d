@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:16:23 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/26 23:23:36 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/27 01:05:46 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,25 @@
  * @return int 
  */
 
-int copy_file(t_pars* parsing_str)
+int	copy_file(t_pars *parsing_str)
 {
 	int		i;
 	char	*line;
 
 	parsing_str->file_inp = open(parsing_str->arg_1, O_RDONLY, CHMOD);
 	if (parsing_str->file_inp < 0)
-		return(print_error(ERR_OPEN_FILE2 , 1));
+		return (print_error(ERR_OPEN_FILE2, 1));
 	i = 0;
 	while (1)
 	{
 		line = get_next_line(parsing_str->file_inp);
-		parsing_str->map[i] = line; 
+		parsing_str->map[i] = line;
 		i++;
 		if (!line)
-			break;
-		line = NULL;//no creo que sea necesario
+			break ;
+		line = NULL;
 	}
-	close(parsing_str->file_inp);	
+	close(parsing_str->file_inp);
 	return (EXIT_SUCCESS);
 }
 
@@ -51,20 +51,15 @@ int copy_file(t_pars* parsing_str)
  * Quiza sería mejor que retornara un int
  * @param parsing_str 
  */
-int	lets_beggin_parse(t_pars* parsing_str)
+int	lets_beggin_parse(t_pars *parsing_str)
 {
-	
-	if (read_copy_file (parsing_str) )
+	if (read_copy_file (parsing_str))
 		return (EXIT_FAILURE);
 	if (check_lines(parsing_str))
 		return (EXIT_FAILURE);
-	//printf("lineas ok. Vamos a ver el map\n");
 	if (check_map(parsing_str))
 		return (EXIT_FAILURE);
-	//copy de estructura parser a estructura general. Atencion, usar srtrdup para hacer free
-	//free_parser(parsing_str);
 	return (EXIT_SUCCESS);
-	//como nos aseguramos que había llegado al final de linea y que no ha habido un error cualquiera (lectura)
 }
 
 /**
@@ -76,18 +71,19 @@ int	lets_beggin_parse(t_pars* parsing_str)
  * @return int 
  */
 
-int	read_copy_file(t_pars* parsing_str)
+int	read_copy_file(t_pars *parsing_str)
 {
 	while (1)
 	{
 		parsing_str->line = get_next_line(parsing_str->file_inp);
 		parsing_str->nb_line += 1;
 		if (!parsing_str->line)
-			break;
+			break ;
 		free(parsing_str->line);
 	}
 	close(parsing_str->file_inp);
-	parsing_str->map = ft_calloc(sizeof (*parsing_str->map), parsing_str->nb_line + 1);
+	parsing_str->map = ft_calloc(sizeof (*parsing_str->map),
+			parsing_str->nb_line + 1);
 	if (!parsing_str->map)
 		return (print_error(ERR_MALLO_MES, 1));
 	if (copy_file(parsing_str))
