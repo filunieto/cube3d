@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:36:58 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/27 00:55:24 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/27 16:02:00 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ int	ft_parse(char *file_mup)
 	if (lets_beggin_parse(&parsing_str))
 	{
 		free_parser(&parsing_str);
-		printf(" ha habido cualquier fallo en lets parser. ESte mensaje tiene que imprimirse siempre. significa qu epodemos hacer free.\n");
+		printf(" Algún probelma en la fucnion. Se ha hecho free y salimos\n");
 		return (EXIT_FAILURE);
 	}
 	//Antes  dle free funcion   primero para copiatr datos entre las estructuras
 	free_parser(&parsing_str);
-	printf("acabdo ft_parser .y free hecho.\n");
+	printf("acabdo ft_parser Todo ok. .free hecho y seguimos.\n");
 	return (EXIT_SUCCESS);
 }

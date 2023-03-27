@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 19:15:17 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/27 01:05:03 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/27 15:58:53 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ void	free_split(char ***s_splitted)
 
 	i = -1;
 	array_str = *s_splitted;
-	while (array_str[++i])
+	if (array_str)
 	{
-		free(array_str[i]);
-		array_str[i] = NULL;
+		while (array_str[++i])
+		{
+			free(array_str[i]);
+			array_str[i] = NULL;
+		}
 	}
 	free(array_str);
 	array_str = NULL;

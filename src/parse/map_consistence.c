@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:29:19 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/27 15:41:01 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/27 15:46:21 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		map_closed(t_pars* parsing_str) //hay que verificar que denajo de un 1 siem
 	if (normalize_map(parsing_str))
 		return (EXIT_FAILURE);
 	//draw_normalize(parsing_str);
-	draw_normalize2(parsing_str);
+	//draw_normalize2(parsing_str);
 	//printf("despues de draw\n");	
 	if (char_per_char_map(parsing_str)) //aqui me esta dando algo
 		return (EXIT_FAILURE);

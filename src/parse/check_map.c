@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:25:05 by fnieves           #+#    #+#             */
-/*   Updated: 2023/03/27 15:44:55 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/27 15:50:28 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,12 @@ int	check_map(t_pars *parsing_str)
 		return (print_error(ERR_MAP10_MES, ERR_MAP10));
 	parsing_str->nb_endline_map = find_end(parsing_str);
 	parsing_str->max_leng_map = find_max_line(parsing_str);
-	printf("->nb_line_map: %zu , ->nb_endline_map  %zu, max leng %zu\n Linea inicio map : 0 y final %zu\n"
-	,parsing_str->nb_line_map, parsing_str->nb_endline_map ,parsing_str->max_leng_map, parsing_str->nb_endline_map - parsing_str->nb_line_map );
+	
+	printf("->nb_line_map: %zu , ->nb_endline_map  %zu, max leng %zu\n Linea \
+	 inicio map : 0 y final %zu\n"
+	,parsing_str->nb_line_map, parsing_str->nb_endline_map ,parsing_str->max_leng_map,
+	 parsing_str->nb_endline_map - parsing_str->nb_line_map );
+	
 	if (parsing_str->nb_endline_map - parsing_str->nb_line_map < 2)
 		return (print_error(ERR_MAP0_MES, ERR_MAP0));
 	if (parsing_str->nb_line_map < 6)
