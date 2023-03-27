@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:29:19 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/27 00:22:35 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/27 15:41:01 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,30 @@
 
 	while (parsing_str->map_normal[i])
 	{
-		printf("Fila %i	:%s\n",i,parsing_str->map_normal[i] );
+		printf("%s\n",parsing_str->map_normal[i] );
 		i++;
 	}
+	printf("\n");
+}
+
+ void draw_normalize2(t_pars* parsing_str)
+{
+	int i = 0;
+	int j;
+
+	while (parsing_str->map_normal[i])
+	{
+		j = 0;
+		while (parsing_str->map_normal[i][j])
+		{
+			printf("%c", parsing_str->map_normal[i][j]);
+			j++;
+		}
+		printf("\n");
+		//printf("Fila %i	:%s\n",i,parsing_str->map_normal[i] );
+		i++;
+	}
+	//printf("\n");
 }
 
 //una vez aquí: Solo hay un jugador y todos los caracteres son correctos en el mapa
@@ -31,7 +52,8 @@ int		map_closed(t_pars* parsing_str) //hay que verificar que denajo de un 1 siem
 {
 	if (normalize_map(parsing_str))
 		return (EXIT_FAILURE);
-	draw_normalize(parsing_str);
+	//draw_normalize(parsing_str);
+	draw_normalize2(parsing_str);
 	//printf("despues de draw\n");	
 	if (char_per_char_map(parsing_str)) //aqui me esta dando algo
 		return (EXIT_FAILURE);

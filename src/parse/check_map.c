@@ -6,7 +6,7 @@
 /*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:25:05 by fnieves           #+#    #+#             */
-/*   Updated: 2023/03/27 01:17:15 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/27 15:44:55 by fnieves          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	check_map(t_pars *parsing_str)
 	return (EXIT_SUCCESS);
 }
 
+//tanto en map char como player. tengo seg fault
 int	is_map_consistent(t_pars *parsing_str)
 {
 	if (map_char(parsing_str))
@@ -106,7 +107,7 @@ int	find_end(t_pars *parsing_str)
 /**
  * @brief 
  * Devuelve la longitud máxima del map para calcular la 
- * matriz normalizada. Nop inclouye el salto de linea
+ * matriz normalizada. La longitud + 1 = incluye salto de linea
  * @param parsing_str 
  * @return int 
  */
