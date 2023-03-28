@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 19:57:55 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/16 20:03:41 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:17:16 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,28 @@
 
 float	grades_to_rads(float grades)
 {
-	float rads;
+	float	rads;
 
-	rads = grades * ((float)M_PI / 180);
+	rads = grades * ((float)M_PI / 180.0);
 	return (rads);
 }
 
 float	rads_to_grades(float rads)
 {
-	float grades;
+	float	grades;
 
-	grades = rads * ((float)180 / M_PI);
+	grades = rads * ((float)180.0 / M_PI);
+	return (grades);
+}
 
-	return grades;
+float	normalize_angle(float angle)
+{
+	float	new_angle;
+
+	new_angle = angle;
+	if (angle < 0)
+		angle = 360 + angle;
+	else if (angle > 360)
+		angle = angle - 360;
+	return (angle);
 }

@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Turn_Right_and_Left.c                              :+:      :+:    :+:   */
+/*   MouseHook.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/14 22:27:25 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/14 22:31:55 by anramire         ###   ########.fr       */
+/*   Created: 2023/03/28 21:14:38 by anramire          #+#    #+#             */
+/*   Updated: 2023/03/28 23:07:22 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/game/Game.h"
 
-void	key_turn(t_game *game, mlx_key_data_t keydata)
+void	cursorhook(double xpos, double ypos, void *param)
 {
-	if (keydata.key == MLX_KEY_A && keydata.action == MLX_REPEAT)
-	{
+	t_game	*game;
+
+	game = (t_game *)param;
+	(void)ypos;
+	if (xpos < (float)((game->player->screen_x / 2)
+		- (game->player->screen_x / 4)))
 		rotate(game->player, -1);
-		paint(game);
-	}
-	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_REPEAT)
-	{
+	if (xpos > (float)((game->player->screen_x / 2)
+		+ (game->player->screen_x / 4)))
 		rotate(game->player, 1);
-		paint(game);
-	}
-	if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
-	{
-		rotate(game->player, -1);
-		paint(game);
-	}
-	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
-	{
-		rotate(game->player, 1);
-		paint(game);
-	}
 }

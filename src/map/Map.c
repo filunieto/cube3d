@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/16 22:58:59 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:57:45 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	init_map(t_map *map, t_player *player)
 	char *map_aux[] = {
 			"        1111111111111111111111111",
 			"        1000000000110000000000001",
-			"        10110000011100000N0000001",
+			"        1011000001110000000000001",
 			"        1001000000000000000000001",
 			"111111111011000001110000000000001",
-			"100000000011000001110111110111111",
+			"10000000N011000001110111110111111",
 			"11110111111111011100000010001    ",
 			"11110111111111011101010010001    ",
 			"11000000110101011100000011001    ",
@@ -42,12 +42,18 @@ void	init_map(t_map *map, t_player *player)
 			"11110111 1110101 101111010001    ",
 			"11111111 1111111 111111111111    "
 	};
-	map->semi_len = 200;
-	map->width = 60;
-	map->height = 60;
+	map->semi_len = 150;
+	map->width = 40;
+	map->height = 40;
 	map->rows = rows;
 	map->columns = ft_strlen(map_aux[i]);
 	map->map = (char **) malloc(rows * sizeof(char *));	
+	map->NO = mlx_load_png("./textures/Brick_Wall_Cracked_64x64.png");
+	map->SO = mlx_load_png("./textures/Vinelike_Pattern_64x64.png");
+	map->EA = mlx_load_png("./textures/Rocky_Road_64x64.png");
+	map->WE = mlx_load_png("./textures/Wooden_Floor_Vertical_64x64.png");
+	map->ceil_color = 0x2393D7FF;
+	map->floor_color = 0x6C5507FF;
 	while (i < 14)
 	{	
 		map->map[i] = ft_strdup(map_aux[i]); //we use this strdup!!!!!!!!!!!!,
@@ -72,6 +78,7 @@ void	init_map(t_map *map, t_player *player)
  *Function to make the main loop drawing map
  * aux=> 0 -> offset_x, 1 -> auxiliar, 2 -> y
  * */
+
 void	draw_map(t_map *map, t_player *player)
 {
 	unsigned int	rest;
@@ -80,11 +87,10 @@ void	draw_map(t_map *map, t_player *player)
 	int				aux[3];
 	t_line			line;
 
-	aux[2] = player->pos_y % map->height;
-	rest = (map->semi_len - (player->pos_x % map->width)) % map->width;
+	aux[2] = (int)player->pos_y % map->height;
+	rest = (map->semi_len - ((int)player->pos_x % map->width)) % map->width;
 	aux[1] = 2 * map->semi_len;
-	aux[0] = (player->pos_x - (aux[1] - map->semi_len)) / map->width;
-	check_color(map->map[player->pos_y / map->height][aux[0]], &color);
+	check_outside_colors(map, player, &color, aux);
 	insert_point(&(sq.p0), player->center_point->x - map->semi_len,
 		player->center_point->y - aux[2]);
 	insert_point(&(sq.p1), sq.p0.x + rest, sq.p0.y);
@@ -114,13 +120,13 @@ void	draw_column_up(t_map *map, t_player *player, t_line *line, int *aux)
 
 	params[0] = aux[0];
 	params[1] = map->semi_len - aux[2];
-	params[2] = player->pos_y - map->height;
+	params[2] = (int)player->pos_y - map->height;
 	if (params[2] < 0)
 		color = 0x000000FF;
 	else
 		check_color(map->map[params[2] / map->height][params[0]], &color);
 	insert_point(&(sq1.p3), line->p0->x, line->p0->y);
-	insert_point(&(sq1.p2), line->p1->x, line-> p1->y);
+	insert_point(&(sq1.p2), line->p1->x, line->p1->y);
 	insert_point(&(sq1.p0), sq1.p3.x, sq1.p3.y - map->height);
 	insert_point(&(sq1.p1), sq1.p2.x, sq1.p0.y);
 	draw_square_filled(player->img, &sq1, color, 1);
@@ -142,7 +148,7 @@ void	draw_column_down(t_map *map, t_player *player, t_line *line, int *aux)
 
 	params[0] = aux[0];
 	params[1] = map->semi_len - (map->height - aux[2]);
-	params[2] = player->pos_y + map->height;
+	params[2] = (int)player->pos_y + map->height;
 	if ((params[2] / map->height) >= map->rows)
 		color = 0x000000FF;
 	else

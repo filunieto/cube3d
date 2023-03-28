@@ -6,96 +6,142 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 22:31:16 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/16 23:18:27 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:08:29 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/game/Game.h"
 
+void	casting(t_map *map, t_player *player);
+
+
+static void draw_vertical_line(unsigned int x, float distancia_colision, t_player *player, t_map *map, int x_texture, mlx_texture_t *texture);
+
+static void draw_ceil_and_floor(t_map *map, t_player *player);
 //This functiom is constantly executing and it is in charge of repainting
 void	paint(t_game *game)
 {
+
 	clear_image(game->player);
+	
+	//draw ceil and floor
+	draw_ceil_and_floor(game->map, game->player);
+	casting(game->map, game->player);
 	draw_map(game->map, game->player);
 	paint_player(game->player);
-	t_point p_extremo;
-	if(game->player->angle != 360 && game->player->angle != 0)
+
+
+}
+
+void	casting(t_map *map, t_player *player)
+{
+	t_point_f p_extremo;
+	t_point p_final;
+	float increment_angle;
+	float half_fov;
+	float init_angle;
+	float distancia_proyec;
+	float distancia_colision;
+	float aux;
+	int x_texture;
+	mlx_texture_t *texture;
+	half_fov = player->fov / 2;
+	distancia_proyec = ((float)player->screen_x / 2) / tan (grades_to_rads(half_fov));
+	
+	increment_angle = player->fov / (float)player->screen_x;
+	init_angle = (float)player->angle - half_fov;
+	init_angle = normalize_angle(init_angle);
+	cast(map, player, (float)player->angle, &p_extremo, &x_texture, &texture);
+	adjust_line(map, player, &p_extremo, &p_final);
+	draw_line(player->img, player->center_point, &p_final, 0xFF00FFFF);
+	
+
+	for(unsigned int i = 0; i < player->screen_x; i++)
 	{
-		cast(game->map, game->player, (float)game->player->angle, &p_extremo);
-		draw_line(game->player->img, game->player->center_point, &p_extremo, 0xFF00FFFF);
+		distancia_colision = cast(map, player, init_angle, &p_extremo, &x_texture, &texture);	
+
+		aux = player->angle - init_angle;
+		aux = normalize_angle(aux);
+		aux = grades_to_rads(aux);
+		aux = distancia_colision * cos(aux);
+		draw_vertical_line(i, aux, player, map, x_texture, texture);
+
+		init_angle += increment_angle;
+		init_angle = normalize_angle(init_angle);
 	}
 }
 
-void	cast(t_map *map, t_player *player, float angle, t_point *p_ext)
+void draw_vertical_line(unsigned int x, float distancia_colision, t_player *player, t_map *map, int x_texture, mlx_texture_t *texture)
 {
-	(void)p_ext;
-	int izquierda;// 0 -> derecha, 1 -> izquierda
-	int abajo;// 0 -> arriba, 1 -> abajo
-	float rads = grades_to_rads(angle);
-	int y_intercept;
-	int x_intercept;
-	int step_y;
-	int step_x;
-	int wall_hit_x_horizontal;
-	int wall_hit_y_horizontal;
-	int horizontal_hit;
-	printf("Angle: %f\n", angle);
-	horizontal_hit = 0;
-	izquierda = 0;
-	abajo = 0;
-	if(rads < (float)(M_PI) && rads > (float)0)
-		abajo = 1;
+	float proyected_height;
+	int half_screen = player->screen_y / 2;
+	int y0;
+	int y1;
+	float ratio; //pixel_pantalla / pixel_textura
+	float acc;
+	(void)map;
 
-	if(rads > (float)(M_PI / 2) && rads < (3*(float)(M_PI / 2)))
-		izquierda = 1;
-	(void)izquierda;	
-	y_intercept = (int)floor(player->pos_y / map->height) * map->height;
-	if(abajo == 1)
-		y_intercept += map->height;
-
-	x_intercept = (int)player->pos_x;
-	x_intercept += (int)((double)(y_intercept - (int)player->pos_y) / tan(rads));
-
-
-	step_y = map->height;
-	step_x = (int)((double)((int)map->height) / tan(rads));
-	printf("tan: %f\n", tan(rads));
-	wall_hit_x_horizontal = x_intercept;
-	wall_hit_y_horizontal = y_intercept;
-	printf("y_intercept: %d\n", y_intercept);	
-	printf("x_intercept: %d\n", x_intercept);
-
-
-	step_x = -step_x;
-	if(abajo == 0)
+	acc = 0;
+	if(distancia_colision > 0)
+		proyected_height = 20000/ distancia_colision;
+	else
+		proyected_height = player->screen_y - 1;
+		// if(proyected_height > (player->screen_y - 1))
+		// 	acc = proyected_height * texture->height / player->screen_x - 1 ;
+	ratio = (float)texture->height / proyected_height;
+	//printf("proyected_height: %f, ratio: %f\n", proyected_height, ratio);
+	y0 = half_screen - (int)(proyected_height / 2);
+	if (y0 < 0)
 	{
-
-		step_y = -step_y;
-		wall_hit_y_horizontal--;
+		acc = (-y0 + 1) * ratio;
+		y0 = 0;
 	}
-	if(abajo == 1)
+	y1 = half_screen + (int)(proyected_height / 2);
+	if(y1 > (int)(player->screen_y - 1))
+		y1 = player->screen_y - 1;
+	//int pos = 30;
+	//uint8_t *color;
+	int color;
+	int color_def;
+	for(; y0 <y1; y0++)
 	{
-		step_x = -step_x;
-	}
+		(void) x_texture;
+		color = texture->pixels[(x_texture + (((int)acc) * texture->width)) *  texture->bytes_per_pixel]<< 24;
+		color |= texture->pixels[(x_texture + (((int)acc) * texture->width)) *  texture->bytes_per_pixel + 1] << 16;
+		color |= texture->pixels[(x_texture + (((int)acc) * texture->width)) *  texture->bytes_per_pixel + 2] << 8;
+		color |= texture->pixels[(x_texture + (((int)acc) * texture->width)) *  texture->bytes_per_pixel + 3];
 
-	printf("step_x: %d\n", step_x);
-	printf("step_y: %d\n", step_y);
-	while(horizontal_hit == 0 && wall_hit_x_horizontal < (int)(map->width * map->columns)
-			&& wall_hit_x_horizontal >= 0 && wall_hit_y_horizontal >= 0 &&
-			wall_hit_y_horizontal < (int)(map->rows * map->height))	
-	{
+		//color_def = (color[0] << 24) | (color[1] << 16) | (color[2] << 8) | color[3];
+		//color_def = color>>24 | color<<24 | (((color << 8) >> 24) << 8) | (((color >> 8) << 24) >> 8) ;
+		color_def = color;
+		if(y0 > 0 && y0 <= (int)(player->screen_y - 1))
+			mlx_put_pixel(player->img, x, y0, color_def);
+		if((float)(acc + ratio) < (float)texture->height)
+			acc += ratio;
 
-		if(map->map[wall_hit_y_horizontal / map->height][wall_hit_x_horizontal / map->width] == '1')
-			horizontal_hit = 1;
-		else
-		{
-			wall_hit_x_horizontal += step_x;
-			wall_hit_y_horizontal += step_y;
-		}
 	}
-	printf("wall_hit_x_horizontal: %d\n", wall_hit_x_horizontal);
-	printf("wall_hit_y_horizontal: %d\n", wall_hit_y_horizontal);
-	insert_point(p_ext, player->center_point->x + wall_hit_x_horizontal - player->pos_x,
-			player->center_point->y + wall_hit_y_horizontal - player->pos_y);
+		//printf("pixel: %f\n", acc);
+
+}
+
+static void draw_ceil_and_floor(t_map *map, t_player *player)
+{
+	(void)map;	
+	t_4vertex ceil;
+	t_4vertex floor;
+	
+	//ceil
+	insert_point(&(ceil.p0), 1, 1);
+	insert_point(&(ceil.p1), player->screen_x - 1, 1);
+	insert_point(&(ceil.p2), player->screen_x - 1, player->screen_y / 2);
+	insert_point(&(ceil.p3), 1, player->screen_y / 2);
+	
+	//floor
+	insert_point(&(floor.p0), 1, player->screen_y / 2);
+	insert_point(&(floor.p1), player->screen_x - 1, player->screen_y / 2);
+	insert_point(&(floor.p2), player->screen_x - 1, player->screen_y - 1);
+	insert_point(&(floor.p3), 1 , player->screen_y - 1);
+	draw_square_filled(player->img, &ceil, map->ceil_color, 1);
+	draw_square_filled(player->img, &floor, map->floor_color, 1);
 
 }

@@ -6,12 +6,13 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:56:52 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/16 19:31:34 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:35:18 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/map/Map.h"
 
+/*
 void	show_map(t_map *map)
 {
 	unsigned int	i;
@@ -24,6 +25,7 @@ void	show_map(t_map *map)
 		i++;
 	}	
 }
+*/
 
 void	free_map(t_map *map)
 {	
@@ -35,6 +37,10 @@ void	free_map(t_map *map)
 		free(map->map[i]);
 		i++;
 	}
+	mlx_delete_texture(map->NO);
+	mlx_delete_texture(map->SO);
+	mlx_delete_texture(map->EA);
+	mlx_delete_texture(map->WE);
 	free(map->map);
 }
 
@@ -44,6 +50,6 @@ void	check_color(char c, int *color)
 		*color = COLOR_WALLS;
 	else if (c == 'N' || c == 'E' || c == 'W' || c == 'S' || c == '0')
 		*color = COLOR_FREE_SPACES;
-	else 
+	else
 		*color = 0x000000FF;
 }

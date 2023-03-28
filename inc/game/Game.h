@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:21:02 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/16 22:21:40 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:56:42 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ void	free_game(t_game *game);
 void	paint(t_game *game);
 
 //Function responsible of casting rays
-void	cast(t_map *map, t_player *player, float angle, t_point *p_ext);
+float	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext, int *x_texture, mlx_texture_t **texture);
 
+//Function to calculate distance between 2 points
+float distancia(float p0x, float p0y, float p1x, float p1y);
+
+//Function to limit the direction line in minimap
+void adjust_line(t_map *map, t_player *player, t_point_f *p_extremo, t_point *p_final);
+
+void	key_advance_and_back_aux(void *param);
 #endif
