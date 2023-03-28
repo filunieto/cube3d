@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 22:16:43 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/21 20:00:07 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:21:22 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 extern void	resize_func(int x, int y, void *param);
 extern void	key_func(mlx_key_data_t keydata, void *param);
+extern void cursorhook(double xpos, double ypos, void *param);
 
 void	init_game(mlx_t *mlx, mlx_image_t *img, t_game *game)
 {
@@ -26,6 +27,7 @@ void	init_game(mlx_t *mlx, mlx_image_t *img, t_game *game)
 	paint(game);
 	mlx_loop_hook(mlx, key_advance_and_back_aux, game);
 	mlx_resize_hook(game->mlx, resize_func, game);
+	mlx_cursor_hook(mlx, cursorhook, game);
 }
 
 void	free_game(t_game *game)

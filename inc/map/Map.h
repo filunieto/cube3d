@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:00 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/27 21:08:39 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:52:07 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_map
 	mlx_texture_t *SO;
 	mlx_texture_t *EA;
 	mlx_texture_t *WE;
+	int ceil_color;
+	int floor_color;
 }t_map;
 
 //Functions aux temporarily!!!!!!!!

@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 22:31:16 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/28 18:43:16 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:08:29 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 void	casting(t_map *map, t_player *player);
 
 
-void draw_vertical_line(unsigned int x, float distancia_colision, t_player *player, t_map *map, int x_texture, mlx_texture_t *texture);
+static void draw_vertical_line(unsigned int x, float distancia_colision, t_player *player, t_map *map, int x_texture, mlx_texture_t *texture);
+
+static void draw_ceil_and_floor(t_map *map, t_player *player);
 //This functiom is constantly executing and it is in charge of repainting
 void	paint(t_game *game)
 {
 
 	clear_image(game->player);
 	
+	//draw ceil and floor
+	draw_ceil_and_floor(game->map, game->player);
 	casting(game->map, game->player);
 	draw_map(game->map, game->player);
 	paint_player(game->player);
@@ -117,5 +121,27 @@ void draw_vertical_line(unsigned int x, float distancia_colision, t_player *play
 
 	}
 		//printf("pixel: %f\n", acc);
+
+}
+
+static void draw_ceil_and_floor(t_map *map, t_player *player)
+{
+	(void)map;	
+	t_4vertex ceil;
+	t_4vertex floor;
+	
+	//ceil
+	insert_point(&(ceil.p0), 1, 1);
+	insert_point(&(ceil.p1), player->screen_x - 1, 1);
+	insert_point(&(ceil.p2), player->screen_x - 1, player->screen_y / 2);
+	insert_point(&(ceil.p3), 1, player->screen_y / 2);
+	
+	//floor
+	insert_point(&(floor.p0), 1, player->screen_y / 2);
+	insert_point(&(floor.p1), player->screen_x - 1, player->screen_y / 2);
+	insert_point(&(floor.p2), player->screen_x - 1, player->screen_y - 1);
+	insert_point(&(floor.p3), 1 , player->screen_y - 1);
+	draw_square_filled(player->img, &ceil, map->ceil_color, 1);
+	draw_square_filled(player->img, &floor, map->floor_color, 1);
 
 }

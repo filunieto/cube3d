@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 22:18:24 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/28 18:11:04 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:21:57 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ void	key_advance_and_back_aux(void *param)
 		free_game(game);
 		exit(0);
 	}
-
 	paint(game);
 }

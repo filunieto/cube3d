@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/27 22:38:34 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:00:40 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	init_map(t_map *map, t_player *player)
 	map->SO = mlx_load_png("./textures/Vinelike_Pattern_64x64.png");
 	map->EA = mlx_load_png("./textures/Rocky_Road_64x64.png");
 	map->WE = mlx_load_png("./textures/Wooden_Floor_Vertical_64x64.png");
+	map->ceil_color = 0x2393D7FF;
+	map->floor_color = 0x6C5507FF;
 	while (i < 14)
 	{	
 		map->map[i] = ft_strdup(map_aux[i]); //we use this strdup!!!!!!!!!!!!,
