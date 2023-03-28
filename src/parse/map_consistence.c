@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:29:19 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/28 17:03:28 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/28 19:39:57 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,6 @@ void	draw_normalize2(t_pars *parsing_str)
 	}
 }
 
-void	draw_normalize(t_pars *parsing_str)
-{
-	int	i;
-
-	i = 0;
-	while (parsing_str->map_normal[i])
-	{
-		printf ("%s\n", parsing_str->map_normal[i]);
-		i++;
-	}
-	printf("\n");
-}
-
 int	map_closed(t_pars *parsing_str)
 {
 	if (normalize_map(parsing_str))
@@ -51,7 +38,6 @@ int	map_closed(t_pars *parsing_str)
 	if (char_per_char_map(parsing_str))
 		return (EXIT_FAILURE);
 	draw_normalize2(parsing_str); //borrar
-	//draw_normalize(parsing_str); //borrar
 	return (EXIT_SUCCESS);
 }
 
@@ -139,3 +125,15 @@ int	check_around(t_pars *parsing_str, int i, int j)
 	return (EXIT_SUCCESS);
 }
 
+// void	draw_normalize(t_pars *parsing_str) //borrar
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (parsing_str->map_normal[i])
+// 	{
+// 		printf ("%s\n", parsing_str->map_normal[i]);
+// 		i++;
+// 	}
+// 	printf("\n");
+// }

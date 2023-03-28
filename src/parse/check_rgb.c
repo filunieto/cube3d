@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 21:43:56 by fnieves           #+#    #+#             */
-/*   Updated: 2023/03/28 11:53:38 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/28 19:39:00 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
  * @param b 
  * @return int 
  */
+
 static int	rgb_to_color_hex(int r, int g, int b)
 {
 	return (r << 24 | g << 16 | b << 8 | 0xFF);

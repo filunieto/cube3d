@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:23:43 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/28 18:25:07 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/28 19:36:40 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,13 @@ int	check_arguments(t_pars *parsing_str, char **s_splited_cleaned)
 int	check_identifier(t_pars *parsing_str, char *line_splitd)
 {
 	int		i;
-	char	*card_arr[6] = {NORTH_STR, SOUTH_STR, 
-			EAST_STR, WEST_STR, HEAVEN_STR, GROUND_STR};
-	char	*error_ar[6] = {ERR_REPET_NO, ERR_REPET_SO, ERR_REPET_EA, ERR_REPET_WE, ERR_REPET_F, ERR_REPET_G};
-	char	card_char[6] = {NORTH, SOUTH, EAST, WEST, HEAVEN, GROUND};
+	char	*card_arr[6];
+	char	*error_ar[6];
+	char	card_char[6];
 
+	define_cardinal(card_arr);
+	define_error(error_ar);
+	define_card_char(card_char);
 	i = -1;
 	if (parsing_str->arg_ok < 6)
 	{
@@ -89,7 +91,7 @@ int	check_identifier(t_pars *parsing_str, char *line_splitd)
  * @param id 
  * @return int 
  */
-int	check_textur_path(t_pars *parsing_str, char **s_splited_cleaned, int id) //preguntara  a Andres si prefiere el path
+int	check_textur_path(t_pars *parsing_str, char **s_splited_cleaned, int id)
 {
 	int	fd;
 

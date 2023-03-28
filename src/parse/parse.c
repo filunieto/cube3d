@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:36:58 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/28 18:01:21 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/28 18:56:01 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	free_parser(t_pars *parsing_str)
 	free_split(&parsing_str->map);
 	free_split(&parsing_str->map_normal);
 }
-
 
 // }
 /**
@@ -49,7 +48,6 @@ int	ft_parse(char *file_mup)
 		printf(" Algún probelma en la fucnion. Se ha hecho free y salimos\n"); //borrar
 		return (EXIT_FAILURE);
 	}
-	//Antes  dle free funcion   primero para copiatr datos entre las estructuras
 	//copy_struct(&parsing_str, t_struc *struct_generic);
 	free_parser(&parsing_str);
 	printf("acabdo ft_parser Todo ok. .free hecho y seguimos.\n"); //borrar
