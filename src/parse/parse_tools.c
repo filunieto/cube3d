@@ -53,22 +53,22 @@ int	free_split_rgb(char ***rgb, char *message)
 	return (1);
 }
 
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
+// int	ft_strcmp(char *s1, char *s2)
+// {
+// 	int	i;
 
-	i = 0;
-	while (s1[i] && s2[i])
-	{
-		if (s1[i] == s2[i])
-			i++;
-		else
-			break ;
-	}
-	if (s1[i] == s2[i])
-		return (0);
-	return (1);
-}
+// 	i = 0;
+// 	while (s1[i] && s2[i])
+// 	{
+// 		if (s1[i] == s2[i])
+// 			i++;
+// 		else
+// 			break ;
+// 	}
+// 	if (s1[i] == s2[i])
+// 		return (0);
+// 	return (1);
+// }
 
 /**
  * @brief 

@@ -27,5 +27,7 @@ int	main(int argc, char** argv)
 		return (print_error(ERRNBINP_MES, ERRNBINP));
 	if (ft_parse(argv[1])) //PASAR LA ESTRUCTURA GENERAL DE ANDRES, previa inicialización
 		return (EXIT_FAILURE);
+
+	init_window();
 	return (EXIT_SUCCESS);
 }

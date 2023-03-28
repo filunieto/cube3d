@@ -90,7 +90,7 @@ void	init_pars_arr(t_pars *parsing_str);
 
 //src/parse/parse_tools.c
 int		is_ext_cub(t_pars *parsing_str);
-int		ft_strcmp(char *s1, char *s2);
+//int		ft_strcmp(char *s1, char *s2);
 int		free_split_rgb(char ***rgb, char *message);
 void	free_split(char ***s_splitted);
 
