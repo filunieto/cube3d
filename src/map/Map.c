@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/28 22:00:40 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:57:45 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,33 +86,22 @@ void	draw_map(t_map *map, t_player *player)
 	t_4vertex		sq;
 	int				aux[3];
 	t_line			line;
+
 	aux[2] = (int)player->pos_y % map->height;
 	rest = (map->semi_len - ((int)player->pos_x % map->width)) % map->width;
 	aux[1] = 2 * map->semi_len;
-
-	if((int)((int)player->pos_x - (aux[1] - map->semi_len)) < 0)
-	{
-		color = 0x000000FF;
-		aux[0] = -1;
-	}
-	else
-	{
-		aux[0] = ((int)player->pos_x - (aux[1] - map->semi_len)) / map->width;
-		check_color(map->map[(int)player->pos_y / map->height][aux[0]], &color);
-	}
+	check_outside_colors(map, player, &color, aux);
 	insert_point(&(sq.p0), player->center_point->x - map->semi_len,
 		player->center_point->y - aux[2]);
 	insert_point(&(sq.p1), sq.p0.x + rest, sq.p0.y);
 	insert_point(&(sq.p2), sq.p0.x + rest, sq.p0.y + map->height);
 	insert_point(&(sq.p3), sq.p0.x, sq.p0.y + map->height);
-
 	draw_square_filled(player->img, &sq, color, 1);
 	aux[1] -= rest;
 	insert_points_line(&line, &(sq.p0), &(sq.p1));
 	draw_column_up(map, player, &line, aux);
 	insert_points_line(&line, &(sq.p2), &(sq.p3));
 	draw_column_down(map, player, &line, aux);
-
 	while (aux[1] > 0)
 		loop_draw_map(map, player, &sq, aux);
 }

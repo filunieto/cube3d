@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:00 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/28 21:52:07 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:43:58 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ typedef struct s_map
 void init_map(t_map *map, t_player *player);
 void free_map(t_map *map);
 
-//Function to check the color of a positio
+//Function to check the color of a position
 void	check_color(char c, int *color);
+void	check_outside_colors(t_map *map, t_player *player, int *color, int *aux);
 //Function to show map
 void show_map(t_map *map);
 
@@ -66,6 +67,10 @@ void player_advance(t_map *map, t_player *player, int direction);
 //Function to advance to the sides with 'A' or 'D', left == 1 goes to left
 //left == -1 goes to right
 void	player_advance_lateral(t_map *map, t_player *player, int left);
+
+//Function to check collisions
+void	check_collision(t_map *map, t_player *player,
+			float advance_x, float advance_y);
 
 
 #endif

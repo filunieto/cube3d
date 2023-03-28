@@ -6,31 +6,33 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:47:59 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/24 21:32:05 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/28 23:47:56 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/game/Game.h"
 
-
-float distancia(float p0x, float p0y, float p1x, float p1y);
-
+/*
+ * izquierda=> 0 -> derecha, 1 -> izquierda
+ * abajo=> 0 -> arriba, 1 -> abajo
+*/
 float	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext, int *x_texture, mlx_texture_t **texture)
 {
-	int izquierda;// 0 -> derecha, 1 -> izquierda
-	int abajo;// 0 -> arriba, 1 -> abajo
-	float rads = grades_to_rads(angle);
-	float y_intercept;
-	float x_intercept;
-	float step_y;
-	float step_x;
-	float wall_hit_x_horizontal;
-	float wall_hit_y_horizontal;
-	int horizontal_hit;
-	float wall_hit_x_vertical;
-	float wall_hit_y_vertical;
-	int vertical_hit;
+	int		izquierda;
+	int		abajo;
+	float	rads;
+	float	y_intercept;
+	float	x_intercept;
+	float	step_y;
+	float	step_x;
+	float	wall_hit_x_horizontal;
+	float	wall_hit_y_horizontal;
+	int		horizontal_hit;
+	float	wall_hit_x_vertical;
+	float	wall_hit_y_vertical;
+	int		vertical_hit;
 	
+	rads = grades_to_rads(angle);
 	horizontal_hit = 0;
 	izquierda = 0;
 	abajo = 0;
@@ -56,15 +58,9 @@ float	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext, int *x_t
 
 	step_x = -step_x;
 	if(abajo == 0)
-	{
-
 		step_y = -step_y;
-		//wall_hit_y_horizontal--;
-	}
 	if(abajo == 1)
-	{
 		step_x = -step_x;
-	}
 	while(horizontal_hit == 0 && wall_hit_x_horizontal < (float)(map->width * map->columns)
 			&& wall_hit_x_horizontal > 1.0 && wall_hit_y_horizontal > 1.0 &&
 			wall_hit_y_horizontal < (float)(map->rows * map->height))	
@@ -92,11 +88,7 @@ float	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext, int *x_t
 	
 	step_y = -step_y;
 	if(izquierda == 1)
-	{
 		step_x = -step_x;
-
-		//wall_hit_x_vertical--;
-	}
 	if(izquierda == 0)
 		step_y = -step_y;
 	vertical_hit = 0;	
@@ -104,7 +96,6 @@ float	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext, int *x_t
 			&& wall_hit_x_vertical > 1.0 && wall_hit_y_vertical > 1.0 &&
 			wall_hit_y_vertical < (float)(map->rows * map->height))	
 	{
-//
 		if(map->map[(int)wall_hit_y_vertical / map->height][(int)wall_hit_x_vertical / map->width] == '1' 
 			|| (izquierda == 1 && map->map[((int)wall_hit_y_vertical) / map->height][(int)(wall_hit_x_vertical - 1) / map->width] == '1'))
 			vertical_hit = 1;
@@ -119,20 +110,16 @@ float	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext, int *x_t
 	float vertical_distance = distancia(player->pos_x, player->pos_y, wall_hit_x_vertical, wall_hit_y_vertical);
 	if(horizontal_distance <= vertical_distance)
 	{
-		/*float x = (float)player->center_point->x + wall_hit_x_horizontal - player->pos_x;
-		float y = (float)player->center_point->y + wall_hit_y_horizontal - player->pos_y;*/
 		insert_point_f(p_ext, wall_hit_x_horizontal, wall_hit_y_horizontal);
 		if(abajo == 1)
 		{
 			*texture = map->NO;
 			*x_texture = (1 - ((int)wall_hit_x_horizontal % map->width) / (float) map->width) * ((*texture)->width );
-
 		}
 		else
 		{
 			*texture = map->SO;
 			*x_texture = (((int)wall_hit_x_horizontal % map->width) / (float) map->width) * ((*texture)->width );
-
 		}
 		if (*x_texture >=  (int)map->WE->width)
 			(*x_texture)--;
@@ -140,9 +127,6 @@ float	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext, int *x_t
 	}
 	else
 	{
-
-		/*float x = (float)player->center_point->x + wall_hit_x_vertical - player->pos_x;
-		float y = (float)player->center_point->y + wall_hit_y_vertical - player->pos_y;*/
 		insert_point_f(p_ext, wall_hit_x_vertical, wall_hit_y_vertical);
 		if(izquierda == 1)
 		{
@@ -160,6 +144,7 @@ float	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext, int *x_t
 	}	
 }
 
+//Function to calculate distance between 2 points
 float distancia(float p0x, float p0y, float p1x, float p1y)
 {
 	float distance_x = pow(p0x - p1x, 2);

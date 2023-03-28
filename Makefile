@@ -16,7 +16,8 @@ SRCS = $(SRC)/main.c $(SRC)/Screen.c $(SRC)/shapes/Line.c \
 	   $(SRC)/map/Utils_Draw_Map.c $(SRC)/map/Checking_Collisions_Sides.c \
 	   $(SRC)/map/Utils_Collisions.c $(SRC)/shapes/Rotations.c \
 	   $(SRC)/game/Utils_Minimap.c $(SRC)/game/Ray_Cast.c \
-	   $(SRC)/game/MouseHook.c
+	   $(SRC)/game/MouseHook.c $(SRC)/map/Utils_Draw_Map2.c \
+	   $(SRC)/map/Collisions.c
 
 OBJS = $(SRCS:.c=.o)
 NAME = cub3d
