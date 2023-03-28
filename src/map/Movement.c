@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 22:56:29 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/21 21:27:16 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/27 20:40:38 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,10 @@ void	player_advance(t_map *map, t_player *player, int direction)
 	float	advance_x;
 	float	advance_y;
 	angle = (player->angle * M_PI) / 180;
-	printf("Advance=> angle: %f\n", angle);
 	if (direction == -1 || direction == 1)
 	{
 		advance_x = (float)direction * player->vel * cos(angle);
 		advance_y = (float)direction * player->vel * sin(angle);
-		printf("advance_x: %f, advance_y: %f\n", advance_x, advance_y);
 		check_collision(map, player, advance_x, advance_y);
 	}
 }
@@ -67,7 +65,6 @@ void	player_advance_lateral(t_map *map, t_player *player, int left)
 		angle = (rotated_angle * M_PI) / 180;
 		advance_x = (float)player->vel * cos(angle);
 		advance_y = (float)player->vel * sin(angle);
-		printf("advance_x: %f, advance_y: %f\n", advance_x, advance_y);
 		check_collision(map, player, advance_x, advance_y);
 	}
 }
@@ -82,7 +79,6 @@ static void	check_collision(t_map *map, t_player *player,
 		check_horizontal_collision(map, player, advance_x);
 	else if (advance_x != 0 && advance_y != 0)
 		check_diagonal_collision(map, player, advance_x, advance_y);
-	printf("Player pos collision=> x: %f, y: %f\n", player->pos_x, player->pos_y);
 }
 
 //Function to check vertical collisions with walls

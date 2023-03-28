@@ -33,7 +33,7 @@ void	free_game(t_game *game);
 void	paint(t_game *game);
 
 //Function responsible of casting rays
-float	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext);
+float	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext, int *x_texture, mlx_texture_t **texture);
 
 //Function to calculate distance between 2 points
 float distancia(float p0x, float p0y, float p1x, float p1y);

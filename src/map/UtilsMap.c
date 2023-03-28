@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:56:52 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/16 19:31:34 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/27 21:13:26 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ void	free_map(t_map *map)
 		free(map->map[i]);
 		i++;
 	}
+	mlx_delete_texture(map->NO);
+	mlx_delete_texture(map->SO);
+	mlx_delete_texture(map->EA);
+	mlx_delete_texture(map->WE);
+	
 	free(map->map);
 }
 

@@ -15,7 +15,7 @@
 
 float distancia(float p0x, float p0y, float p1x, float p1y);
 
-float	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext)
+float	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext, int *x_texture, mlx_texture_t **texture)
 {
 	int izquierda;// 0 -> derecha, 1 -> izquierda
 	int abajo;// 0 -> arriba, 1 -> abajo
@@ -122,6 +122,20 @@ float	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext)
 		/*float x = (float)player->center_point->x + wall_hit_x_horizontal - player->pos_x;
 		float y = (float)player->center_point->y + wall_hit_y_horizontal - player->pos_y;*/
 		insert_point_f(p_ext, wall_hit_x_horizontal, wall_hit_y_horizontal);
+		if(abajo == 1)
+		{
+			*texture = map->NO;
+			*x_texture = (1 - ((int)wall_hit_x_horizontal % map->width) / (float) map->width) * ((*texture)->width );
+
+		}
+		else
+		{
+			*texture = map->SO;
+			*x_texture = (((int)wall_hit_x_horizontal % map->width) / (float) map->width) * ((*texture)->width );
+
+		}
+		if (*x_texture >=  (int)map->WE->width)
+			(*x_texture)--;
 		return horizontal_distance;
 	}
 	else
@@ -130,7 +144,18 @@ float	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext)
 		/*float x = (float)player->center_point->x + wall_hit_x_vertical - player->pos_x;
 		float y = (float)player->center_point->y + wall_hit_y_vertical - player->pos_y;*/
 		insert_point_f(p_ext, wall_hit_x_vertical, wall_hit_y_vertical);
-			
+		if(izquierda == 1)
+		{
+			*texture = map->EA;
+			*x_texture = (1 - ((int)wall_hit_y_vertical % map->height) / (float) map->height) * ((*texture)->height);
+		}
+		else
+		{
+			*texture = map->WE;
+			*x_texture = (((int)wall_hit_y_vertical % map->height) / (float) map->height) * ((*texture)->height);
+		}
+		if (*x_texture >=  (int)map->WE->width)
+			(*x_texture)--;
 		return vertical_distance;
 	}	
 }

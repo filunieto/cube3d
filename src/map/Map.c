@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/24 19:02:26 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/27 22:38:34 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ void	init_map(t_map *map, t_player *player)
 	map->rows = rows;
 	map->columns = ft_strlen(map_aux[i]);
 	map->map = (char **) malloc(rows * sizeof(char *));	
+	map->NO = mlx_load_png("./textures/Brick_Wall_Cracked_64x64.png");
+	map->SO = mlx_load_png("./textures/Vinelike_Pattern_64x64.png");
+	map->EA = mlx_load_png("./textures/Rocky_Road_64x64.png");
+	map->WE = mlx_load_png("./textures/Wooden_Floor_Vertical_64x64.png");
 	while (i < 14)
 	{	
 		map->map[i] = ft_strdup(map_aux[i]); //we use this strdup!!!!!!!!!!!!,
