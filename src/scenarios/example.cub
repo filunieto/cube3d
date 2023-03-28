@@ -10,7 +10,7 @@ EA      ./src/textures/wall4.xpm
 
 F    20,20,20
 	WE      ./src/textures/wall2.xpm	
-
+	WE      ./src/textures/wall2.xpm	
 
 111111
 100101
