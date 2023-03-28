@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:43:29 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/01 18:43:31 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/28 22:18:27 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,13 @@ void	swap(int *n1, int *n2)
 	aux = *n1;
 	*n1 = *n2;
 	*n2 = aux;
+}
+
+//Function to insert points into a line
+void	insert_points_line(t_line *line, t_point *p0, t_point *p1)
+{
+	if (!p0 || !p1)
+		return ;
+	line->p0 = p0;
+	line->p1 = p1;
 }

@@ -1,36 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   KeyHook.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/14 22:18:24 by anramire          #+#    #+#             */
+/*   Updated: 2023/03/28 23:05:33 by anramire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-# include "../../inc/game/Game.h"
+#include "../../inc/game/Game.h"
 
-void key_func(mlx_key_data_t keydata, void *param)
+void	key_advance_and_back_aux(void *param)
 {
-	t_game *game = (t_game *)param;
-	if(keydata.key == MLX_KEY_W && keydata.action == MLX_REPEAT)
-	{
-		game->player->pos_y -= 3;
-		paint(game);
-	}else if(keydata.key == MLX_KEY_S && keydata.action == MLX_REPEAT)
-	{
-		game->player->pos_y += 3;
-		paint(game);
-	}
-	if(keydata.key == MLX_KEY_A && keydata.action == MLX_REPEAT)
-	{
+	t_game	*game;
+
+	game = (t_game *)param;
+	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
+		player_advance(game->map, game->player, 1);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
+		player_advance(game->map, game->player, -1);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
 		rotate(game->player, -1);
-		paint(game);
-	}
-	else if(keydata.key == MLX_KEY_D && keydata.action == MLX_REPEAT)
-	{
+	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		rotate(game->player, 1);
-		paint(game);
-	}
-	if(keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
+	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
+		player_advance_lateral(game->map, game->player, 1);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
+		player_advance_lateral(game->map, game->player, -1);
+	if (mlx_is_key_down(game->mlx, MLX_KEY_Q))
 	{
-		rotate(game->player, -1);
-		paint(game);
+		free_game(game);
+		exit(0);
 	}
-	else if(keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
-	{
-		rotate(game->player, 1);
-		paint(game);
-	}
+	paint(game);
 }

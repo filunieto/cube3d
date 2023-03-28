@@ -1,24 +1,52 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ClearingImage.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/14 22:57:31 by anramire          #+#    #+#             */
+/*   Updated: 2023/03/28 22:19:26 by anramire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../inc/player/Player.h"
 
-void clear_image(t_player *player)
+void	clear_image(t_player *player)
 {
-	mlx_delete_image(player->mlx, player->img);
-	player->img = mlx_new_image(player->mlx, player->screen_x, player->screen_y);
-	mlx_image_to_window(player->mlx, player->img, 0, 0);
-	/*unsigned int x;
-	unsigned int y;
-	
+	unsigned int	x;
+	unsigned int	y;
+
 	y = 0;
-	while(y < player->screen_y)
+	while (y < player->screen_y)
 	{
 		x = 0;
-		while(x < player->screen_x)
+		while (x < player->screen_x)
 		{
 			mlx_put_pixel(player->img, x, y, 0x4a4747FF);
 			x++;
 		}
 		y++;
-	}*/
+	}
 }
+
+/*
+ 	mlx_delete_image(player->mlx, player->img);
+	player->img = mlx_new_image(player->mlx, player->screen_x,
+			player->screen_y);
+	mlx_image_to_window(player->mlx, player->img, 0, 0);
+*/
+/*unsigned int x;
+unsigned int y;
+
+y = 0;
+while(y < player->screen_y)
+{
+	x = 0;
+	while(x < player->screen_x)
+	{
+		mlx_put_pixel(player->img, x, y, 0x4a4747FF);
+		x++;
+	}
+	y++;
+}*/

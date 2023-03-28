@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:55:43 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/08 19:14:42 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:24:55 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ int	init_window(void)
 {	
 	mlx_t		*mlx;
 	mlx_image_t	*img;
-	t_game game;
+	t_game		game;
 
 	mlx = mlx_init(INITIAL_WIDTH, INITIAL_HEIGHT, "Cub3D", true);
+	mlx_set_window_limit(mlx, MIN_WIDTH, MIN_HEIGHT, INITIAL_WIDTH, INITIAL_HEIGHT);
 	if (!mlx)
 	{
 		printf("Error initializing window!!!\n");

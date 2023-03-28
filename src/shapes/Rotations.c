@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utilsPoint.c                                       :+:      :+:    :+:   */
+/*   Rotations.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 21:52:21 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/28 22:18:43 by anramire         ###   ########.fr       */
+/*   Created: 2023/03/16 19:57:55 by anramire          #+#    #+#             */
+/*   Updated: 2023/03/28 22:17:16 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/shapes/Shapes.h"
 
-void	insert_point(t_point *p, int x, int y)
+float	grades_to_rads(float grades)
 {
-	p->x = x;
-	p->y = y;
+	float	rads;
+
+	rads = grades * ((float)M_PI / 180.0);
+	return (rads);
 }
 
-void	insert_point_f(t_point_f *p, float x, float y)
+float	rads_to_grades(float rads)
 {
-	p->x = x;
-	p->y = y;
+	float	grades;
+
+	grades = rads * ((float)180.0 / M_PI);
+	return (grades);
 }
 
-int	check_points(t_point *p1, t_point *p2)
+float	normalize_angle(float angle)
 {
-	if (!p1 || !p2)
-	{
-		printf("Error in points passed\n");
-		return (-1);
-	}
-	return (0);
+	float	new_angle;
+
+	new_angle = angle;
+	if (angle < 0)
+		angle = 360 + angle;
+	else if (angle > 360)
+		angle = angle - 360;
+	return (angle);
 }
