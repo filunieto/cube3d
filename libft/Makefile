@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+         #
+#    By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/28 21:41:57 by anramire          #+#    #+#              #
-#    Updated: 2022/04/29 00:20:25 by anramire         ###   ########.fr        #
+#    Updated: 2023/03/18 16:18:48 by fnieves          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,3 +46,6 @@ re: fclean all
 
 bonus: $(BONUSOBJS) $(OBJS) $(INCLUDE)
 	ar rcs $(NAME) $(BONUSOBJS) $(OBJS)
+
+
+

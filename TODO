@@ -1,3 +1,21 @@
+-Display centered player
+-Map should move
+-Collisions
+-Display well when resizing
+-Events hooks mouse
+-Events hooks keyboard
+
+
+<!-- FElipe -->
+- Los muros tienen que ser 1. Entorado de muros
+- tiene que ser un array de strings que sea el numero máximo de columnas igual a ala fila mayor(rellenar con espacios lo que no esté definido)
+0: espacios vacios
+1: muros
+N,S,E ou W sólo una representando el punto de salida
+
+
+Dudas a Andres
+ejecutar libft en makefilke
 -Breaking function of cast
 -Changing events keys for general events
 -Adding mouse event

@@ -1,23 +1,53 @@
 #----------------------------- Makefile -----------------------------
 
+#------------------------ Colors --------------------------
+RESET = \033[0m
+GREEN_G = \033[1;32m
+GREEN_F = \033[1;0m\033[32m
+MAGEN_G = \033[1;36m
+MAGEN__F = \033[1;0m\033[36m
+RED_G = \033[1;31m
+RED_F = \033[1;0m\033[31m
+
+
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra  -O0 -g
 INC = inc
 SRC = src
 INCLUDES = $(INC)/Screen.h $(INC)/shapes/Shapes.h $(INC)/player/Player.h \
-		   $(INC)/game/Game.h $(INC)/map/Map.h 
+		   $(INC)/game/Game.h $(INC)/map/Map.h \
+			inc/Screen.h  			\
+			inc/parse/Parse.h 		\
+
+
 SRCS = $(SRC)/main.c $(SRC)/Screen.c $(SRC)/shapes/Line.c \
 	   $(SRC)/shapes/utilsLine.c $(SRC)/shapes/utilsPoint.c \
 	   $(SRC)/shapes/Square.c $(SRC)/player/Player.c \
 	   $(SRC)/player/Direction.c $(SRC)/game/Game.c \
 	   $(SRC)/game/ResizeHook.c $(SRC)/game/KeyHook.c \
 	   $(SRC)/player/ClearingImage.c $(SRC)/map/Map.c \
+	   $(SRC)/map/UtilsMap.c $(SRC)/game/Paint.c \
+		src/parse/parse.c 				\
+		src/parse/parse_tools.c 		\
+		src/error/error.c				\
+		src/gnl/get_next_line.c			\
+		src/gnl/get_next_line_utils.c	\
+		src/parse/read_map.c			\
+		src/parse/check_lines.c			\
+		src/parse/check_rgb.c			\
+		src/parse/check_map.c			\
+		src/parse/map_consistence.c		\
+		src/parse/map_one_player.c		\
+		src/parse/normalice_map.c		\
+		src/parse/init_parse.c			\
+		src/parse/copy_struct.c			\
 	   $(SRC)/map/UtilsMap.c $(SRC)/game/Paint.c $(SRC)/map/Movement.c \
 	   $(SRC)/map/Utils_Draw_Map.c $(SRC)/map/Checking_Collisions_Sides.c \
 	   $(SRC)/map/Utils_Collisions.c $(SRC)/shapes/Rotations.c \
 	   $(SRC)/game/Utils_Minimap.c $(SRC)/game/Ray_Cast.c \
 	   $(SRC)/game/MouseHook.c $(SRC)/map/Utils_Draw_Map2.c \
 	   $(SRC)/map/Collisions.c
+
 
 OBJS = $(SRCS:.c=.o)
 NAME = cub3d
@@ -61,6 +91,7 @@ $(NAME): $(OBJS) $(INCLUDES) $(GRAPHIC_LIBRARY) $(MEMORY_LEAKS)
 	$(CC) $(FLAGS) -g -o $@ $(OBJS) ./libft/libft.a $(DEPENDENCIES_LINUX) $(MEMORY_LEAKS)
 else ifeq ($(shell uname -s), $(MAC))
 
+
 $(NAME): $(OBJS) $(INCLUDES) $(GRAPHIC_LIBRARY) $(LIBFT) $(MEMORY_LEAKS)
 	$(CC) $(CFLAGS) $(MEMORY_LEAKS) ./libft/libft.a -g -o $(@) $(OBJS) $(DEPENDENCIES_MAC) -lglfw -L"/Users/${USER}/.brew/opt/glfw/lib/"
 
@@ -68,7 +99,6 @@ $(NAME): $(OBJS) $(INCLUDES) $(GRAPHIC_LIBRARY) $(LIBFT) $(MEMORY_LEAKS)
 	$(CC) $(CFLAGS) -g -I$(INC) -I$(INC_MLX) -I$(MEMORY_LEAKS_INC) -c $(filter %.c, $<) -o $@
 
 endif
-
 
 clean:
 	rm -rf $(MLX42)/build
@@ -85,3 +115,35 @@ $(VALGRIND): $(NAME)
 	valgrind --leak-check=full ./$(NAME)
 	rm -rf $(NAME).dSYM
 .PHONY: all re clean fclean val
+
+
+# Felipe rules
+
+run :
+	./$(NAME)
+
+test1: all
+	@echo "$(MAGEN_G)📝 test 1 con un archivo como input$(MAGEN_F) $(RESET)"
+	./$(NAME) ./src/scenarios/cubedwrong.cub
+
+test2: all
+	@echo "$(MAGEN_G)📝 test 2 $(MAGEN_F) $(RESET)"
+	./$(NAME) ./src/scenarios/example.cub
+
+test3: all
+	@echo "$(MAGEN_G)📝 test 3 para verificar parsing $(MAGEN_F) $(RESET)"
+	./$(NAME) ./src/scenarios/parsing_test.cub
+
+test4: all
+	@echo "$(MAGEN_G)📝 test 4 para verificar coordenadas $(MAGEN_F) $(RESET)"
+	./$(NAME) ./src/scenarios/coordenadas_linea.cub
+
+
+leaks : all
+	valgrind --leak-check=full ./$(NAME) ./src/scenarios/map_completo.cub
+
+leaks1 : all
+	valgrind --leak-check=full ./$(NAME) ./src/scenarios/cubedwrong.cub
+
+leaks2 : all
+	valgrind --leak-check=full -s ./$(NAME) ./src/scenarios/example.cub

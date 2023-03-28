@@ -1,0 +1,22 @@
+
+C    20,5,20
+
+NO      ./src/textures/wall1.xpm
+
+SO      ./src/textures/wall3.xpm
+EA      ./src/textures/wall4.xpm
+
+
+
+F    20,20,20
+	WE      ./src/textures/wall2.xpm	
+	WE      ./src/textures/wall2.xpm	
+
+111111
+100101
+101001
+1100N1
+111111     
+
+
+

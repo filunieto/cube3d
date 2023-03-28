@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 18:43:48 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/28 23:55:55 by fnieves-         ###   ########.fr       */
+/*   Created: 2023/03/10 12:25:01 by fnieves-          #+#    #+#             */
+/*   Updated: 2023/03/28 11:22:58 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "../inc/Screen.h"
+#include "../../inc/Screen.h"
 
-void	check_leaks(void)
-{
-	system("leaks -q cub3d");
-}
+/**
+ * @brief 
+ * @param error_msg 
+ * @param return_val 
+ * @return int 
+ */
 
-int	main(int argc, char** argv)
+int	print_error(char *error_msg, int return_val)
 {
-	/* FElipe */
-	//(void) argv;
-	if (argc != 2)
-		return (print_error(ERRNBINP_MES, ERRNBINP));
-	if (ft_parse(argv[1])) //PASAR LA ESTRUCTURA GENERAL DE ANDRES, previa inicialización
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+	write(2, ERR_MS, 6);
+	write(2, error_msg, ft_strlen(error_msg));
+	return (return_val);
 }

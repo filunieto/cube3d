@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Screen.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:44:14 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/21 19:26:38 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:31:40 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,21 @@
 # include "player/Player.h"
 # include "game/Game.h"
 # include "map/Map.h"
+
+/******************** FElipe *******************/
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
+# include <stdbool.h>
+# include <fcntl.h>
+
+
+# include "error/Error.h"
+# include "parse/Parse.h"
+# include "gnl/get_next_line.h"
+
+
 
 int	init_window(void);
 
