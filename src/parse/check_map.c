@@ -3,32 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 12:25:05 by fnieves           #+#    #+#             */
-/*   Updated: 2023/03/27 15:50:28 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/28 12:26:34 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/Screen.h"
 
-/*
-	vamos a l aprimera linea donde aparezca el mapa. 
-	A partir de ahí , verificamos que los caracteres sean los correctso 
-	que este cerrado por 1. que solo haya un jugador
-*/
+/**
+ * @brief 
+ * We calculate the parameters of the map. On which line it starts,
+ * where it ends and the maximum length of its lines.
+ * From this we check the consistency of the map.
+ * That there is only one player, that there are no
+ * incorrect characters and that is closed by 1.
+ * @param parsing_str 
+ * @return int 
+ */
 int	check_map(t_pars *parsing_str)
 {
 	if (find_init(parsing_str))
 		return (print_error(ERR_MAP10_MES, ERR_MAP10));
 	parsing_str->nb_endline_map = find_end(parsing_str);
 	parsing_str->max_leng_map = find_max_line(parsing_str);
-	
-	printf("->nb_line_map: %zu , ->nb_endline_map  %zu, max leng %zu\n Linea \
-	 inicio map : 0 y final %zu\n"
-	,parsing_str->nb_line_map, parsing_str->nb_endline_map ,parsing_str->max_leng_map,
-	 parsing_str->nb_endline_map - parsing_str->nb_line_map );
-	
 	if (parsing_str->nb_endline_map - parsing_str->nb_line_map < 2)
 		return (print_error(ERR_MAP0_MES, ERR_MAP0));
 	if (parsing_str->nb_line_map < 6)
@@ -38,7 +37,6 @@ int	check_map(t_pars *parsing_str)
 	return (EXIT_SUCCESS);
 }
 
-//tanto en map char como player. tengo seg fault
 int	is_map_consistent(t_pars *parsing_str)
 {
 	if (map_char(parsing_str))
@@ -50,15 +48,13 @@ int	is_map_consistent(t_pars *parsing_str)
 	return (EXIT_SUCCESS);
 }
 
-
-//qeu pasa si despues de lo sparametros , solo tenemos espacios y no hay mapa??
 /**
  * @brief 
- * Encuentra la primera línea del map. No verifica consistencia, contando desde 0
+ * Returns the first line where the map starts. Does not check
+ * consistency
  * @param parsing_str 
- * @return int valor de comienzo
+ * @return 
  */
-
 int	find_init(t_pars *parsing_str)
 {
 	char	*trimmed_spac;
@@ -80,11 +76,11 @@ int	find_init(t_pars *parsing_str)
 
 /**
  * @brief 
- * Encuentra la última línea del map. No verifica consistencia, contando desde 0
+ * Returns the last line where the map finishes. Does not check
+ * consistency
  * @param parsing_str 
  * @return int valor del final
  */
-
 int	find_end(t_pars *parsing_str)
 {
 	int		i;
@@ -110,10 +106,10 @@ int	find_end(t_pars *parsing_str)
 
 /**
  * @brief 
- * Devuelve la longitud máxima del map para calcular la 
- * matriz normalizada. La longitud + 1 = incluye salto de linea
+ * Returns the maximum length of the lines belonging to map for calculating the 
+ * normalised matrix. 
  * @param parsing_str 
- * @return int 
+ * @return Length of max line in map not including char \n .
  */
 int	find_max_line(t_pars *parsing_str)
 {

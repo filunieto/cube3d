@@ -3,22 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 12:16:23 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/27 01:05:46 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/28 11:15:21 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/Screen.h"
 
-
-
-
 /**
  * @brief 
- * Una vez tenemos reservado el espacio, podemos copiar el archivo
- * en nuestra estructura.
+ * Once we have reserved the space, 
+   we can copy the file to our structure. 
  * @param parsing_str 
  * @return int 
  */
@@ -45,12 +42,6 @@ int	copy_file(t_pars *parsing_str)
 	return (EXIT_SUCCESS);
 }
 
-/**
- * @brief 
- * Función que va a leer todo el archivo y calculara el array de punteros
- * Quiza sería mejor que retornara un int
- * @param parsing_str 
- */
 int	lets_beggin_parse(t_pars *parsing_str)
 {
 	if (read_copy_file (parsing_str))
@@ -64,9 +55,9 @@ int	lets_beggin_parse(t_pars *parsing_str)
 
 /**
  * @brief 
- * Leemos el archivo para malloquear. Desopu'es podemos copiar toda 
- * la informaci'on en nuestra estructura
- * 
+ * We read the input file once to calculate the number of lines.
+ * Then we can reserve memory with calloc and copy all 
+ * the information into our parser structure. 
  * @param parsing_str 
  * @return int 
  */

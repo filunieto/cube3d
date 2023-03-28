@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_tools.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 19:15:17 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/27 15:58:53 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/28 11:39:41 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,28 @@ void	free_split(char ***s_splitted)
 	}
 	free(array_str);
 	array_str = NULL;
+}
+
+int	free_split_rgb(char ***rgb, char *message)
+{
+	int		i;
+	char	**array_rgb;
+
+	array_rgb = *rgb;
+	i = -1;
+	if (array_rgb)
+	{
+		while (array_rgb[++i])
+		{
+			free(array_rgb[i]);
+			array_rgb[i] = NULL;
+		}
+	}
+	free(array_rgb);
+	array_rgb = NULL;
+	if (message)
+		printf("%s\n", message);
+	return (1);
 }
 
 int	ft_strcmp(char *s1, char *s2)

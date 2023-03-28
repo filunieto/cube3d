@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_lines.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:23:43 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/27 01:12:29 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/28 18:25:07 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 /**
  * @brief 
- * Vamos a verficar que los argumentos colores/textura , stén al principio 
- * y podamos abrir los path /colores. No verificamos consistencia de map
- * 
+ * Let's check that the arguments colours/texture , are at the beginning 
+ * and we can open the path /colours. We do not check map consistency
+ * If we find a correct identifier, we look at the following element 
+ * that it is the correct argument for colours (int) or for textures
+ * (paths that can be opened)
  * @param parsing_str 
- * @param s_splited_cleaned array de elmentos de linea sin espacios
- * @return int 
+ * @param s_splited_cleaned : array of line elements without spaces
+ * @return
  */
 int	check_arguments(t_pars *parsing_str, char **s_splited_cleaned)
 {
@@ -45,21 +47,23 @@ int	check_arguments(t_pars *parsing_str, char **s_splited_cleaned)
 
 /**
  * @brief 
- * 
+ * If the first element of the line matches NO, SO, F,...
+ * will return that identifier.
+ * Will return an error if:
+ * There is a repetition or the string is not correct.
  * @param parsing_str 
- * @param line_splitd : elemento 0 de la linea , sin espacios 
+ * @param line_splitd 
  * @return int 
  */
 int	check_identifier(t_pars *parsing_str, char *line_splitd)
 {
-	int	i;
-	// char	*card_arr[6];
-	// char	*error_ar[6];
-	// char 	card_char[6];
+	int		i;
+	char	*card_arr[6] = {NORTH_STR, SOUTH_STR, 
+			EAST_STR, WEST_STR, HEAVEN_STR, GROUND_STR};
+	char	*error_ar[6] = {ERR_REPET_NO, ERR_REPET_SO, ERR_REPET_EA, ERR_REPET_WE, ERR_REPET_F, ERR_REPET_G};
+	char	card_char[6] = {NORTH, SOUTH, EAST, WEST, HEAVEN, GROUND};
+
 	i = -1;
-	char	*card_arr[6]= { NORTH_STR, SOUTH_STR, EAST_STR, WEST_STR , HEAVEN_STR , GROUND_STR };
-	char	*error_ar[6] = { ERR_REPET_NO,ERR_REPET_SO, ERR_REPET_EA, ERR_REPET_WE, ERR_REPET_F, ERR_REPET_G};
-	char 	card_char[6] = { NORTH, SOUTH, EAST, WEST , HEAVEN , GROUND};
 	if (parsing_str->arg_ok < 6)
 	{
 		while (++i < 6)
@@ -77,12 +81,15 @@ int	check_identifier(t_pars *parsing_str, char *line_splitd)
 	return (MAP);
 }
 
-/*
-	este file hay que cerrarlo en algun sitio.
-	No sé si pasar el path o el file. 
-	Preguntar a ANdres. (mejor el path)
-*/
-int	check_textur_path(t_pars *parsing_str, char **s_splited_cleaned, int id)
+/**
+ * @brief 
+ * 
+ * @param parsing_str 
+ * @param s_splited_cleaned 
+ * @param id 
+ * @return int 
+ */
+int	check_textur_path(t_pars *parsing_str, char **s_splited_cleaned, int id) //preguntara  a Andres si prefiere el path
 {
 	int	fd;
 
@@ -92,19 +99,24 @@ int	check_textur_path(t_pars *parsing_str, char **s_splited_cleaned, int id)
 	if (fd < 0)
 		return (print_error(ERR_TEXT_PATH_MES, ERR_TEXT_PATH));
 	if (id == NORTH)
-		parsing_str->north.file = fd;
+		parsing_str->north.path = s_splited_cleaned[0];
 	else if (id == SOUTH)
-		parsing_str->south.file = fd;
+		parsing_str->south.path = s_splited_cleaned[0];
 	else if (id == EAST)
-		parsing_str->east.file = fd;
+		parsing_str->east.path = s_splited_cleaned[0];
 	else if (id == WEST)
-		parsing_str->west.file = fd;
+		parsing_str->west.path = s_splited_cleaned[0];
 	return (EXIT_SUCCESS);
 }
 
 /**
  * @brief 
- * 
+ * This function will check that the cardinal numbers and 
+ * textures are at the beginning of the file.
+ * When it has the necessary 6 arguments, it will consider that the following
+ * is the map and will check for consistency.
+ * It will parse each line, having trimmed spaces from it.
+ * If the line is empty, it will not parse it and will jump to the next line.
  * @param parsing_str 
  * @return int 
  */

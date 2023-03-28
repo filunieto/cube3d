@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fnieves <fnieves@42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:36:58 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/27 16:02:00 by fnieves          ###   ########.fr       */
+/*   Updated: 2023/03/28 18:01:21 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//por hacer . Dividir funcion. Los array declarar en 2 lineas
 #include "../../inc/Screen.h"
 
 void	free_parser(t_pars *parsing_str)
@@ -19,22 +20,16 @@ void	free_parser(t_pars *parsing_str)
 }
 
 
-/*
-//Creo que el prototipo final de la funcion sería como input 
-la estructutra generica , y el file de entrada.
-y int como salida para verificar el error. (0 si todo va bien )
-En los errores usar la misma funcion de salida
-*/
-
-/*
-	Hablar on andres para integrar la estructura 
-	Error cuando no hay mapa o el mapa está al principiop 
-	Andres , hace free de su estructura prinicpal?
-	usar strdup para copiar los paths si necesario a Andres
-	Hacer un close del file si no est á hecho >>> creo que ok
-	verifcar el reporte de valgrind 
-	añadir la estructura generica de Andres como input
-*/
+// }
+/**
+ * @brief 
+ * Function which , made the whole process of parsing.
+ * At the end it will pass the verified parameters to the main structure. 
+ * to continue running the game.
+ * 
+ * @param file_mup 
+ * @return int 
+ */
 
 int	ft_parse(char *file_mup)
 {
@@ -51,11 +46,12 @@ int	ft_parse(char *file_mup)
 	if (lets_beggin_parse(&parsing_str))
 	{
 		free_parser(&parsing_str);
-		printf(" Algún probelma en la fucnion. Se ha hecho free y salimos\n");
+		printf(" Algún probelma en la fucnion. Se ha hecho free y salimos\n"); //borrar
 		return (EXIT_FAILURE);
 	}
 	//Antes  dle free funcion   primero para copiatr datos entre las estructuras
+	//copy_struct(&parsing_str, t_struc *struct_generic);
 	free_parser(&parsing_str);
-	printf("acabdo ft_parser Todo ok. .free hecho y seguimos.\n");
+	printf("acabdo ft_parser Todo ok. .free hecho y seguimos.\n"); //borrar
 	return (EXIT_SUCCESS);
 }
