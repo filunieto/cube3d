@@ -1,5 +1,5 @@
-C    00,255,254
-F    00,00,255
+C    00,255,254 25
+F    00,00,250
 NO      ./textures/Vinelike_Pattern_64x64.png
 
 SO      ./textures/Brick_Wall_Cracked_64x64.png

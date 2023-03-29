@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:45:19 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/29 19:49:51 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 21:35:35 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	one_player(t_pars *parsing_str)
 	int		i;
 	char	*trimmed_player;
 	int		player;
+
 	player = 0;
 	i = parsing_str->nb_line_map - 1;
 	while (++i <= (int)parsing_str->nb_endline_map)
