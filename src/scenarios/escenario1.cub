@@ -1,6 +1,6 @@
 C    00,255,00
-F    00,00,255
-NO      ./textures/Vinelike_Pattern_64x64.png
+F    00,25,22
+	NO      ./textures/Vinelike_Pattern_64x64.png
 
 SO      ./textures/Brick_Wall_Cracked_64x64.png
 EA      ./textures/Rocky_Road_64x64.png
@@ -10,6 +10,6 @@ WE      ./textures/Wooden_Floor_Vertical_64x64.png
 11111111
 10010001
 10000001
-1100W001
+110E0001
 11111111
 11111111
