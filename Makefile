@@ -120,18 +120,34 @@ $(VALGRIND): $(NAME)
 run :
 	./$(NAME)
 
+error1: all
+	@echo "$(MAGEN_G)📝 test error 1. Extension incorrecta $(MAGEN_F) $(RESET)"
+	./$(NAME) ./src/scenarios/example.pipin
+
+error2: all
+	@echo "$(MAGEN_G)📝 test error 2. archivo con inputs incorrectos $(MAGEN_F) $(RESET)"
+	./$(NAME) ./src/scenarios/error1.cub
+
 test1: all
-	@echo "$(MAGEN_G)📝 test 1 con un archivo como input$(MAGEN_F) $(RESET)"
-	./$(NAME) ./src/scenarios/cubedwrong.cub
+	@echo "$(MAGEN_G)📝 test 1 $(MAGEN_F) $(RESET)"
+	./$(NAME) ./src/scenarios/escenario1.cub
 
 test2: all
 	@echo "$(MAGEN_G)📝 test 2 $(MAGEN_F) $(RESET)"
-	./$(NAME) ./src/scenarios/example.cub
+	./$(NAME) ./src/scenarios/cubed.cub
+
+# test2: all
+# 	@echo "$(MAGEN_G)📝 test 2 $(MAGEN_F) $(RESET)"
+# 	./$(NAME) ./src/scenarios/500.cub
 
 test3: all
-	@echo "$(MAGEN_G)📝 test 3 para verificar parsing $(MAGEN_F) $(RESET)"
-	./$(NAME) ./src/scenarios/parsing_test.cub
-
-test4: all
-	@echo "$(MAGEN_G)📝 test 4 para verificar coordenadas $(MAGEN_F) $(RESET)"
+	@echo "$(MAGEN_G)📝 test 3 $(MAGEN_F) $(RESET)"
 	./$(NAME) ./src/scenarios/coordenadas_linea.cub
+
+
+
+test5: all
+	@echo "$(MAGEN_G)📝 test 5 $(MAGEN_F) $(RESET)"
+	./$(NAME) ./src/scenarios/cubedwrong.cub
+
+

@@ -1,0 +1,15 @@
+C    20,255,00
+F    20,45,200
+NO      ./textures/Vinelike_Pattern_64x64.png
+
+SO      ./textures/Brick_Wall_Cracked_64x64.png
+EA      ./textures/Rocky_Road_64x64.png
+
+WE      ./textures/Wooden_Floor_Vertical_64x64.png
+
+11111111
+10010001
+10000001
+1100N001
+11111111
+11111111

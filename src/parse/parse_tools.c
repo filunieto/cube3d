@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 19:15:17 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/29 00:51:47 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 13:32:53 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,23 +55,6 @@ int	is_ext_cub(t_pars *parsing_str)
 		return (1);
 	extension = file + (leng_s - 1) - 3;
 	if (ft_strcmp(extension, ".cub"))
-		print_error(ERR_EXT_MES, ERR_EXT);
+		return (print_error(ERR_EXT_MES, ERR_EXT));
 	return (EXIT_SUCCESS);
 }
-
-// int	ft_strcmp(char *s1, char *s2)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (s1[i] && s2[i])
-// 	{
-// 		if (s1[i] == s2[i])
-// 			i++;
-// 		else
-// 			break ;
-// 	}
-// 	if (s1[i] == s2[i])
-// 		return (0);
-// 	return (1);
-// }
