@@ -6,68 +6,34 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/29 02:42:30 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:05:19 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/map/Map.h"
 
-
-extern void	loop_column_up(t_map *map, t_player *player, t_4vertex *sq1, int *auxiliar_values);
+extern void	loop_column_up(t_map *map, t_player *player,
+				t_4vertex *sq1, int *auxiliar_values);
 
 extern void	loop_column_down(t_map *map, t_player *player, t_4vertex *sq1, int *auxiliar_values);
-extern void loop_draw_map(t_map *map, t_player *player, t_4vertex *sq, int *auxiliar_values);
+extern void	loop_draw_map(t_map *map, t_player *player, t_4vertex *sq, int *auxiliar_values);
+extern void set_direction(t_map *map, t_player *player, t_pars *parsing_str);
 
 void	init_map(t_map *map, t_player *player, t_pars *parsing_str)
 {
-	unsigned int	i;
-	unsigned int	j;
-	
-	i = 0;
 	map->semi_len = 150;
 	map->width = 40;
 	map->height = 40;
 	map->rows = parsing_str->nb_endline_map - parsing_str->nb_line_map;
-	printf("rows: %d\n", map->rows);
 	map->columns = parsing_str->max_leng_map;
-	printf("columns: %d\n", map->columns);
-
 	map->map = (char **) malloc((map->rows) * sizeof(char *));
-	printf("texture: %s\n", parsing_str->north.path);
 	map->NO = mlx_load_png(parsing_str->north.path);
 	map->SO = mlx_load_png(parsing_str->south.path);
 	map->EA = mlx_load_png(parsing_str->east.path);
 	map->WE = mlx_load_png(parsing_str->west.path);
 	map->ceil_color = parsing_str->heaven.rgb;
 	map->floor_color = parsing_str->ground.rgb;
-	
-	while (i <= map->rows)
-	{	
-		// printf("%s\n", parsing_str->map_normal[i]);
-		map->map[i] = ft_strdup(parsing_str->map_normal[i]); //we use this strdup!!!!!!!!!!!!,
-										  //instead ft_strdup should be used
-		j = 0;
-		while (parsing_str->map_normal[i][j] != '\0')
-		{
-			//printf("%c", parsing_str->map_normal[i][j]);
-			if (parsing_str->map_normal[i][j] == 'N' || parsing_str->map_normal[i][j] == 'S'
-					|| parsing_str->map_normal[i][j] == 'E' || parsing_str->map_normal[i][j] == 'W')
-			{
-				player->pos_x = (j * map->width) + (map->width / 2);
-				player->pos_y = (i * map->height) + (map->height / 2);
-				//printf("\nx: %d, y: %d\n", i, j);
-				break ;
-			}
-			j++;
-		}
-		i++;
-	}
-	i = 0;
-	while(i <= map->rows)
-	{
-		printf("%s\n", map->map[i]);
-		i++;
-	}
+	set_direction(map, player, parsing_str);	
 	free_parser(parsing_str);
 }
 

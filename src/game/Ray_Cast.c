@@ -6,151 +6,145 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:47:59 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/28 23:47:56 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/29 20:28:31 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/game/Game.h"
 
+//Auxiliar functions in raycasting
+static void	raycast_horizontal(t_map *map, t_player *player,
+				t_point_f *wall_hit_horizontal, t_data_raycast *data);
+static void	raycast_vertical(t_map *map, t_player *player,
+				t_point_f *wall_hit_vertical, t_data_raycast *data);
+static void	set_horizontal_texture(t_map *map, t_data_raycast *data,
+				t_point_f *wall_hit_horizontal, t_texture *texture);
+static void	set_vertical_texture(t_map *map, t_data_raycast *data,
+				t_point_f *wall_hit_vertical, t_texture *texture);
+
+//Functions defined int Utils_Ray_Cast
+extern void	vertical_ray_cast_loop(t_map *map, t_point_f *wall_hit_vertical,
+				t_data_raycast *data, t_point_f *step);
+extern void	horizontal_ray_cast_loop(t_map *map, t_point_f *wall_hit_horizontal,
+				t_data_raycast *data, t_point_f *step);
+extern void	set_data(t_data_raycast *data, float angle);
+
 /*
  * izquierda=> 0 -> derecha, 1 -> izquierda
  * abajo=> 0 -> arriba, 1 -> abajo
 */
-float	cast(t_map *map, t_player *player, float angle, t_point_f *p_ext, int *x_texture, mlx_texture_t **texture)
+float	cast(t_game *game, float angle, t_point_f *p_ext, t_texture *texture)
 {
-	int		izquierda;
-	int		abajo;
-	float	rads;
-	float	y_intercept;
-	float	x_intercept;
-	float	step_y;
-	float	step_x;
-	float	wall_hit_x_horizontal;
-	float	wall_hit_y_horizontal;
-	int		horizontal_hit;
-	float	wall_hit_x_vertical;
-	float	wall_hit_y_vertical;
-	int		vertical_hit;
-	
-	rads = grades_to_rads(angle);
-	horizontal_hit = 0;
-	izquierda = 0;
-	abajo = 0;
-	if(rads < (float)(M_PI) && rads > (float)0)
-		abajo = 1;
+	t_data_raycast	data;
+	t_point_f		wall_hit_horizontal;
+	t_point_f		wall_hit_vertical;
+	float			vertical_distance;
+	float			horizontal_distance;
 
-	if(rads > (float)(M_PI / 2) && rads < (3*(float)(M_PI / 2)))
-		izquierda = 1;
-	
-	y_intercept = floor(player->pos_y / (float)map->height) * (float)map->height;
-	if(abajo == 1)
-		y_intercept += (float)map->height;
-
-	x_intercept = player->pos_x;
-	x_intercept += (y_intercept - player->pos_y) / tan(rads);
-
-
-	step_y = map->height;
-	step_x = ((float)((float)map->height) / tan(rads));
-	wall_hit_x_horizontal = x_intercept;
-	wall_hit_y_horizontal = y_intercept;
-
-
-	step_x = -step_x;
-	if(abajo == 0)
-		step_y = -step_y;
-	if(abajo == 1)
-		step_x = -step_x;
-	while(horizontal_hit == 0 && wall_hit_x_horizontal < (float)(map->width * map->columns)
-			&& wall_hit_x_horizontal > 1.0 && wall_hit_y_horizontal > 1.0 &&
-			wall_hit_y_horizontal < (float)(map->rows * map->height))	
+	set_data(&data, angle);
+	raycast_horizontal(game->map, game->player, &wall_hit_horizontal, &data);
+	raycast_vertical(game->map, game->player, &wall_hit_vertical, &data);
+	horizontal_distance = distancia(game->player->pos_x, game->player->pos_y,
+			wall_hit_horizontal.x, wall_hit_horizontal.y);
+	vertical_distance = distancia(game->player->pos_x, game->player->pos_y,
+			wall_hit_vertical.x, wall_hit_vertical.y);
+	if (horizontal_distance <= vertical_distance)
 	{
-//' 
-		if(map->map[(int)wall_hit_y_horizontal / map->height][(int)wall_hit_x_horizontal / map->width] == '1' || (abajo == 0 && map->map[(int)(wall_hit_y_horizontal - 1) / map->height][((int)wall_hit_x_horizontal) / map->width] == '1'))
-			horizontal_hit = 1;
-		else
-		{
-			wall_hit_x_horizontal += step_x;
-			wall_hit_y_horizontal += step_y;
-		}
-	}
-	//Aqui acaba la parte horizontal
-	x_intercept = floor(player->pos_x / (float)map->width) * (float)map->width;
-	if(izquierda == 0)
-		x_intercept += map->width;
-
-	y_intercept = player->pos_y;
-	y_intercept += ((float)(x_intercept - player->pos_x) * tan(rads));
-	step_x = (float)map->width;
-	step_y = ((float)((float)map->height) * tan(rads));
-	wall_hit_y_vertical = y_intercept;
-	wall_hit_x_vertical = x_intercept;
-	
-	step_y = -step_y;
-	if(izquierda == 1)
-		step_x = -step_x;
-	if(izquierda == 0)
-		step_y = -step_y;
-	vertical_hit = 0;	
-	while(vertical_hit  == 0 && wall_hit_x_vertical < (float)(map->width * map->columns)
-			&& wall_hit_x_vertical > 1.0 && wall_hit_y_vertical > 1.0 &&
-			wall_hit_y_vertical < (float)(map->rows * map->height))	
-	{
-		if(map->map[(int)wall_hit_y_vertical / map->height][(int)wall_hit_x_vertical / map->width] == '1' 
-			|| (izquierda == 1 && map->map[((int)wall_hit_y_vertical) / map->height][(int)(wall_hit_x_vertical - 1) / map->width] == '1'))
-			vertical_hit = 1;
-		else
-		{
-			wall_hit_x_vertical += step_x;
-			wall_hit_y_vertical += step_y;
-		}
-	}
-	
-	float horizontal_distance = distancia(player->pos_x, player->pos_y, wall_hit_x_horizontal, wall_hit_y_horizontal);
-	float vertical_distance = distancia(player->pos_x, player->pos_y, wall_hit_x_vertical, wall_hit_y_vertical);
-	if(horizontal_distance <= vertical_distance)
-	{
-		insert_point_f(p_ext, wall_hit_x_horizontal, wall_hit_y_horizontal);
-		if(abajo == 1)
-		{
-			*texture = map->NO;
-			*x_texture = (1 - ((int)wall_hit_x_horizontal % map->width) / (float) map->width) * ((*texture)->width );
-		}
-		else
-		{
-			*texture = map->SO;
-			*x_texture = (((int)wall_hit_x_horizontal % map->width) / (float) map->width) * ((*texture)->width );
-		}
-		if (*x_texture >=  (int)map->WE->width)
-			(*x_texture)--;
-		return horizontal_distance;
+		insert_point_f(p_ext, wall_hit_horizontal.x, wall_hit_horizontal.y);
+		set_horizontal_texture(game->map, &data, &wall_hit_horizontal, texture);
+		return (horizontal_distance);
 	}
 	else
 	{
-		insert_point_f(p_ext, wall_hit_x_vertical, wall_hit_y_vertical);
-		if(izquierda == 1)
-		{
-			*texture = map->EA;
-			*x_texture = (1 - ((int)wall_hit_y_vertical % map->height) / (float) map->height) * ((*texture)->height);
-		}
-		else
-		{
-			*texture = map->WE;
-			*x_texture = (((int)wall_hit_y_vertical % map->height) / (float) map->height) * ((*texture)->height);
-		}
-		if (*x_texture >=  (int)map->WE->width)
-			(*x_texture)--;
-		return vertical_distance;
+		insert_point_f(p_ext, wall_hit_vertical.x, wall_hit_vertical.y);
+		set_vertical_texture(game->map, &data, &wall_hit_vertical, texture);
+		return (vertical_distance);
 	}	
 }
 
-//Function to calculate distance between 2 points
-float distancia(float p0x, float p0y, float p1x, float p1y)
+static void	raycast_horizontal(t_map *map, t_player *player,
+		t_point_f *wall_hit_horizontal, t_data_raycast *data)
 {
-	float distance_x = pow(p0x - p1x, 2);
-	float distance_y = pow(p0y - p1y, 2);
-	float distance = sqrt(distance_x + distance_y);
+	float		y_intercept;
+	float		x_intercept;
+	t_point_f	step;
 
+	y_intercept
+		= floor(player->pos_y / (float)map->height) * (float)map->height;
+	if (data->abajo == 1)
+		y_intercept += (float)map->height;
+	x_intercept = player->pos_x;
+	x_intercept += (y_intercept - player->pos_y) / tan(data->rads);
+	step.y = map->height;
+	step.x = ((float)((float)map->height) / tan(data->rads));
+	wall_hit_horizontal->x = x_intercept;
+	wall_hit_horizontal->y = y_intercept;
+	step.x = -step.x;
+	if (data->abajo == 0)
+		step.y = -step.y;
+	if (data->abajo == 1)
+		step.x = -step.x;
+	horizontal_ray_cast_loop(map, wall_hit_horizontal, data, &step);
+}
 
-	return distance;
+static void	raycast_vertical(t_map *map, t_player *player,
+		t_point_f *wall_hit_vertical, t_data_raycast *data)
+{
+	float		y_intercept;
+	float		x_intercept;
+	t_point_f	step;
+
+	x_intercept = floor(player->pos_x / (float)map->width) * (float)map->width;
+	if (data->izquierda == 0)
+		x_intercept += map->width;
+	y_intercept = player->pos_y;
+	y_intercept += ((float)(x_intercept - player->pos_x) * tan(data->rads));
+	step.x = (float)map->width;
+	step.y = ((float)((float)map->height) *tan(data->rads));
+	wall_hit_vertical->y = y_intercept;
+	wall_hit_vertical->x = x_intercept;
+	step.y = -step.y;
+	if (data->izquierda == 1)
+		step.x = -step.x;
+	if (data->izquierda == 0)
+		step.y = -step.y;
+	vertical_ray_cast_loop(map, wall_hit_vertical, data, &step);
+}
+
+static void	set_horizontal_texture(t_map *map, t_data_raycast *data,
+		t_point_f *wall_hit_horizontal, t_texture *texture)
+{
+	if (data->abajo == 1)
+	{
+		texture->texture = map->NO;
+		texture->x_texture = (1 - ((int)wall_hit_horizontal->x % map->width)
+				/ (float) map->width) * ((texture->texture)->width);
+	}
+	else
+	{
+		texture->texture = map->SO;
+		texture->x_texture = (((int)wall_hit_horizontal->x % map->width)
+				/ (float) map->width) * ((texture->texture)->width);
+	}
+	if (texture->x_texture >= (int)map->WE->width)
+		(texture->x_texture)--;
+}
+
+static void	set_vertical_texture(t_map *map, t_data_raycast *data,
+		t_point_f *wall_hit_vertical, t_texture *texture)
+{
+	if (data->izquierda == 1)
+	{
+		texture->texture = map->EA;
+		texture->x_texture = (1 - ((int)wall_hit_vertical->y % map->height)
+				/ (float) map->height) * ((texture->texture)->height);
+	}
+	else
+	{
+		texture->texture = map->WE;
+		texture->x_texture = (((int)wall_hit_vertical->y % map->height)
+				/ (float) map->height) * ((texture->texture)->height);
+	}
+	if (texture->x_texture >= (int)map->WE->width)
+		(texture->x_texture)--;
 }

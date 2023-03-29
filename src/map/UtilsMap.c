@@ -6,26 +6,26 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:56:52 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/29 02:47:23 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 21:54:09 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/map/Map.h"
 
-/*
-void	show_map(t_map *map)
+static void set_direction_aux(t_map *map, t_pars *parsing_str, t_player *player, int i);
+
+void set_direction(t_map *map, t_player *player, t_pars *parsing_str)
 {
-	unsigned int	i;
+	unsigned int i;
 
 	i = 0;
-	while (i < map->rows)
-	{
-		printf("%s\n", map->map[i]);//we use this printf!!!!!!!!!!!!,
-									//instead ft_p should be used
+	while (i <= map->rows)
+	{	
+		map->map[i] = ft_strdup(parsing_str->map_normal[i]);									 		
+		set_direction_aux(map, parsing_str, player, i);
 		i++;
-	}	
+	}
 }
-*/
 
 void	free_map(t_map *map)
 {	
@@ -52,4 +52,30 @@ void	check_color(char c, int *color)
 		*color = COLOR_FREE_SPACES;
 	else
 		*color = 0x000000FF;
+}
+
+static void set_direction_aux(t_map *map, t_pars *parsing_str, t_player *player, int i)
+{
+	unsigned int j;
+
+	j = 0;
+	while (parsing_str->map_normal[i][j] != '\0')
+	{
+		if (parsing_str->map_normal[i][j] == 'N' || parsing_str->map_normal[i][j] == 'S'
+				|| parsing_str->map_normal[i][j] == 'E' || parsing_str->map_normal[i][j] == 'W')
+		{
+			if(parsing_str->map_normal[i][j] == 'N')
+				player->angle = 270;
+			else if(parsing_str->map_normal[i][j] == 'S')
+				player->angle = 90;
+			else if(parsing_str->map_normal[i][j] == 'W')
+				player->angle = 180;	
+			else if(parsing_str->map_normal[i][j] == 'E')
+				player->angle = 0;
+			player->pos_x = (j * map->width) + (map->width / 2);
+			player->pos_y = (i * map->height) + (map->height / 2);
+			break ;
+		}
+		j++;
+	}
 }

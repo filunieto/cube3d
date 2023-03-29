@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 22:58:43 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/21 19:48:46 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:17:39 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	init_direction(t_player *player)
 {
-	player->angle = 270;
 	player->length_direction = 50;
 	player->absolute_direction = (t_point *) malloc(sizeof(t_point));
 	player->direction_x = 0.0;

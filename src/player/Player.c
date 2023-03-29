@@ -6,7 +6,7 @@
 /*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:52:35 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/28 21:45:56 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:18:11 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,8 @@ void	init_player(mlx_t *mlx, mlx_image_t *img, t_player *player)
 	insert_point(player->center_point, WIDTH - MARGINS, MARGINS);
 	init_direction(player);
 	player->color = 0xE0E0E0FF;
-	player->vel = 2;
+	player->vel = 1;
 	player->fov = (float)FOV;
-	paint_player(player);
 }
 
 void	free_player(t_player *player)
@@ -45,7 +44,8 @@ void	free_player(t_player *player)
 
 void	paint_player(t_player *player)
 {
-	pos_player(player);
+		pos_player(player);
 	draw_line(player->img, player->center_point, player->absolute_direction,
 		0x00FF00FF);
+
 }

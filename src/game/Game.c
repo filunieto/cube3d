@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 22:16:43 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/29 12:34:48 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:10:00 by anramire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_game(mlx_t *mlx, mlx_image_t *img,
 	game->player = (t_player *) malloc (sizeof(t_player));
 	game->map = (t_map *) malloc (sizeof(t_map));
 	init_player(mlx, img, game->player);
-	init_map(game->map, game->player, parsing_str);
+	init_map(game->map, game->player, parsing_str);	
 	paint(game);
 	mlx_loop_hook(mlx, key_advance_and_back_aux, game);
 	mlx_resize_hook(game->mlx, resize_func, game);
