@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:21:02 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/22 16:56:42 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/29 01:12:02 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include "../../MLX42/include/MLX42/MLX42_Input.h"
 # include "../../memory-leaks/include/memory_leaks.h"
 # include "../shapes/Shapes.h"
+# include "parse/Parse.h"
+
 typedef struct s_game{
 	
 	mlx_t *mlx;
@@ -26,7 +28,7 @@ typedef struct s_game{
 	t_map *map;
 }t_game;
 
-void	init_game(mlx_t *mlx, mlx_image_t *img, t_game *game);
+void	init_game(mlx_t *mlx, mlx_image_t *img, t_game *game, t_pars *parsing_str);
 void	free_game(t_game *game);
 
 //Function which performs paint algorithm

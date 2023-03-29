@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 13:03:54 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/28 18:54:44 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 00:58:07 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ void	init_pars_arr(t_pars *parsing_str)
 {
 	parsing_str->arg_1 = NULL;
 	parsing_str->map = NULL;
-	parsing_str->file_inp = -1;
 	parsing_str->line = NULL;
+	parsing_str->map_normal = NULL;
+	parsing_str->file_inp = -1;
 	parsing_str->nb_line = 0;
 	parsing_str->nb_endline_map = 0;
 	parsing_str->max_leng_map = 0;
 	parsing_str->arg_ok = 0;
 	parsing_str->nb_line_map = 0;
 	parsing_str->player = 0;
-	parsing_str->map_normal = NULL;
 }
 
 void	init_pars(t_pars *parsing_str)

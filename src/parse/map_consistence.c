@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:29:19 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/28 19:39:57 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 01:37:17 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	map_closed(t_pars *parsing_str)
 		return (EXIT_FAILURE);
 	if (char_per_char_map(parsing_str))
 		return (EXIT_FAILURE);
-	draw_normalize2(parsing_str); //borrar
 	return (EXIT_SUCCESS);
 }
 

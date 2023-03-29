@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/11 16:07:54 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 02:17:35 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,60 +18,56 @@ extern void	loop_column_up(t_map *map, t_player *player, t_4vertex *sq1, int *au
 extern void	loop_column_down(t_map *map, t_player *player, t_4vertex *sq1, int *auxiliar_values);
 extern void loop_draw_map(t_map *map, t_player *player, t_4vertex *sq, int *auxiliar_values);
 
-void	init_map(t_map *map, t_player *player)
+void	init_map(t_map *map, t_player *player, t_pars *parsing_str)
 {
-	unsigned int	rows;
 	unsigned int	i;
 	unsigned int	j;
-
-	rows = 14;
+	
 	i = 0;
-	char *map_aux[] = {
-			"        1111111111111111111111111",
-			"        1000000000110000000000001",
-			"        1011000001110000000000001",
-			"        1001000000000000000000001",
-			"111111111011000001110000000000001",
-			"10000000N011000001110111110111111",
-			"11110111111111011100000010001    ",
-			"11110111111111011101010010001    ",
-			"11000000110101011100000011001    ",
-			"10000000000000001100000011001    ",
-			"10000000000000001101010010001    ",
-			"1100000111010101111101101000101  ",
-			"11110111 1110101 101111010001    ",
-			"11111111 1111111 111111111111    "
-	};
 	map->semi_len = 150;
 	map->width = 40;
 	map->height = 40;
-	map->rows = rows;
-	map->columns = ft_strlen(map_aux[i]);
-	map->map = (char **) malloc(rows * sizeof(char *));	
+	map->rows = parsing_str->nb_endline_map - parsing_str->nb_line_map;
+	printf("rows: %d\n", map->rows);
+	map->columns = parsing_str->max_leng_map;
+	printf("columns: %d\n", map->columns);
+
+	map->map = (char **) malloc((map->rows) * sizeof(char *));	
 	map->NO = mlx_load_png("./textures/Brick_Wall_Cracked_64x64.png");
 	map->SO = mlx_load_png("./textures/Vinelike_Pattern_64x64.png");
 	map->EA = mlx_load_png("./textures/Rocky_Road_64x64.png");
 	map->WE = mlx_load_png("./textures/Wooden_Floor_Vertical_64x64.png");
 	map->ceil_color = 0x2393D7FF;
 	map->floor_color = 0x6C5507FF;
-	while (i < 14)
+	
+	while (i <= map->rows)
 	{	
-		map->map[i] = ft_strdup(map_aux[i]); //we use this strdup!!!!!!!!!!!!,
+		// printf("%s\n", parsing_str->map_normal[i]);
+		map->map[i] = ft_strdup(parsing_str->map_normal[i]); //we use this strdup!!!!!!!!!!!!,
 										  //instead ft_strdup should be used
 		j = 0;
-		while (map_aux[i][j] != '\0')
+		while (parsing_str->map_normal[i][j] != '\0')
 		{
-			if (map_aux[i][j] == 'N' || map_aux[i][j] == 'S'
-					|| map_aux[i][j] == 'E' || map_aux[i][j] == 'W')
+			//printf("%c", parsing_str->map_normal[i][j]);
+			if (parsing_str->map_normal[i][j] == 'N' || parsing_str->map_normal[i][j] == 'S'
+					|| parsing_str->map_normal[i][j] == 'E' || parsing_str->map_normal[i][j] == 'W')
 			{
 				player->pos_x = (j * map->width) + (map->width / 2);
 				player->pos_y = (i * map->height) + (map->height / 2);
+				//printf("\nx: %d, y: %d\n", i, j);
 				break ;
 			}
 			j++;
 		}
 		i++;
 	}
+	i = 0;
+	while(i <= map->rows)
+	{
+		printf("%s\n", map->map[i]);
+		i++;
+	}
+	free_parser(parsing_str);
 }
 
 /*

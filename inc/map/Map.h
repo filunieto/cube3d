@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:00 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/28 22:43:58 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/29 01:15:52 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 # include "../../libft/libft.h"
 # include "../player/Player.h"
 # include "../shapes/Shapes.h"
-
-#include <stdlib.h>
-#include <string.h>
+# include "../parse/Parse.h"
+# include <stdlib.h>
+# include <string.h>
 
 # define COLOR_WALLS 0x9C0000FF
 # define COLOR_FREE_SPACES 0x490080FF
@@ -43,7 +43,7 @@ typedef struct s_map
 
 //Functions aux temporarily!!!!!!!!
 //To init map player must have been initialized previously
-void init_map(t_map *map, t_player *player);
+void init_map(t_map *map, t_player *player, t_pars *parsing_str);
 void free_map(t_map *map);
 
 //Function to check the color of a position

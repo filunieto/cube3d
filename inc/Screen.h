@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:44:14 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/28 12:31:40 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 01:09:33 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@
 
 
 
-int	init_window(void);
+int	init_window(t_pars *parsing_str);
 
 #endif

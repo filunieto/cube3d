@@ -25,6 +25,7 @@
 		"screen.h": "c",
 		"random": "c",
 		"array": "c",
-		"ios": "c"
+		"ios": "c",
+		"parse.h": "c"
 	}
 }

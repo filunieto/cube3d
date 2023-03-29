@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Utils_Draw_Map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:51:44 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/28 22:44:19 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/29 02:20:01 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

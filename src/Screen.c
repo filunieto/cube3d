@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   Screen.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:55:43 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/21 19:24:55 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/29 01:09:58 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/Screen.h"
 
-int	init_window(void)
+int	init_window(t_pars *parsing_str)
 {	
 	mlx_t		*mlx;
 	mlx_image_t	*img;
@@ -26,7 +26,7 @@ int	init_window(void)
 		return (-1);
 	}
 	img = mlx_new_image(mlx, INITIAL_WIDTH, INITIAL_HEIGHT);
-	init_game(mlx, img, &game);
+	init_game(mlx, img, &game, parsing_str);
 	mlx_image_to_window(mlx, img, 0, 0);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);

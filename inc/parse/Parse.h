@@ -6,14 +6,14 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:30:57 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/28 19:37:35 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 02:07:04 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
-# include "../Screen.h"
+// # include "../Screen.h"
 
 # define CHMOD		0644
 # define SPACE_STR		" \t\n"
@@ -81,7 +81,7 @@ typedef struct s_pars
 }	t_pars;
 
 //src/parse/parse.c
-int		ft_parse(char *file_mup);
+int		ft_parse(char *file_mup, t_pars *parsing_str);
 void	free_parser(t_pars *parsing_str);
 
 //src/parse/init_parse.c
@@ -135,6 +135,8 @@ int		one_player(t_pars *parsing_str);
 void	define_cardinal(char **card_arr);
 void	define_error(char **error_ar);
 void	define_card_char(char *card_char);
+void	draw_normalize2(t_pars *parsing_str);
+
 
 //src/parse/copy_struct.c
 

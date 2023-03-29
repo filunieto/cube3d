@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   UtilsMap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:56:52 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/28 22:35:18 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/29 01:58:17 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	free_map(t_map *map)
 	unsigned int	i;
 
 	i = 0;
-	while (i < map->rows)
+	while (i <= map->rows)
 	{
 		free(map->map[i]);
 		i++;
