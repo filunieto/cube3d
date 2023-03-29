@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Square.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:52:01 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/14 22:48:43 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:29:16 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,9 @@ static int	check_square(t_4vertex *square)
 {	
 	if (square->p0.y != square->p1.y || square->p1.x != square->p2.x
 		|| square->p2.y != square->p3.y || square->p3.x != square->p0.x)
-	{
-		printf("Error 1: Points passed do not correspond to any square\n");
 		return (-1);
-	}
 	else if (square->p0.x >= square->p1.x || square->p1.y >= square->p2.y
 		|| square->p2.x <= square->p3.x || square->p3.y <= square->p0.y)
-	{	
-		printf("Error 2: Points passed do not correspond to any square\n");
 		return (-1);
-	}
 	return (0);
 }

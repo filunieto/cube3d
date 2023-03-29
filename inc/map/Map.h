@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:00 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/29 12:26:20 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:36:31 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ typedef struct s_map
 	unsigned int	height;
 	mlx_image_t		*img;
 	char			**map;
-	mlx_texture_t	*NO;
-	mlx_texture_t	*SO;
-	mlx_texture_t	*EA;
-	mlx_texture_t	*WE;
+	mlx_texture_t	*no;
+	mlx_texture_t	*so;
+	mlx_texture_t	*ea;
+	mlx_texture_t	*we;
 	int				ceil_color;
 	int				floor_color;
 }t_map;

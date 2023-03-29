@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   KeyHook.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 22:18:24 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/28 23:05:33 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:27:59 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	key_advance_and_back_aux(void *param)
 		player_advance_lateral(game->map, game->player, 1);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 		player_advance_lateral(game->map, game->player, -1);
-	if (mlx_is_key_down(game->mlx, MLX_KEY_Q))
+	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 	{
 		free_game(game);
 		exit(0);

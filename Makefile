@@ -26,19 +26,19 @@ SRCS = $(SRC)/main.c $(SRC)/Screen.c $(SRC)/shapes/Line.c \
 	   $(SRC)/player/Direction.c $(SRC)/game/Game.c \
 	   $(SRC)/game/ResizeHook.c $(SRC)/game/KeyHook.c \
 	   $(SRC)/player/ClearingImage.c $(SRC)/map/Map.c \
-		src/parse/parse.c 				\
-		src/parse/parse_tools.c 		\
-		src/error/error.c				\
-		src/gnl/get_next_line.c			\
-		src/gnl/get_next_line_utils.c	\
-		src/parse/read_map.c			\
-		src/parse/check_lines.c			\
-		src/parse/check_rgb.c			\
-		src/parse/check_map.c			\
-		src/parse/map_consistence.c		\
-		src/parse/map_one_player.c		\
-		src/parse/normalice_map.c		\
-		src/parse/init_parse.c			\
+		$(SRC)/parse/parse.c 				\
+		$(SRC)/parse/parse_tools.c 			\
+		$(SRC)/error/error.c				\
+		$(SRC)/gnl/get_next_line.c			\
+		$(SRC)/gnl/get_next_line_utils.c	\
+		$(SRC)/parse/read_map.c			\
+		$(SRC)/parse/check_lines.c			\
+		$(SRC)/parse/check_rgb.c			\
+		$(SRC)/parse/check_map.c			\
+		$(SRC)/parse/map_consistence.c		\
+		$(SRC)/parse/map_one_player.c		\
+		$(SRC)/parse/normalice_map.c		\
+		$(SRC)/parse/init_parse.c			\
 	   $(SRC)/map/UtilsMap.c $(SRC)/game/Paint.c $(SRC)/map/Movement.c \
 	   $(SRC)/map/Utils_Draw_Map.c $(SRC)/map/Checking_Collisions_Sides.c \
 	   $(SRC)/map/Utils_Collisions.c $(SRC)/shapes/Rotations.c \
@@ -121,34 +121,26 @@ $(VALGRIND): $(NAME)
 run :
 	./$(NAME)
 
-error1: all
+test1: all
 	@echo "$(MAGEN_G)📝 test error 1. Extension incorrecta $(MAGEN_F) $(RESET)"
 	./$(NAME) ./src/scenarios/example.pipin
 
-error2: all
-	@echo "$(MAGEN_G)📝 test error 2. archivo con inputs incorrectos $(MAGEN_F) $(RESET)"
-	./$(NAME) ./src/scenarios/error1.cub
-
-test1: all
-	@echo "$(MAGEN_G)📝 test 1 $(MAGEN_F) $(RESET)"
-	./$(NAME) ./src/scenarios/escenario1.cub
-
 test2: all
-	@echo "$(MAGEN_G)📝 test 2 $(MAGEN_F) $(RESET)"
-	./$(NAME) ./src/scenarios/cubed.cub
-
-# test2: all
-# 	@echo "$(MAGEN_G)📝 test 2 $(MAGEN_F) $(RESET)"
-# 	./$(NAME) ./src/scenarios/500.cub
+	@echo "$(MAGEN_G)📝 test error 2. incorrect configuration input file $(MAGEN_F) $(RESET)"
+	./$(NAME) ./src/scenarios/error.cub
 
 test3: all
-	@echo "$(MAGEN_G)📝 test 3 $(MAGEN_F) $(RESET)"
-	./$(NAME) ./src/scenarios/coordenadas_linea.cub
+	@echo "$(MAGEN_G)📝 test 3 $(MAGEN_F) $(RESET)" 
+	./$(NAME) ./src/scenarios/escenario1.cub
 
-
+test4: all
+	@echo "$(MAGEN_G)📝 test 4 $(MAGEN_F) $(RESET)"
+	./$(NAME) ./src/scenarios/cubed.cub
 
 test5: all
 	@echo "$(MAGEN_G)📝 test 5 $(MAGEN_F) $(RESET)"
 	./$(NAME) ./src/scenarios/cubedwrong.cub
+
+
 
 

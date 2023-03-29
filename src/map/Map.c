@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/29 22:05:19 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:43:08 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 extern void	loop_column_up(t_map *map, t_player *player,
 				t_4vertex *sq1, int *auxiliar_values);
 
-extern void	loop_column_down(t_map *map, t_player *player, t_4vertex *sq1, int *auxiliar_values);
-extern void	loop_draw_map(t_map *map, t_player *player, t_4vertex *sq, int *auxiliar_values);
-extern void set_direction(t_map *map, t_player *player, t_pars *parsing_str);
+extern void	loop_column_down(t_map *map, t_player *player,
+				t_4vertex *sq1, int *auxiliar_values);
+extern void	loop_draw_map(t_map *map, t_player *player,
+				t_4vertex *sq, int *auxiliar_values);
+extern void	set_direction(t_map *map, t_player *player, t_pars *parsing_str);
 
 void	init_map(t_map *map, t_player *player, t_pars *parsing_str)
 {
@@ -27,13 +29,13 @@ void	init_map(t_map *map, t_player *player, t_pars *parsing_str)
 	map->rows = parsing_str->nb_endline_map - parsing_str->nb_line_map;
 	map->columns = parsing_str->max_leng_map;
 	map->map = (char **) malloc((map->rows) * sizeof(char *));
-	map->NO = mlx_load_png(parsing_str->north.path);
-	map->SO = mlx_load_png(parsing_str->south.path);
-	map->EA = mlx_load_png(parsing_str->east.path);
-	map->WE = mlx_load_png(parsing_str->west.path);
+	map->no = mlx_load_png(parsing_str->north.path);
+	map->so = mlx_load_png(parsing_str->south.path);
+	map->ea = mlx_load_png(parsing_str->east.path);
+	map->we = mlx_load_png(parsing_str->west.path);
 	map->ceil_color = parsing_str->heaven.rgb;
 	map->floor_color = parsing_str->ground.rgb;
-	set_direction(map, player, parsing_str);	
+	set_direction(map, player, parsing_str);
 	free_parser(parsing_str);
 }
 

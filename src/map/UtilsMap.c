@@ -6,22 +6,23 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:56:52 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/29 21:54:09 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:43:45 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/map/Map.h"
 
-static void set_direction_aux(t_map *map, t_pars *parsing_str, t_player *player, int i);
+static void	set_direction_aux(t_map *map, t_pars *parsing_str,
+				t_player *player, int i);
 
-void set_direction(t_map *map, t_player *player, t_pars *parsing_str)
+void	set_direction(t_map *map, t_player *player, t_pars *parsing_str)
 {
-	unsigned int i;
+	unsigned int	i;
 
 	i = 0;
 	while (i <= map->rows)
 	{	
-		map->map[i] = ft_strdup(parsing_str->map_normal[i]);									 		
+		map->map[i] = ft_strdup(parsing_str->map_normal[i]);
 		set_direction_aux(map, parsing_str, player, i);
 		i++;
 	}
@@ -37,10 +38,10 @@ void	free_map(t_map *map)
 		free(map->map[i]);
 		i++;
 	}
-	mlx_delete_texture(map->NO);
-	mlx_delete_texture(map->SO);
-	mlx_delete_texture(map->EA);
-	mlx_delete_texture(map->WE);
+	mlx_delete_texture(map->no);
+	mlx_delete_texture(map->so);
+	mlx_delete_texture(map->ea);
+	mlx_delete_texture(map->we);
 	free(map->map);
 }
 
@@ -54,23 +55,26 @@ void	check_color(char c, int *color)
 		*color = 0x000000FF;
 }
 
-static void set_direction_aux(t_map *map, t_pars *parsing_str, t_player *player, int i)
+static void	set_direction_aux(t_map *map, t_pars *parsing_str,
+				t_player *player, int i)
 {
-	unsigned int j;
+	unsigned int	j;
 
 	j = 0;
 	while (parsing_str->map_normal[i][j] != '\0')
 	{
-		if (parsing_str->map_normal[i][j] == 'N' || parsing_str->map_normal[i][j] == 'S'
-				|| parsing_str->map_normal[i][j] == 'E' || parsing_str->map_normal[i][j] == 'W')
+		if (parsing_str->map_normal[i][j] == 'N'
+			|| parsing_str->map_normal[i][j] == 'S'
+			|| parsing_str->map_normal[i][j] == 'E'
+			|| parsing_str->map_normal[i][j] == 'W')
 		{
-			if(parsing_str->map_normal[i][j] == 'N')
+			if (parsing_str->map_normal[i][j] == 'N')
 				player->angle = 270;
-			else if(parsing_str->map_normal[i][j] == 'S')
+			else if (parsing_str->map_normal[i][j] == 'S')
 				player->angle = 90;
-			else if(parsing_str->map_normal[i][j] == 'W')
-				player->angle = 180;	
-			else if(parsing_str->map_normal[i][j] == 'E')
+			else if (parsing_str->map_normal[i][j] == 'W')
+				player->angle = 180;
+			else if (parsing_str->map_normal[i][j] == 'E')
 				player->angle = 0;
 			player->pos_x = (j * map->width) + (map->width / 2);
 			player->pos_y = (i * map->height) + (map->height / 2);

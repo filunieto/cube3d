@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:21:02 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/29 21:01:29 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:35:19 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,23 @@ typedef struct s_game
 //Structure to help drawing vertical lines in raycaster
 typedef struct s_draw_vertical
 {
-	int y0;
-	int y1;
-	float ratio;
-	float acc;
+	int		y0;
+	int		y1;
+	float	ratio;
+	float	acc;
 }t_draw_vertical;
 
 typedef struct s_data_raycast
 {
-	int izquierda;
-	int abajo;
-	float rads;
+	int		izquierda;
+	int		abajo;
+	float	rads;
 }t_data_raycast;
 
 typedef struct s_texture
 {
-	int x_texture;
-	mlx_texture_t *texture;	
+	int				x_texture;
+	mlx_texture_t	*texture;	
 }t_texture;
 void	init_game(mlx_t *mlx, mlx_image_t *img,
 			t_game *game, t_pars *parsing_str);

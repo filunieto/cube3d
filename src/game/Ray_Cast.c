@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ray_Cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:47:59 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/29 20:28:31 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:37:45 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,17 +116,17 @@ static void	set_horizontal_texture(t_map *map, t_data_raycast *data,
 {
 	if (data->abajo == 1)
 	{
-		texture->texture = map->NO;
+		texture->texture = map->no;
 		texture->x_texture = (1 - ((int)wall_hit_horizontal->x % map->width)
 				/ (float) map->width) * ((texture->texture)->width);
 	}
 	else
 	{
-		texture->texture = map->SO;
+		texture->texture = map->so;
 		texture->x_texture = (((int)wall_hit_horizontal->x % map->width)
 				/ (float) map->width) * ((texture->texture)->width);
 	}
-	if (texture->x_texture >= (int)map->WE->width)
+	if (texture->x_texture >= (int)map->we->width)
 		(texture->x_texture)--;
 }
 
@@ -135,16 +135,16 @@ static void	set_vertical_texture(t_map *map, t_data_raycast *data,
 {
 	if (data->izquierda == 1)
 	{
-		texture->texture = map->EA;
+		texture->texture = map->ea;
 		texture->x_texture = (1 - ((int)wall_hit_vertical->y % map->height)
 				/ (float) map->height) * ((texture->texture)->height);
 	}
 	else
 	{
-		texture->texture = map->WE;
+		texture->texture = map->we;
 		texture->x_texture = (((int)wall_hit_vertical->y % map->height)
 				/ (float) map->height) * ((texture->texture)->height);
 	}
-	if (texture->x_texture >= (int)map->WE->width)
+	if (texture->x_texture >= (int)map->we->width)
 		(texture->x_texture)--;
 }

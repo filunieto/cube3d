@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 12:25:08 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/28 12:34:55 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 21:35:07 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ possibility to place the player\n"
 # define ERR_MAP8_MES	"no player\n"
 # define ERR_MAP9_MES	"more than 1 player\n"
 # define ERR_MAP10_MES	"map not at the end\n"
-# define ERR_MAP11_MES	"chars in map at cheking lines before checck \
+# define ERR_MAP11_MES	"chars in map at cheking lines before check \
 map_differents from 0,1, W, S, E, N\n"
 
 # define ERR_MAP12_MES	"We do not have all the inputs cardinals/textures \
@@ -54,8 +54,8 @@ at the begginig\n"
 
 # define ERR_OPEN_FILE		"Problem opening file 1\n"
 # define ERR_OPEN_FILE2		"Problem opening file 2\n"
-# define ERR_INP_MAP_MES	"repetdio punto cardinal o falta o el \
-mapa no tiene simbolos correctos\n"
+# define ERR_INP_MAP_MES	"cardinal point is missing or missing \
+or the map does not have correct symbols"
 
 /* Error codes return values */
 

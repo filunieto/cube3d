@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anramire <anramire@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 21:52:35 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/29 22:18:11 by anramire         ###   ########.fr       */
+/*   Updated: 2023/03/29 22:26:21 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	free_player(t_player *player)
 
 void	paint_player(t_player *player)
 {
-		pos_player(player);
+	pos_player(player);
 	draw_line(player->img, player->center_point, player->absolute_direction,
 		0x00FF00FF);
-
 }
