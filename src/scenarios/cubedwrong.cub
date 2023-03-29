@@ -1,12 +1,12 @@
 
-C    20,20,20
-F    20,15,25
-NO      ./src/textures/wall1.xpm 
+C    00,255,00
+F    00,00,255
+NO      ./textures/Vinelike_Pattern_64x64.png
 
-SO      ./src/textures/wall3.xpm
-EA      ./src/textures/wall4.xpm
+SO      ./textures/Brick_Wall_Cracked_64x64.png
+EA      ./textures/Rocky_Road_64x64.png
 
-WE      ./src/textures/wall2.xpm	
+WE      ./textures/Wooden_Floor_Vertical_64x64.png
 
 
 
@@ -19,7 +19,7 @@ WE      ./src/textures/wall2.xpm
 100000000011000001110111110111111
 11110111111111011100000010001
 11110111111111011101010010001
-11000000110101011100000010001  
+11000000110101011100000010001
 10000000000000001100000010001
 10000000000000001101010010001
 110000011101010111110111100011

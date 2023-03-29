@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:36:58 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/29 01:37:36 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 11:45:39 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,14 @@ void	free_parser(t_pars *parsing_str)
 		free_split(&parsing_str->map);
 	if (parsing_str->map_normal)
 		free_split(&parsing_str->map_normal);
-	// free_split(&parsing_str->map);
-	// free_split(&parsing_str->map_normal);
+	if(parsing_str->north.path)
+		free(parsing_str->north.path);
+	if(parsing_str->south.path)
+		free(parsing_str->south.path);
+	if(parsing_str->east.path)
+		free(parsing_str->east.path);
+	if(parsing_str->west.path)
+		free(parsing_str->west.path);
 }
 
 void	free_split(char ***s_splitted)
@@ -31,7 +37,6 @@ void	free_split(char ***s_splitted)
 	array_str = *s_splitted;
 	if (array_str)
 	{
-		//printf("array existe y lo limpiamos \n");
 		while (array_str[++i])
 		{
 			free(array_str[i]);

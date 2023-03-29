@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:58:11 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/29 02:17:35 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 02:42:30 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@ void	init_map(t_map *map, t_player *player, t_pars *parsing_str)
 	map->columns = parsing_str->max_leng_map;
 	printf("columns: %d\n", map->columns);
 
-	map->map = (char **) malloc((map->rows) * sizeof(char *));	
-	map->NO = mlx_load_png("./textures/Brick_Wall_Cracked_64x64.png");
-	map->SO = mlx_load_png("./textures/Vinelike_Pattern_64x64.png");
-	map->EA = mlx_load_png("./textures/Rocky_Road_64x64.png");
-	map->WE = mlx_load_png("./textures/Wooden_Floor_Vertical_64x64.png");
-	map->ceil_color = 0x2393D7FF;
-	map->floor_color = 0x6C5507FF;
+	map->map = (char **) malloc((map->rows) * sizeof(char *));
+	printf("texture: %s\n", parsing_str->north.path);
+	map->NO = mlx_load_png(parsing_str->north.path);
+	map->SO = mlx_load_png(parsing_str->south.path);
+	map->EA = mlx_load_png(parsing_str->east.path);
+	map->WE = mlx_load_png(parsing_str->west.path);
+	map->ceil_color = parsing_str->heaven.rgb;
+	map->floor_color = parsing_str->ground.rgb;
 	
 	while (i <= map->rows)
 	{	
