@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:36:58 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/29 12:22:46 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:37:43 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	free_split(char ***s_splitted)
  * Function which , made the whole process of parsing.
  * At the end it will pass the verified parameters to the main structure. 
  * to continue running the game.
- * 
+ * Check 2nd player in wall
  * @param file_mup 
  * @return int 
  */

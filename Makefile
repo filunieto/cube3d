@@ -136,18 +136,13 @@ test2: all
 	@echo "$(MAGEN_G)📝 test 2 $(MAGEN_F) $(RESET)"
 	./$(NAME) ./src/scenarios/cubed.cub
 
+test3: all
+	@echo "$(MAGEN_G)📝 test 5 $(MAGEN_F) $(RESET)"
+	./$(NAME) ./src/scenarios/cubedwrong.cub
+
 # test2: all
 # 	@echo "$(MAGEN_G)📝 test 2 $(MAGEN_F) $(RESET)"
 # 	./$(NAME) ./src/scenarios/500.cub
 
-test3: all
-	@echo "$(MAGEN_G)📝 test 3 $(MAGEN_F) $(RESET)"
-	./$(NAME) ./src/scenarios/coordenadas_linea.cub
-
-
-
-test5: all
-	@echo "$(MAGEN_G)📝 test 5 $(MAGEN_F) $(RESET)"
-	./$(NAME) ./src/scenarios/cubedwrong.cub
 
 
