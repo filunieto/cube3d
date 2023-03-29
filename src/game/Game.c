@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 22:16:43 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/29 01:16:09 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:34:48 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ extern void	resize_func(int x, int y, void *param);
 extern void	key_func(mlx_key_data_t keydata, void *param);
 extern void	cursorhook(double xpos, double ypos, void *param);
 
-void	init_game(mlx_t *mlx, mlx_image_t *img, t_game *game, t_pars *parsing_str)
+void	init_game(mlx_t *mlx, mlx_image_t *img,
+		t_game *game, t_pars *parsing_str)
 {
 	game->mlx = mlx;
 	game->player = (t_player *) malloc (sizeof(t_player));

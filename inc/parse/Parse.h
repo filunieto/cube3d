@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:30:57 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/29 02:07:04 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:23:11 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ typedef struct s_pars
 {
 	char		**map;
 	char		**map_normal;
-	// bool		error_pars;
 	char		*arg_1;
 	int			file_inp;
 	char		*line;
@@ -136,8 +135,5 @@ void	define_cardinal(char **card_arr);
 void	define_error(char **error_ar);
 void	define_card_char(char *card_char);
 void	draw_normalize2(t_pars *parsing_str);
-
-
-//src/parse/copy_struct.c
 
 #endif

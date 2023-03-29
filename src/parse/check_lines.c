@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:23:43 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/29 02:41:38 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:31:18 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int	check_textur_path(t_pars *parsing_str, char **s_splited_cleaned, int id)
 	fd = open(s_splited_cleaned[0], O_RDONLY, CHMOD);
 	if (fd < 0)
 		return (print_error(ERR_TEXT_PATH_MES, ERR_TEXT_PATH));
-	//printf("En check parse %s\n", s_splited_cleaned[0]);
 	if (id == NORTH)
 		parsing_str->north.path = ft_strdup(s_splited_cleaned[0]);
 	else if (id == SOUTH)
@@ -109,7 +108,6 @@ int	check_textur_path(t_pars *parsing_str, char **s_splited_cleaned, int id)
 		parsing_str->east.path = ft_strdup(s_splited_cleaned[0]);
 	else if (id == WEST)
 		parsing_str->west.path = ft_strdup(s_splited_cleaned[0]);
-	//printf("En check parse para north %s\n", parsing_str->north.path);
 	return (EXIT_SUCCESS);
 }
 

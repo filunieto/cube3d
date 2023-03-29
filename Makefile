@@ -39,7 +39,6 @@ SRCS = $(SRC)/main.c $(SRC)/Screen.c $(SRC)/shapes/Line.c \
 		src/parse/map_one_player.c		\
 		src/parse/normalice_map.c		\
 		src/parse/init_parse.c			\
-		src/parse/copy_struct.c			\
 	   $(SRC)/map/UtilsMap.c $(SRC)/game/Paint.c $(SRC)/map/Movement.c \
 	   $(SRC)/map/Utils_Draw_Map.c $(SRC)/map/Checking_Collisions_Sides.c \
 	   $(SRC)/map/Utils_Collisions.c $(SRC)/shapes/Rotations.c \

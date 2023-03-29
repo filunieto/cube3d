@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:44:14 by anramire          #+#    #+#             */
-/*   Updated: 2023/03/29 01:09:33 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 11:53:49 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,9 @@
 # include <stdbool.h>
 # include <fcntl.h>
 
-
 # include "error/Error.h"
 # include "parse/Parse.h"
 # include "gnl/get_next_line.h"
-
-
 
 int	init_window(t_pars *parsing_str);
 

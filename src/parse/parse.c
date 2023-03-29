@@ -6,7 +6,7 @@
 /*   By: fnieves- <fnieves-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 17:36:58 by fnieves-          #+#    #+#             */
-/*   Updated: 2023/03/29 11:45:39 by fnieves-         ###   ########.fr       */
+/*   Updated: 2023/03/29 12:22:46 by fnieves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	free_parser(t_pars *parsing_str)
 		free_split(&parsing_str->map);
 	if (parsing_str->map_normal)
 		free_split(&parsing_str->map_normal);
-	if(parsing_str->north.path)
+	if (parsing_str->north.path)
 		free(parsing_str->north.path);
-	if(parsing_str->south.path)
+	if (parsing_str->south.path)
 		free(parsing_str->south.path);
-	if(parsing_str->east.path)
+	if (parsing_str->east.path)
 		free(parsing_str->east.path);
-	if(parsing_str->west.path)
+	if (parsing_str->west.path)
 		free(parsing_str->west.path);
 }
 
@@ -72,7 +72,5 @@ int	ft_parse(char *file_mup, t_pars *parsing_str)
 		free_parser(parsing_str);
 		return (EXIT_FAILURE);
 	}
-	//copy_struct(&parsing_str, t_struc *struct_generic);
-	//printf("acabdo ft_parser Todo ok. .free hecho y seguimos.\n"); //borrar
 	return (EXIT_SUCCESS);
 }

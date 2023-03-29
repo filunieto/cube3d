@@ -1,3 +1,0 @@
-/System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos goinfre/cube3d proyecto/cube3d_gitlab/MLX42/build/CMakeFiles/mlx42.dir
-/System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos goinfre/cube3d proyecto/cube3d_gitlab/MLX42/build/CMakeFiles/edit_cache.dir
-/System/Volumes/Data/sgoinfre/goinfre/Perso/fnieves-/proyectos goinfre/cube3d proyecto/cube3d_gitlab/MLX42/build/CMakeFiles/rebuild_cache.dir
