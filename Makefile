@@ -11,7 +11,8 @@ RED_F = \033[1;0m\033[31m
 
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g
+# CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall  -Wextra 
 INC = inc
 SRC = src
 INCLUDES = $(INC)/Screen.h $(INC)/shapes/Shapes.h $(INC)/player/Player.h \
